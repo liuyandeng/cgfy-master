@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!--#######################################################生成清单################################-->
+	<!--	bean(6个)-->
+	<!--		表名+CompositeInternalOutputBean  ###复合内部输出bean-->
+	<!--		表名+InternalOutputBean    ###内部bean-->
+	<!--		表名+DeleteInputBean-->
+	<!--		表名+InsertInputBean-->
+	<!--		表名+UpdateConditionInputBean   ###条件更新bean-->
+	<!--		表名+UpdateInputBean-->
+	<!--	controller(2个)-->
+	<!--		implex-表名+CrudControllerEx-->
+	<!--		表名+CrudController-->
+	<!--	service(3个)-->
+	<!--		impl-表名+CrudServiceImpl-->
+	<!--		implex-表名+CrudServiceImplEx-->
+	<!--		表名+CrudService  -->
+	<!--	mapper(2个)-->
+	<!--		mapepr-表名+CompositeMapper,表名+Mapper-->
+	<!--	model(2个)-->
+	<!--		model-表名,表名+Composite-->
+	<!--	mapper.xml(1个)-->
+	<!--		表名+Mapper.xml-->
+
+
+
+	<!--外部配置文件-->
+	<properties resource="generator/ext/generator.properties" />
+	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat"
+		introspectedColumnImpl="com.jbdp.generator.ext.IntrospectedColumnEx">
+		<!--生成器属性配置-->
+		<property name="driverClass" value="${datasource.driverClassName}" />
+		<property name="connectionURL" value="${datasource.url}" />
+		<property name="userId" value="${datasource.username}" />
+		<property name="password" value="${datasource.password}" />
+		<property name="schema" value="${datasource.schema}" />
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<property name="javaFileEncoding" value="UTF-8" />
+		<property name="useMapperCommentGenerator" value="FALSE" />
+		<property name="commentClassAuthor" value="${project.author}" />
+		<property name="uuidField" value="${project.uuidField}" />
+		<property name="ignoreColumn" value="${project.ignoreColumn}" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+
+		<!--#######################################################model,顺序需要在mapper之上################################-->
+		<!-- Model生成 -->
+		<plugin type="com.jbdp.generator.plugins.ModelPlugin">
+			<property name="supertInterface" value="${project.modelSuperInterface}" />
+		</plugin>
+		<!-- 生成复合查询Model -->
+		<plugin type="com.jbdp.generator.plugins.CompositeModelPlugin">
+			<property name="basePackage" value="${project.basePackage}.domain.model" />
+		</plugin>
+
+
+		<!--#######################################################mapper################################-->
+		<!-- Mapper生成 -->
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="${project.mapperSuperInterface}" />
+		</plugin>
+		<!--给mapper接口增加@Mapper注解-->
+		<plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+		<plugin type="com.jbdp.generator.plugins.MapperCommentPlugin" />
+		<!-- 生成复合查询Mapper -->
+		<plugin type="com.jbdp.generator.plugins.CompositeMapperPlugin">
+			<property name="basePackage" value="${project.basePackage}.domain.mapper" />
+			<property name="mappers" value="${project.mapperSuperInterface}" />
+		</plugin>
+
+
+		<!--#######################################################输入输出bean################################-->
+		<!-- 生成复合查询检索结果Bean -->
+		<plugin type="com.jbdp.generator.plugins.CompositeRecordInternalOutputBeanPlugin">
+			<property name="superClass" value="${project.modelSuperClass}" />
+			<property name="basePackage" value="${project.basePackage}.bean" />
+		</plugin>
+
+		<!-- 生成插入记录Bean -->
+		<plugin type="com.jbdp.generator.plugins.InsertInputBeanPlugin">
+			<property name="basePackage" value="${project.basePackage}.bean" />
+		</plugin>
+
+		<!-- 生成删除记录Bean -->
+		<plugin type="com.jbdp.generator.plugins.DeleteInputBeanPlugin">
+			<property name="basePackage" value="${project.basePackage}.bean" />
+		</plugin>
+
+		<!-- 生成更新记录Bean -->
+		<plugin type="com.jbdp.generator.plugins.UpdateInputBeanPlugin">
+			<property name="basePackage" value="${project.basePackage}.bean" />
+		</plugin>
+
+		<plugin type="com.jbdp.generator.plugins.UpdateConditionInputBeanPlugin">
+			<property name="basePackage" value="${project.basePackage}.bean" />
+			<property name="updateSuperClass" value="com.jbdp.base.bean.UpdateInputBean" />
+		</plugin>
+
+		<!-- 生成内部输出记录Bean -->
+		<plugin type="com.jbdp.generator.plugins.RecordInternalOutputBeanPlugin">
+			<property name="superClass" value="${project.modelSuperClass}" />
+			<property name="basePackage" value="${project.basePackage}.bean" />
+		</plugin>
+
+
+		<!--#######################################################Service################################-->
+		<!-- Service接口 -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseTarget}" />
+			<property name="targetPackage" value="${project.basePackage}.service" />
+
+			<property name="templatePath" value="generator/template/CrudService.ftl" />
+
+			<property name="beanKey" value="SERVICE_INTERFACE" />
+
+			<property name="fileName" value="${tableClass.shortClassName}CrudService.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+		<!-- Service实现类 -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseTarget}" />
+			<property name="targetPackage" value="${project.basePackage}.service.impl" />
+			<property name="templatePath" value="generator/template/CrudServiceImpl.ftl" />
+			<property name="beanKey" value="SERVICE_INTERFACE_IMPL" />
+			<property name="fileName" value="${tableClass.shortClassName}CrudServiceImpl.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+		<!-- Service实现类EX -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseTarget}" />
+			<property name="targetPackage" value="${project.basePackage}.service.implex" />
+			<property name="templatePath" value="generator/template/CrudServiceImplEx.ftl" />
+			<property name="beanKey" value="SERVICE_INTERFACE_IMPLEX" />
+			<property name="fileName" value="${tableClass.shortClassName}CrudServiceImplEx.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+		<!--#######################################################Controller################################-->
+		<!-- Controller实现类 -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseTarget}" />
+			<property name="targetPackage" value="${project.basePackage}.controller" />
+			<property name="templatePath" value="generator/template/CrudController.ftl" />
+			<property name="beanKey" value="CONTROLLER_INTERFACE" />
+			<property name="fileName" value="${tableClass.shortClassName}CrudController.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+		<!-- ControllerEx实现类 -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseTarget}" />
+			<property name="targetPackage" value="${project.basePackage}.controller.implex" />
+			<property name="templatePath" value="generator/template/CrudControllerEx.ftl" />
+			<property name="beanKey" value="CONTROLLEREX_INTERFACE" />
+			<property name="fileName" value="${tableClass.shortClassName}CrudControllerEx.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+
+
+		<!-- 注释工具 -->
+		<commentGenerator type="com.jbdp.generator.ext.MapperCommentGeneratorEx" />
+
+		<jdbcConnection 
+			driverClass="${datasource.driverClassName}"
+			connectionURL="${datasource.url}" 
+			userId="${datasource.username}" 
+			password="${datasource.password}">
+			
+			<property name="useInformationSchema" value="true"></property>
+			<property name="characterEncoding" value="UTF-8"></property>
+		</jdbcConnection>
+
+
+
+		<!--配置model生成路径及所在包-->
+		<javaModelGenerator targetPackage="${project.basePackage}.domain.model" targetProject="${project.baseTarget}" />
+		<!--配置mapper.xml生成路径及所在包-->
+		<sqlMapGenerator targetPackage="mapper" targetProject="${project.baseXmlTarget}" />
+		<!--配置mapper接口生成路径及所在包-->
+		<javaClientGenerator targetPackage="${project.basePackage}.domain.mapper" targetProject="${project.baseTarget}" type="XMLMAPPER" />
+
+
+
+
+		<table tableName="lydtest"></table>
+
+		
+		
+	</context>
+</generatorConfiguration>

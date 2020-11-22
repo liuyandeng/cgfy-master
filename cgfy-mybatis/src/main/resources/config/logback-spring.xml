@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="PROJECT_NAME" value="cgfy" />
+<!--    最新版本:https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+<!--    DEBUG：输出调试信息；指出细粒度信息事件对调试应用程序是非常有帮助的。-->
+<!--    INFO： 输出提示信息；消息在粗粒度级别上突出强调应用程序的运行过程。-->
+<!--    WARN： 输出警告信息；表明会出现潜在错误的情形。-->
+<!--    ERROR：输出错误信息；指出虽然发生错误事件，但仍然不影响系统的继续运行。-->
+<!--    FATAL： 输出致命错误；指出每个严重的错误事件将会导致应用程序的退出。-->
+<!--    ALL level：打开所有日志记录开关；是最低等级的，用于打开所有日志记录。-->
+<!--    OFF level：关闭所有日志记录开关；是最高等级的，用于关闭所有日志记录。-->
+<!--    按照范围从小到大排序：OFF level > FATAL > ERROR > WARN > INFO > DEBUG > ALL level；-->
+<!--    范围大的会包含范围小的，例如日志设置为INFO级别的话则FATAL、ERROR、WARN、INFO的日志开关都是打开的，-->
+<!--    而DEBUG的日志开关将是关闭的。Log4j建议只使用四个级别，优先级从高到低分别是 ERROR、WARN、INFO、DEBUG。-->
+<!--    logging.level设置日志级别，后面跟生效的区域，比如root表示整个项目，也可以设置为某个包下，也可以具体到某个类名（日志级别的值不区分大小写）-->
+<!--    logging.level.root=info就是默认的情况-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <encoder>
+<!--            <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%thread\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%msg%n]]></pattern>-->
+            <pattern>日期:%d{yyyy-MM-dd HH:mm:ss} 级别:%-5level 文件:[%F] ---- 方法:%M:%L ---- %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${app.log.dir:-log}/${PROJECT_NAME}-${HOSTNAME:-UNKNOW}-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${app.log.dir:-log}/${PROJECT_NAME}-${HOSTNAME:-UNKNOW}-error-%d{yyyyww}.log.zip</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%thread\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%msg%n]]></pattern>
+        </encoder>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!--每个日志文件最大100MB-->
+            <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="APPLICATION_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>${app.log.dir:-log}/${PROJECT_NAME}-${HOSTNAME:-UNKNOW}-application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${app.log.dir:-log}/${PROJECT_NAME}-${HOSTNAME:-UNKNOW}-application-%d{yyyyww}.log.zip</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%thread\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%msg%n]]></pattern>
+        </encoder>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!--每个日志文件最大100MB-->
+            <maxFileSize>100MB</maxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="DAYS_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${app.log.dir:-log}/cgfy-days-log/${PROJECT_NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1GB</maxFileSize>
+            <maxHistory>2</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>日期:%d{yyyy-MM-dd HH:mm:ss} 级别:%-5level 文件:[%F] ---- 方法:%M:%L ---- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <springProfile name="dev">
+        <root level="DEBUG">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ERROR_LOG_FILE" />
+            <appender-ref ref="APPLICATION_LOG_FILE" />
+            <appender-ref ref="DAYS_LOG_FILE" />
+        </root>
+    </springProfile>
+
+
+
+    <springProfile name="regular">
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+            <appender-ref ref="ERROR_LOG_FILE" />
+            <appender-ref ref="APPLICATION_LOG_FILE" />
+            <appender-ref ref="DAYS_LOG_FILE" />
+        </root>
+    </springProfile>
+</configuration>

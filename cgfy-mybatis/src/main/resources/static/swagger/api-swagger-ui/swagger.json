@@ -1,0 +1,774 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "晨港飞燕",
+    "version" : "v1",
+    "title" : "CGFY"
+  },
+  "host" : "http://localhost:8080/swagger/index.html",
+  "basePath" : "/cgfy",
+  "tags" : [ {
+    "name" : "cgfy"
+  }, {
+    "name" : "工具控制器，完成通用的一些接口"
+  }, {
+    "name" : "缓存测试"
+  } ],
+  "paths" : {
+    "/CacheTest/delete/{id}" : {
+      "delete" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "根据key删除缓存区中的数据",
+        "description" : "",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseObject"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/deleteByIdAndCleanCache/{id}" : {
+      "delete" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "删除所有缓存",
+        "description" : "",
+        "operationId" : "deleteByIdAndCleanCache",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseObject"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/insert" : {
+      "post" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "新增",
+        "description" : "",
+        "operationId" : "insert",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/TestGen"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGen"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/insertWithCondition" : {
+      "post" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "有条件新增",
+        "description" : "",
+        "operationId" : "insertWithCondition",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/TestGen"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGen"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/selectAll" : {
+      "get" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "缓存所有数据",
+        "description" : "",
+        "operationId" : "selectAll",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseListTestGen"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/selectById/{id}" : {
+      "get" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "缓存指定数据",
+        "description" : "",
+        "operationId" : "selectById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGen"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/selectByIdWithCondition/{id}/{number}" : {
+      "get" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "满足条件缓存数据",
+        "description" : "",
+        "operationId" : "selectByIdWithCondition",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "number",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGen"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/selectByIdWithUnless/{id}/{number}" : {
+      "get" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "满足条件时否决缓存数据",
+        "description" : "",
+        "operationId" : "selectByIdWithUnless",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "number",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGen"
+            }
+          }
+        }
+      }
+    },
+    "/CacheTest/update" : {
+      "put" : {
+        "tags" : [ "缓存测试" ],
+        "summary" : "更新",
+        "description" : "",
+        "operationId" : "update",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/TestGen"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGen"
+            }
+          }
+        }
+      }
+    },
+    "/TestGen/save/{id}" : {
+      "post" : {
+        "tags" : [ "cgfy" ],
+        "summary" : "保存",
+        "description" : "",
+        "operationId" : "save",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/TestGenInputBean"
+          }
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGenInternalOutputBean"
+            }
+          }
+        }
+      }
+    },
+    "/TestGen/select" : {
+      "post" : {
+        "tags" : [ "cgfy" ],
+        "summary" : "检索",
+        "description" : "",
+        "operationId" : "select",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CgfySelectInputBean"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseCgfyListResponseTestGenInternalOutputBean"
+            }
+          }
+        }
+      }
+    },
+    "/TestGen/{id}" : {
+      "get" : {
+        "tags" : [ "cgfy" ],
+        "summary" : "获取详情",
+        "description" : "",
+        "operationId" : "getDetail",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseTestGenInternalOutputBean"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "cgfy" ],
+        "summary" : "物理删除",
+        "description" : "",
+        "operationId" : "deleteForce",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseObject"
+            }
+          }
+        }
+      }
+    },
+    "/util/getKeyValueByCode" : {
+      "get" : {
+        "tags" : [ "工具控制器，完成通用的一些接口" ],
+        "summary" : "根据数据字典类型获取对应的列表(码表)",
+        "description" : "",
+        "operationId" : "getKeyValueByCode",
+        "parameters" : [ {
+          "name" : "codeType",
+          "in" : "query",
+          "description" : "数据字典code类型",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseListMapStringObject"
+            }
+          }
+        }
+      }
+    },
+    "/util/getUuid" : {
+      "get" : {
+        "tags" : [ "工具控制器，完成通用的一些接口" ],
+        "summary" : "获取UUID",
+        "description" : "",
+        "operationId" : "getUuid",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AjaxResponseString"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AjaxResponse" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "type" : "object",
+          "description" : "数据"
+        }
+      }
+    },
+    "AjaxResponseCgfyListResponseTestGenInternalOutputBean" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "description" : "数据",
+          "$ref" : "#/definitions/CgfyListResponseTestGenInternalOutputBean"
+        }
+      }
+    },
+    "AjaxResponseListMapStringObject" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "type" : "array",
+          "description" : "数据",
+          "items" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    },
+    "AjaxResponseListTestGen" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "type" : "array",
+          "description" : "数据",
+          "items" : {
+            "$ref" : "#/definitions/TestGen"
+          }
+        }
+      }
+    },
+    "AjaxResponseObject" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "type" : "object",
+          "description" : "数据"
+        }
+      }
+    },
+    "AjaxResponseString" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "type" : "string",
+          "description" : "数据"
+        }
+      }
+    },
+    "AjaxResponseTestGen" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "description" : "数据",
+          "$ref" : "#/definitions/TestGen"
+        }
+      }
+    },
+    "AjaxResponseTestGenInternalOutputBean" : {
+      "type" : "object",
+      "required" : [ "statusCode", "success" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean",
+          "description" : "是否成功"
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "状态代码"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "返回消息"
+        },
+        "data" : {
+          "description" : "数据",
+          "$ref" : "#/definitions/TestGenInternalOutputBean"
+        }
+      }
+    },
+    "CgfyListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "forms" : {
+          "type" : "array",
+          "description" : "内容",
+          "items" : {
+            "type" : "object"
+          }
+        },
+        "totalCount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "记录总数"
+        },
+        "page" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "当前页"
+        },
+        "pageSize" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "每页大小"
+        },
+        "pageCount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "总页数"
+        }
+      }
+    },
+    "CgfyListResponseTestGenInternalOutputBean" : {
+      "type" : "object",
+      "properties" : {
+        "forms" : {
+          "type" : "array",
+          "description" : "内容",
+          "items" : {
+            "$ref" : "#/definitions/TestGenInternalOutputBean"
+          }
+        },
+        "totalCount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "记录总数"
+        },
+        "page" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "当前页"
+        },
+        "pageSize" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "每页大小"
+        },
+        "pageCount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "总页数"
+        }
+      }
+    },
+    "CgfySelectInputBean" : {
+      "type" : "object",
+      "properties" : {
+        "options" : {
+          "type" : "array",
+          "description" : "条件",
+          "items" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object"
+            }
+          }
+        },
+        "page" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "当前页"
+        },
+        "pageSize" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "页大小"
+        },
+        "orderBy" : {
+          "type" : "string",
+          "description" : "排序字段"
+        },
+        "desc" : {
+          "type" : "boolean",
+          "description" : "是否降序"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "类型"
+        }
+      }
+    },
+    "TestGen" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "sex" : {
+          "type" : "string"
+        },
+        "age" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "mobilePhone" : {
+          "type" : "string"
+        },
+        "homeAddTest" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TestGenInputBean" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "主键",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "姓名",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "sex" : {
+          "type" : "string",
+          "description" : "性别",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "age" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "年龄"
+        },
+        "mobilePhone" : {
+          "type" : "string",
+          "description" : "电话",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "homeAddTest" : {
+          "type" : "string",
+          "description" : "家庭住址",
+          "minLength" : 0,
+          "maxLength" : 100
+        }
+      }
+    },
+    "TestGenInternalOutputBean" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "attachments" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object"
+            }
+          }
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "主键",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "姓名",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "sex" : {
+          "type" : "string",
+          "description" : "性别",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "age" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "年龄"
+        },
+        "mobilePhone" : {
+          "type" : "string",
+          "description" : "电话",
+          "minLength" : 0,
+          "maxLength" : 100
+        },
+        "homeAddTest" : {
+          "type" : "string",
+          "description" : "家庭住址",
+          "minLength" : 0,
+          "maxLength" : 100
+        }
+      }
+    }
+  }
+}

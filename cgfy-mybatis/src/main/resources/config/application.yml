@@ -1,0 +1,93 @@
+spring:
+  profiles:
+    active: dev
+  jackson:
+    dateFormat: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+logging:
+  config: classpath:config/logback-spring.xml
+
+mapper:
+  mappers: com.cgfy.mybatis.base.domain.mapper.BaseMapper
+  not-empty: false
+  identity: SELECT REPLACE(UUID(),''-'','''')
+  before: true
+
+mybatis:
+  configLocation: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/*/*.xml
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+jbdp:
+  jdbc:
+    maxRowsQuery: 10000
+
+---
+spring:
+  profiles: dev
+  application:
+    name: cgfy-lgl
+  datasource:
+    name: test
+    # 数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 123456
+      # 初始化连接池大小
+      initial-size: 0
+      # 最大链接数
+      max-active: 20
+      # 最小链接间隔
+      min-idle: 1
+      # 最大等待时间，单位是毫秒
+      max-wait: 60000
+  redis:
+    # Redis服务器地址
+    host: localhost
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # Redis数据库索引（默认为0）
+    database: 5
+    # 连接超时时间（毫秒）
+    timeout: 5000m
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: -1
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接（使用负值表示没有限制）
+        max-idle: 10
+        # 连接池中的最小空闲连接,值为正时才有效
+        min-idle: 0
+
+
+
+  ## 静态文件过滤
+  mvc:
+    static-path-pattern: /**
+##　项目静态文件地址
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${files.root}
+server:
+  port: 8080
+
+logging:
+  level:
+    com.cgfy: debug
+files:
+  #root: /home/files/ntko
+  root: F:\upload
+  url: http://localhost:8080
+  thumb: F:\upload\thumb
+
+

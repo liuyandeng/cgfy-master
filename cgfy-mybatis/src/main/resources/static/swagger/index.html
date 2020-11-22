@@ -1,0 +1,68 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Swagger UI</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+<link rel="icon" type="image/png" href="./favicon-32x32.png"
+	sizes="32x32" />
+<link rel="icon" type="image/png" href="./favicon-16x16.png"
+	sizes="16x16" />
+<style>
+html {
+	box-sizing: border-box;
+	overflow: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	background: #fafafa;
+}
+</style>
+</head>
+
+<body>
+	<div id="swagger-ui"></div>
+
+	<script src="./swagger-ui-bundle.js"> </script>
+	<script src="./swagger-ui-standalone-preset.js"> </script>
+	<script>
+    window.onload = function() {
+
+   	  var hrefText = window.location.href;
+   	  var index = hrefText.indexOf('/',9);
+   	  var urlPre = hrefText.substring(0, index);
+		var urlNext = hrefText.substring(index+1);
+		if(urlNext.indexOf("swagger")>1) {
+			urlPre += "/"+urlNext.substring(0, urlNext.indexOf("swagger")-1);
+		}
+		console.log("json地址："+urlPre);
+      // Build a system
+      const ui = SwaggerUIBundle({
+        url:  urlPre + "/swagger/api-swagger-ui/swagger.json?_t="+new Date().getTime(),
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      })
+
+      window.ui = ui
+    }
+  </script>
+</body>
+</html>

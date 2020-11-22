@@ -8,6 +8,7 @@
         <module>cgfy-mq</module>
         <module>cgfy-trans</module>
         <module>cgfy-redisson</module>
+        <module>cgfy-office</module>
     </modules>
 
     <parent>

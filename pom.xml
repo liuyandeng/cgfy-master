@@ -7,6 +7,7 @@
         <module>cgfy-mybatis</module>
         <module>cgfy-mq</module>
         <module>cgfy-trans</module>
+        <module>cgfy-redisson</module>
     </modules>
 
     <parent>

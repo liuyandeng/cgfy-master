@@ -5,5 +5,5 @@ springboot+tkmybatis案例,
 
 
 # 码云地址
-https://gitee.com/liuyandeng/cgfy
+https://gitee.com/liuyandeng/cgfy-master.git
 

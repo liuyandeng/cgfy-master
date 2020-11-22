@@ -6,6 +6,7 @@
     <modules>
         <module>cgfy-mybatis</module>
         <module>cgfy-mq</module>
+        <module>cgfy-trans</module>
     </modules>
 
     <parent>
@@ -104,6 +105,11 @@
                 <artifactId>spring-boot-devtools</artifactId>
                 <version>${spring-boot.version}</version>
                 <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
             <!-- *********************apache.commons组********************* -->
             <dependency><!--设置了redis连接池的相关参数,需要引入此包-->

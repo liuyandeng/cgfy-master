@@ -10,6 +10,9 @@ springboot+redisson
 springboot+事务
 
 
+springboot+rabbitmq
+
+
 springboot+office
 
 

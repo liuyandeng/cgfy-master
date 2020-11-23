@@ -9,7 +9,7 @@
     或者
     <embed src="/preview/readFile?fileName=${fileName}" width="100%" height="1500" />
     ```
-    
+  - 4.启动后访问:http://localhost:8088
 > libreoffice安装
   - window安装，可以通过下方链接下载，并按提示一步一步安装
   [window安装](https://zh-cn.libreoffice.org/download/download/)

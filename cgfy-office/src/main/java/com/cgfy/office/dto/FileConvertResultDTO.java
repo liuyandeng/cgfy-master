@@ -1,4 +1,4 @@
-package com.cgfy.office.file.dto;
+package com.cgfy.office.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

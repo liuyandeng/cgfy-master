@@ -1,7 +1,7 @@
-package com.cgfy.office.preview.service;
+package com.cgfy.office.service;
 
 
-import com.cgfy.office.preview.dto.FileConvertResultDTO;
+import com.cgfy.office.dto.FileConvertResultDTO;
 
 import java.io.File;
 import java.io.InputStream;

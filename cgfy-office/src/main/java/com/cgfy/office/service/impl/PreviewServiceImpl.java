@@ -1,10 +1,10 @@
-package com.cgfy.office.preview.service.impl;
+package com.cgfy.office.service.impl;
 
 
-import com.cgfy.office.preview.constants.Constants;
-import com.cgfy.office.preview.dto.FileConvertResultDTO;
-import com.cgfy.office.preview.service.PreviewService;
-import com.cgfy.office.preview.util.FileUtil;
+import com.cgfy.office.constants.Constants;
+import com.cgfy.office.dto.FileConvertResultDTO;
+import com.cgfy.office.service.PreviewService;
+import com.cgfy.office.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jodconverter.DocumentConverter;
 import org.jodconverter.document.DefaultDocumentFormatRegistry;

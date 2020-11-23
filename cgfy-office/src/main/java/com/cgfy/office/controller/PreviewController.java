@@ -1,8 +1,8 @@
-package com.cgfy.office.preview.controller;
+package com.cgfy.office.controller;
 
-import com.cgfy.office.preview.dto.FileConvertResultDTO;
-import com.cgfy.office.preview.service.PreviewService;
-import com.cgfy.office.preview.util.FileUtil;
+import com.cgfy.office.dto.FileConvertResultDTO;
+import com.cgfy.office.service.PreviewService;
+import com.cgfy.office.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;

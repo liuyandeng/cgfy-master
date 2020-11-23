@@ -1,4 +1,4 @@
-package com.cgfy.office.preview.constants;
+package com.cgfy.office.constants;
 
 import java.util.Arrays;
 import java.util.List;

@@ -27,7 +27,7 @@ eureka:
     register-with-eureka: false #关闭自己作为客户端注册
     fetch-registry: false
     serviceUrl:
-      defaultZone: http://jbdp-admin:jbdp-admin-password@localhost:${server.port}/eureka/
+      defaultZone: http://cgfy-admin:cgfy-admin-password@localhost:${server.port}/eureka/
 
 ---
 spring:

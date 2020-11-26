@@ -6,6 +6,12 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * AIO编程，在NIO基础之上引入了异步通道的概念，并提供了异步文件和异步 套接字通道的实现，从而在真正意义上实现了异步非阻塞，之前我们学习的 NIO只是非阻塞而并非异步。
+ * 而AIO它不需要通过多路复用器对注册的通道进行轮询操作即可实现异步读写，从而简化了NIO编程模型。也可以称之为 NIO2.0,这种模式才真正的属于我们异步非阻塞的模型。
+ * AsynchronousServerScoketChannel
+ * AsynchronousScoketChanel
+ */
 public class Client implements Runnable{
 
 	private AsynchronousSocketChannel asc ;

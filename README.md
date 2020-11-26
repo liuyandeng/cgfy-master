@@ -6,9 +6,9 @@
 
 - 2.[springboot+redisson](https://blog.csdn.net/qq877507054/article/details/107610780)
 
-- 3.springboot+transaction
+- 3.[springboot+rabbitmq](https://blog.csdn.net/qq877507054/article/details/102967445)
 
-- 4.springboot+rabbitmq
+- 4.springboot+transaction
 
 - 5.springboot+office
 

@@ -19,7 +19,7 @@ public class MQSender {
 
 	public void send(Object msg) {
 		log.info("send message:"+msg);
-		amqpTemplate.convertAndSend(MQConfig.MIAOSHA_QUEUE, msg);//第一个参数是路由key
+		amqpTemplate.convertAndSend(MQConfig.DIRECT_QUEUE, msg);//第一个参数是路由key
 
 	}
 

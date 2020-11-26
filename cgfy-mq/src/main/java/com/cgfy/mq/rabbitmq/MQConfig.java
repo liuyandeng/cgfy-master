@@ -8,22 +8,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 定义交换机,队列,banding
+ * 定义Exchange,queue,banding
+ * 四种类型交换机,直接交换机,广播交换机,主题交换机,消息体交换机
+ * 生产者-交换机:routing key,交换机-队列:binding key,
  */
 @Configuration
 public class MQConfig {
 
-	public static final String MIAOSHA_QUEUE = "miaosha.queue";
+	public static final String DIRECT_QUEUE = "direct_queue";
 
-	public static final String FANOUT_EXCHANGE = "fanoutxchage";//发送消息到所有与它绑定的Queue中
+	public static final String FANOUT_EXCHANGE = "FanoutExchage";//发送消息到所有与它绑定的Queue中
 
-	public static final String TOPIC_EXCHANGE = "topicExchage";//主题交换器
-	public static final String TOPIC_QUEUE1 = "topic.queue1";
-	public static final String TOPIC_QUEUE2 = "topic.queue2";
+	public static final String TOPIC_EXCHANGE = "TopicExchage";//主题交换机
+	public static final String TOPIC_QUEUE1 = "topic_queue1";
+	public static final String TOPIC_QUEUE2 = "topic_queue2";
 
 
-	public static final String HEADERS_EXCHANGE = "headersExchage";//消息头交换器
-	public static final String HEADER_QUEUE = "header.queue";
+	public static final String HEADERS_EXCHANGE = "HeadersExchage";//消息头交换机
+	public static final String HEADER_QUEUE = "header_queue";
 
 	/*********************************************Direct模式******************************************************************************/
 	/**
@@ -35,11 +37,9 @@ public class MQConfig {
 	 *    4.exclusive     表示该消息队列是否只在当前connection生效,默认是false
 	 */
 	@Bean
-	public Queue miaoShaQueue() {
-		return new Queue(MIAOSHA_QUEUE, true);
+	public Queue directQueue() {
+		return new Queue(DIRECT_QUEUE, true);
 	}
-
-
 
 	/*****************************************************Topic模式 ************************************************************************ */
 	//主题交换机Exchange
@@ -64,6 +64,7 @@ public class MQConfig {
 		return BindingBuilder.bind(topicQueue1()).to(topicExchage()).with("topic.key1");
 	}
 	//主题交换机绑定主题队列2
+	//特殊字符“*”与“#”，用于做模糊匹配，其中“*”用于匹配一个单词，“#”用于匹配多个单词（可以是零个）
 	@Bean
 	public Binding topicBinding2() {
 		return BindingBuilder.bind(topicQueue2()).to(topicExchage()).with("topic.#");

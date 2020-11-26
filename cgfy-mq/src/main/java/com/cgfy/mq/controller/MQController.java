@@ -22,17 +22,16 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/rmq")
 public class MQController {
-    private static final Logger logger = LoggerFactory.getLogger(MQController.class);
     @Resource
     MQSender sender;
     @Resource
     WebUtils web;
 
     //直接模式
-    @GetMapping("/sendings")
-    public AjaxResponse<String> mq(String msg) {
+    @GetMapping("/sendings/direct")
+    public AjaxResponse<String> direct(String msg) {
         sender.send(msg);
         return AjaxResponse.success(msg);
     }

@@ -12,7 +12,7 @@ public class MQReceiver {
 		private static Logger log = LoggerFactory.getLogger(MQReceiver.class);
 
 	
-		@RabbitListener(queues=MQConfig.MIAOSHA_QUEUE) //binding key
+		@RabbitListener(queues=MQConfig.DIRECT_QUEUE) //binding key
 		public void receive(String message) {
 			log.info("receive message:"+message);
 		}

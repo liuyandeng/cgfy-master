@@ -7,13 +7,13 @@
         <artifactId>cgfy-master</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>cgfy-socket</artifactId>
-    <packaging>jar</packaging>
-    <description>socket project for Spring Boot</description>
 
-    <dependencies>
+    <artifactId>cgfy-cloud</artifactId>
+    <packaging>pom</packaging>
 
-    </dependencies>
+    <description>SpringCloud 微服务</description>
 
-
+    <modules>
+        <module>cgfy-eureka</module>
+    </modules>
 </project>

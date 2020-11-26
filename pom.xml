@@ -29,6 +29,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <mysql-connector.version>8.0.16</mysql-connector.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-pool2.version>2.7.0</commons-pool2.version>
@@ -118,6 +119,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-freemarker</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- *********************apache.commons组********************* -->
             <dependency><!--设置了redis连接池的相关参数,需要引入此包-->

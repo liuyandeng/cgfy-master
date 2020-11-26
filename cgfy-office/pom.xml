@@ -8,6 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>cgfy-office</artifactId>
+    <packaging>jar</packaging>
     <description>office project for Spring Boot</description>
 
     <dependencies>

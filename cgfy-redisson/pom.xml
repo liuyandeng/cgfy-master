@@ -8,6 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>cgfy-redisson</artifactId>
+    <packaging>jar</packaging>
     <description>redisson project for Spring Boot</description>
 
     <dependencies>

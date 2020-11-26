@@ -1,0 +1,41 @@
+server:
+  port: 8841
+spring:
+  application:
+    name: cgfy-eureka
+  profiles:
+    active: win
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  security:
+    user:
+      name: cgfy-admin
+      password: cgfy-admin-password
+
+logging:
+  config: classpath:config/logback-spring.xml
+
+
+eureka:
+  server:
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 60000 #清理间隔
+  client:
+    register-with-eureka: false #关闭自己作为客户端注册
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://jbdp-admin:jbdp-admin-password@localhost:${server.port}/eureka/
+
+---
+spring:
+  profiles: win
+
+
+---
+spring:
+  profiles: linux
+
+

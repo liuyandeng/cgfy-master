@@ -9,8 +9,9 @@ import com.cgfy.mq.utils.AjaxResponse;
 import com.cgfy.mq.utils.LayuiResponse;
 import com.cgfy.mq.utils.MQConstant;
 import com.cgfy.mq.utils.WebUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * rabbitmq增删改查
  */
-
+@Api(tags= "RabbitMQ基础操作")
 @RestController
 @RequestMapping("/rmq")
 public class MQController {
@@ -29,35 +30,35 @@ public class MQController {
     @Resource
     WebUtils web;
 
-    //直接模式
+    @ApiOperation(value = "直接模式")
     @GetMapping("/sendings/direct")
-    public AjaxResponse<String> direct(String msg) {
+    public AjaxResponse<String> direct(@ApiParam(value = "消息内容" , required=true)String msg) {
         sender.send(msg);
         return AjaxResponse.success(msg);
     }
 
-    //广播模式
+    @ApiOperation(value = "广播模式")
     @GetMapping("/sendings/fanout")
-    public AjaxResponse<String> fanout(String msg) {
+    public AjaxResponse<String> fanout(@ApiParam(value = "消息内容" , required=true)String msg) {
         sender.sendFanout(msg);
         return AjaxResponse.success(msg);
     }
 
-    //主题模式
+    @ApiOperation(value = "主题模式")
     @GetMapping("/sendings/topic")
-    public AjaxResponse<String> topic(String msg) {
+    public AjaxResponse<String> topic(@ApiParam(value = "消息内容" , required=true)String msg) {
         sender.sendTopic(msg);
         return AjaxResponse.success(msg);
     }
 
-    //消息头模式
+    @ApiOperation(value = "消息头模式")
     @GetMapping("/sendings/header")
-    public AjaxResponse<String> header(String msg) {
+    public AjaxResponse<String> header(@ApiParam(value = "消息内容" , required=true)String msg) {
         sender.sendHeader(msg);
         return AjaxResponse.success(msg);
     }
 
-    //获取全部队列
+    @ApiOperation(value = "获取全部队列")
     @GetMapping("/queues")
     public LayuiResponse queues() throws Exception {
         String returnData=web.doGet(MQConstant.getQUEUES());

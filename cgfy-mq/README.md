@@ -12,6 +12,7 @@
 - 3.在rabbitmq的安装目录下找到sbin目录，进入并在此目录打开cmd窗口(进入sbin的cmd窗口),输入rabbitmq-plugins enable rabbitmq_management (需要重启服务)
 - 4.浏览器输入:http://localhost:15672,用户名/密码 guest/guest,进入官方管理界面
 - 5.浏览器输入:http://localhost:9999,进入自定义管理界面(页面完善ing...)
+- 6.API文档:http://localhost:9999/swagger-ui.html 或者 http://localhost:9999/doc.html
 
 
 

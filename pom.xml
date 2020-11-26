@@ -9,6 +9,7 @@
         <module>cgfy-trans</module>
         <module>cgfy-redisson</module>
         <module>cgfy-office</module>
+        <module>cgfy-socket</module>
     </modules>
 
     <parent>

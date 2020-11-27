@@ -10,6 +10,7 @@
         <module>cgfy-redisson</module>
         <module>cgfy-office</module>
         <module>cgfy-socket</module>
+        <module>cgfy-cloud</module>
     </modules>
 
     <parent>

@@ -15,5 +15,6 @@
 
     <modules>
         <module>cgfy-eureka</module>
+        <module>cgfy-gateway</module>
     </modules>
 </project>

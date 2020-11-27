@@ -1,0 +1,232 @@
+server:
+  port: 8840
+    # 请求连接超时时间, 单位毫秒
+  connection-timeout: 300000
+  tomcat:
+    accept-count: 100
+    min-spare-threads: 10
+spring:
+  application:
+    name: cgfy-gateway
+  profiles:
+    active: win
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  jackson:
+    dateFormat: yyyyMMddHHmmss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cgfy_web?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+  redis:
+    # Redis服务器地址
+    host: localhost
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # Redis数据库索引（默认为0）
+    database: 5
+    # 连接超时时间（毫秒）
+    timeout: 5000m
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: -1
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接（使用负值表示没有限制）
+        max-idle: 10
+        # 连接池中的最小空闲连接,值为正时才有效
+        min-idle: 0
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowCredentials: true
+            allowedOrigins: '*'
+            allowedMethods: '*'
+            allowedHeaders: '*'
+            # 预检请求的缓存时间（秒），即在这个时间段里，对于相同的跨域请求不会再预检了
+            maxAge: 18000
+      httpclient:
+        #  连接超时时间 单位毫秒
+        connect-timeout: 300000
+        #  响应超时时间 单位毫秒
+        response-timeout: 300000
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: boot-admin
+          uri: lb://jbdp-admin
+          predicates:
+            - Path= /boot-admin/**
+          filters:
+            - StripPrefix=1
+        - id: sleuth
+          uri: lb://jbdp-sleuth
+          predicates:
+            - Path= /zipkin/**
+#          filters:
+#            - StripPrefix=1
+        - id: oauth
+          uri: lb://jbdp-oauth
+          predicates:
+            - Path= /oauth/**
+#            - name: Login
+#              args:
+#                enabled: true
+        - id: uums
+          uri: lb://jbdp-uums
+          predicates:
+            - Path= /uums/**
+          filters:
+            - StripPrefix=1
+        - id: file
+          uri: lb://jbdp-file
+          predicates:
+            - Path= /file/**
+          filters:
+            - StripPrefix=1
+        - id: workflow
+          uri: lb://jbdp-workflow
+          predicates:
+            - Path= /workflow/**
+          filters:
+            - StripPrefix=1
+        - id: ldap
+          uri: lb://jbdp-ldap
+          predicates:
+          - Path= /ldap/**
+          filters:
+          - StripPrefix=1
+        - id: news
+          uri: lb://jbdp-news
+          predicates:
+          - Path= /news/**
+          filters:
+          - StripPrefix=1
+        - id: library
+          uri: lb://jbdp-library
+          predicates:
+            - Path= /library/**
+          filters:
+            - StripPrefix=1
+        - id: kettle
+          uri: lb://jbdp-kettle
+          predicates:
+          - Path= /kettle/**
+          filters:
+          - StripPrefix=1
+        - id: bussSys
+          uri: lb://jbdp-system
+          predicates:
+          - Path= /bussSys/**
+          filters:
+          - StripPrefix=1
+        - id: zgcfz
+          uri: lb://jbdp-zgcfz
+          predicates:
+          - Path= /zgcfz/**
+          filters:
+          - StripPrefix=1
+
+management:
+  cloudfoundry:
+    enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    beans:
+      enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+
+feign:
+  client:
+    config:
+        default:
+          loggerLevel: FULL
+          #  连接超时时间 单位毫秒
+          connectTimeout: 300000
+          #  读取超时时间 单位毫秒
+          readTimeout: 300000
+  httpclient:
+    enabled: false
+    #  连接超时时间 单位秒
+    connection-timeout: 300
+  okhttp:
+    enabled: true
+
+ribbon:
+  #  连接超时时间 单位毫秒，默认2000
+  ConnectTimeout: 120000
+  #  读取超时时间 单位毫秒，默认5000
+  ReadTimeout: 300000
+
+logging:
+  config: classpath:config/logback-spring.xml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://cgfy-admin:cgfy-admin-password@localhost:8841/eureka/
+jbdp:
+  gateway:
+    ip-check:
+      enable: false
+      allow-i-p-range:
+      - 192.168.1.1-192.168.1.254
+      - 192.168.80.1-192.168.80.1
+      url-prefix-ignore:
+      - /error
+    log:
+      # 不进行操作日志记录的前缀
+      optLogIgnore:
+      - /error
+      - /oauth/token
+      - /oauth/ext
+      - /uums/FreeCertification/SysPriCommon/getSysPriApiUrlNoEmpty
+
+---
+spring:
+  profiles: win
+  sleuth:
+    sampler:
+      #  采样率
+      probability: 1.0
+  #  zipkin:
+  #    # 通过注册中心的服务名称访问，需要从spring-cloud-sleuth-core-1.3.0.RELEASE开始支持这个功能
+  #    base-url: http://jbdp-sleuth/
+
+
+---
+spring:
+  profiles: linux
+  sleuth:
+    sampler:
+      #  采样率
+      probability: 1.0
+  #  zipkin:
+  #    # 通过注册中心的服务名称访问，需要从spring-cloud-sleuth-core-1.3.0.RELEASE开始支持这个功能
+  #    base-url: http://jbdp-sleuth/

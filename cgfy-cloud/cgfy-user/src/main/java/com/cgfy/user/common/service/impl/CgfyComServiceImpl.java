@@ -1,7 +1,7 @@
 package com.cgfy.user.common.service.impl;
 
 import com.cgfy.user.base.util.BaseCommonUtil;
-import com.cgfy.user.common.service.JbdpComService;
+import com.cgfy.user.common.service.CgfyComService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Date;
  * @author qiucw
  */
 @Service("JbdpComService")
-public class JbdpComServiceImpl implements JbdpComService {
+public class CgfyComServiceImpl implements CgfyComService {
 
 	/**
 	 * 取得用户主键ID

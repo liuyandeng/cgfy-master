@@ -2,9 +2,9 @@ package com.cgfy.user.common.service.impl;
 
 import com.cgfy.user.base.bean.AjaxResponse;
 import com.cgfy.user.base.bean.SelectOutputBean;
+import com.cgfy.user.bussApi.feign.bean.CodeOutputBean;
 import com.cgfy.user.common.service.ResourceService;
 import com.cgfy.user.bussApi.feign.UserFeignClient;
-import com.cgfy.user.bussApi.feign.bean.SysCodeInfoInternalOutputBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,13 +82,13 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     private void fetchCode() {
-        AjaxResponse<SelectOutputBean<SysCodeInfoInternalOutputBean>> feignResult = null;
-        feignResult = userFeignClient.selectEx();
+        AjaxResponse<SelectOutputBean<CodeOutputBean>> feignResult = null;
+       /// feignResult = userFeignClient.selectEx();
         if (feignResult == null || !feignResult.isSuccess())
             return;
-        SelectOutputBean<SysCodeInfoInternalOutputBean> sob = feignResult.getData();
+        SelectOutputBean<CodeOutputBean> sob = feignResult.getData();
         codeNum= sob.getRecords().size();
-        for (SysCodeInfoInternalOutputBean code : sob.getRecords()) {
+        for (CodeOutputBean code : sob.getRecords()) {
             if (code.getStatus().equals("0")) {
                 boolean flag = validCodeMap.containsKey(code.getCodeType());
                 if (flag) {

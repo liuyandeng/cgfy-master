@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author qiucw
  */
-public interface JbdpComService{
+public interface CgfyComService {
 	
 	/**
 	 * 取得用户主键ID

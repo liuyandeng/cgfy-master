@@ -1,26 +1,17 @@
 package com.cgfy.user.bussApi.feign.bean;
 
-import com.cgfy.user.base.bean.BaseSelectField;
-import com.cgfy.user.base.util.DateUtil;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
- * 平台用户信息输出用Bean
- *
- * @author qiucw
+ * 平台用户信息插入用Bean
  */
-public class SysUserInfoInternalOutputBean extends BaseSelectField {
-    /**
-     * 主键ID
-     */
-    @ApiModelProperty(value = "主键ID")
-    @Size(max = 32)
-    @NotNull
-    private String id;
-
+public class UserInfoInputBean {
     /**
      * 机构ID
      */
@@ -98,7 +89,9 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      * 出生日期
      */
     @ApiModelProperty(value = "出生日期")
-    private String birthday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
 
     /**
      * 移动电话
@@ -188,13 +181,13 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      * 参加工作日期
      */
     @ApiModelProperty(value = "参加工作日期")
-    private String workDate;
+    private Date workDate;
 
     /**
      * 入职日期
      */
     @ApiModelProperty(value = "入职日期")
-    private String employedDate;
+    private Date employedDate;
 
     /**
      * 工作证号码
@@ -221,7 +214,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      * 密码最后修改时间
      */
     @ApiModelProperty(value = "密码最后修改时间")
-    private String passModDate;
+    private Date passModDate;
 
     /**
      * 创建人
@@ -234,7 +227,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      * 创建时间
      */
     @ApiModelProperty(value = "创建时间")
-    private String fcTime;
+    private Date fcTime;
 
     /**
      * 最后修改人
@@ -247,32 +240,65 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      * 最后修改时间
      */
     @ApiModelProperty(value = "最后修改时间")
-    private String lmTime;
+    private Date lmTime;
 
     /**
-     * 默认构造函数
+     * 允许访问开始时间
      */
-    public SysUserInfoInternalOutputBean() {
-
-    }
-
-    /**
-     * 获取主键ID
-     *
-     * @return 主键ID
-     */
-    public String getId() {
-        return id;
-    }
+    @ApiModelProperty(value = "允许访问开始时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date accessStartDate;
 
     /**
-     * 设置主键ID
-     *
-     * @param id 主键ID
+     * 允许访问结束时间
      */
-    public void setId(String id) {
-        this.id = id;
-    }
+    @ApiModelProperty(value = "允许访问结束时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date accessEndDate;
+
+    /**
+     * 个人签名
+     */
+    @ApiModelProperty(value = "个人签名")
+    private String motto;
+
+    /**
+     * 职务
+     */
+    @ApiModelProperty(value = "职务")
+    private String postStatus;
+
+    /**
+     * 头像附件ID
+     */
+    @ApiModelProperty(value = "头像附件ID")
+    private Long attachmentId;
+
+    /**
+     * 昵称
+     */
+    @ApiModelProperty(value = "昵称")
+    private String nick;
+
+    /**
+     * 是否同步
+     */
+    @ApiModelProperty(value = "是否同步")
+    private String isTrans;
+
+    /**
+     * 是否借调人员
+     */
+    @ApiModelProperty(value = "是否借调人员")
+    private String isBorrow;
+
+    /**
+     * 账户类型
+     */
+    @ApiModelProperty(value = "账户类型")
+    private String accountType;
 
     /**
      * 获取机构ID
@@ -459,7 +485,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @return 出生日期
      */
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
@@ -468,8 +494,8 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @param birthday 出生日期
      */
-    public void setBirthday(String birthday) {
-        this.birthday =  DateUtil.getFormatDate(birthday,"yyyy-MM-dd");
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     /**
@@ -693,7 +719,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @return 参加工作日期
      */
-    public String getWorkDate() {
+    public Date getWorkDate() {
         return workDate;
     }
 
@@ -702,8 +728,8 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @param workDate 参加工作日期
      */
-    public void setWorkDate(String workDate) {
-        this.workDate = DateUtil.getFormatDate(workDate,"yyyy-MM-dd");
+    public void setWorkDate(Date workDate) {
+        this.workDate = workDate;
     }
 
     /**
@@ -711,7 +737,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @return 入职日期
      */
-    public String getEmployedDate() {
+    public Date getEmployedDate() {
         return employedDate;
     }
 
@@ -720,8 +746,8 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @param employedDate 入职日期
      */
-    public void setEmployedDate(String employedDate) {
-        this.employedDate = DateUtil.getFormatDate(employedDate,"yyyy-MM-dd");
+    public void setEmployedDate(Date employedDate) {
+        this.employedDate = employedDate;
     }
 
     /**
@@ -783,7 +809,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @return 密码最后修改时间
      */
-    public String getPassModDate() {
+    public Date getPassModDate() {
         return passModDate;
     }
 
@@ -792,8 +818,8 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @param passModDate 密码最后修改时间
      */
-    public void setPassModDate(String passModDate) {
-        this.passModDate = DateUtil.getFormatDate(passModDate,"yyyy-MM-dd HH:mm:ss");
+    public void setPassModDate(Date passModDate) {
+        this.passModDate = passModDate;
     }
 
     /**
@@ -819,7 +845,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @return 创建时间
      */
-    public String getFcTime() {
+    public Date getFcTime() {
         return fcTime;
     }
 
@@ -828,8 +854,8 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @param fcTime 创建时间
      */
-    public void setFcTime(String fcTime) {
-        this.fcTime = DateUtil.getFormatDate(fcTime,"yyyy-MM-dd HH:mm:ss");
+    public void setFcTime(Date fcTime) {
+        this.fcTime = fcTime;
     }
 
     /**
@@ -855,7 +881,7 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @return 最后修改时间
      */
-    public String getLmTime() {
+    public Date getLmTime() {
         return lmTime;
     }
 
@@ -864,7 +890,160 @@ public class SysUserInfoInternalOutputBean extends BaseSelectField {
      *
      * @param lmTime 最后修改时间
      */
-    public void setLmTime(String lmTime) {
-        this.lmTime = DateUtil.getFormatDate(lmTime,"yyyy-MM-dd HH:mm:ss");
+    public void setLmTime(Date lmTime) {
+        this.lmTime = lmTime;
+    }
+
+    /**
+     * 允许访问开始时间
+     *
+     * @return 允许访问开始时间
+     */
+    public Date getAccessStartDate() {
+        return accessStartDate;
+    }
+
+    /**
+     * 允许访问开始时间
+     *
+     * @param accessStartDate 允许访问开始时间
+     */
+    public void setAccessStartDate(Date accessStartDate) {
+        this.accessStartDate = accessStartDate;
+    }
+
+    /**
+     * 允许访问结束时间
+     *
+     * @return 允许访问结束时间
+     */
+    public Date getAccessEndDate() {
+        return accessEndDate;
+    }
+
+    /**
+     * 允许访问结束时间
+     *
+     * @param accessEndDate 允许访问结束时间
+     */
+    public void setAccessEndDate(Date accessEndDate) {
+        this.accessEndDate = accessEndDate;
+    }
+
+
+    /**
+     * 个人签名
+     */
+    public String getMotto() { return motto; }
+
+    /**
+     * 个人签名
+     */
+    public void setMotto(String motto) { this.motto = motto; }
+
+
+    /**
+     * 职务
+     *
+     * @return 职务
+     */
+    public String getPostStatus() {
+        return postStatus;
+    }
+
+    /**
+     * 职务
+     *
+     * @param postStatus 职务
+     */
+    public void setPostStatus(String postStatus) {
+        this.postStatus = postStatus;
+    }
+
+    /**
+     * 头像附件ID
+     *
+     * @return 头像附件ID
+     */
+    public Long getAttachmentId() {return attachmentId;}
+
+    /**
+     * 头像附件ID
+     *
+     * @param attachmentId 头像附件ID
+     */
+    public void setAttachmentId(Long attachmentId) {this.attachmentId = attachmentId;}
+
+    /**
+     * 获取用户nick名
+     *
+     * @return 用户nick名
+     */
+    public String getNick() {
+        return nick;
+    }
+
+    /**
+     * 设置用户nick名
+     *
+     * @param nick 用户nick名
+     */
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    /**
+     * 获取是否同步
+     *
+     * @return 是否同步
+     */
+    public String getIsTrans() {
+        return isTrans;
+    }
+
+    /**
+     * 设置是否同步
+     *
+     * @param isTrans 是否同步
+     */
+    public void setIsTrans(String isTrans) {
+        this.isTrans = isTrans;
+    }
+
+    /**
+     * 获取是否借调人员
+     *
+     * @return 是否借调人员
+     */
+    public String getIsBorrow() {
+        return isBorrow;
+    }
+
+    /**
+     * 设置是否借调人员
+     *
+     * @param isBorrow 是否借调人员
+     */
+    public void setIsBorrow(String isBorrow) {
+        this.isBorrow = isBorrow;
+    }
+
+
+    /**
+     * 账户类型
+     *
+     * @return 账户类型
+     */
+    public String getAccountType() {
+        return accountType;
+    }
+
+    /**
+     * 账户类型
+     *
+     * @param accountType 账户类型
+     */
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }

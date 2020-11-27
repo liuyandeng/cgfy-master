@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ${props.fwPackage}.base.exception.BusinessException;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
-import com.jbdp.base.dao.JBaseDao;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +21,7 @@ import ${props.fwPackage}.base.bean.select.Order;
 import ${props.fwPackage}.base.bean.BaseSelectField;
 import ${props.fwPackage}.base.domain.mapper.BaseMapper;
 import ${props.fwPackage}.base.domain.model.BaseModel;
-import ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN")};
+import ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN")};
 import ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE")};
 import ${tableClass.getIntrospectedTable().getAttribute("INPUT_BEAN")};
 import ${tableClass.getIntrospectedTable().getBaseRecordType()};
@@ -33,15 +32,14 @@ import ${tableClass.getIntrospectedTable().getBaseRecordType()};
  * @author ${props.author}
  */
 @Service("${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE_SHORT")}")
-public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE_IMPL_SHORT")} extends BaseServiceImpl<${tableClass.shortClassName},${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}> implements ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE_SHORT")}{
+public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE_IMPL_SHORT")} extends BaseServiceImpl<${tableClass.shortClassName},${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}> implements ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE_SHORT")}{
 
     /**
      * Mapper
      */
     @Resource
     private ${tableClass.getIntrospectedTable().getMyBatis3JavaMapperType()} mapper;
-    @Resource
-    private JBaseDao jBaseDao;
+
 
 
     /**
@@ -49,7 +47,7 @@ public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE
     * @param cgfyInput 输入参数
     * @return 输出对象
     */
-    public CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}> select(CgfySelectInputBean cgfyInput) {
+    public CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}> select(CgfySelectInputBean cgfyInput) {
          SelectInputBean input = BeanTrans.zgcfzBeanToNormal(cgfyInput);
          Example example = new Example(${tableClass.shortClassName}.class);
         // 检索项目设定
@@ -78,7 +76,7 @@ public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE
             }
         }
 
-        CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}> result = new CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}>();
+        CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}> result = new CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}>();
         result.setTotalCount(mapper.selectCountByExample(example));
         List<${tableClass.shortClassName}> resultData = null;
         if(input.getRowBounds() == null) {
@@ -89,9 +87,9 @@ public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE
             result.setPageSize(input.getRowBounds().getLimit());
             result.setPageCount((int) Math.ceil(result.getTotalCount()/result.getPageSize()));
         }
-        List<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}> resultRecords = new ArrayList<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}>();
+        List<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}> resultRecords = new ArrayList<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}>();
         for(${tableClass.shortClassName} item : resultData){
-            ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")} out = new ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}();
+            ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")} out = new ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}();
             BeanUtils.copyProperties(item,out);
             resultRecords.add(out);
         }
@@ -106,7 +104,7 @@ public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE
     * @return 输出对象
     */
     @Transactional(rollbackFor = Exception.class)
-    public ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")} save(${tableClass.getIntrospectedTable().getAttribute("INPUT_BEAN_SHORT")} input<#list tableClass.pkFields as field>,${field.shortTypeName} ${field.fieldName}</#list>) {
+    public ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")} save(${tableClass.getIntrospectedTable().getAttribute("INPUT_BEAN_SHORT")} input<#list tableClass.pkFields as field>,${field.shortTypeName} ${field.fieldName}</#list>) {
         if (StringUtils.isBlank(<#list tableClass.pkFields as field>${field.fieldName}</#list>)) {
             throw new BusinessException("主键不能为空");
         }
@@ -139,7 +137,7 @@ public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE
         <#list tableClass.pkFields as field>
         primaryKeyMap.put("${field.fieldName}", ${field.fieldName});
         </#list>
-        ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")} out=new ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}(mapper.selectByPrimaryKey(primaryKeyMap));
+        ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")} out=new ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}(mapper.selectByPrimaryKey(primaryKeyMap));
         return out;
         <#else>
         return getDetail(<#list tableClass.pkFields as field>${field.fieldName}</#list>);
@@ -151,12 +149,12 @@ public class ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE
     * @param <#list tableClass.pkFields as field>${field.fieldName}</#list> 主键id
     * @return 输出对象
     */
-    public ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")} getDetail(<#list tableClass.pkFields as field>${field.shortTypeName} ${field.fieldName}</#list>) {
+    public ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")} getDetail(<#list tableClass.pkFields as field>${field.shortTypeName} ${field.fieldName}</#list>) {
         if (StringUtils.isBlank(<#list tableClass.pkFields as field>${field.fieldName}</#list>)) {
             throw new BusinessException("主键不能为空");
         }
         ${tableClass.shortClassName} record =mapper.selectByPrimaryKey(<#list tableClass.pkFields as field>${field.fieldName}</#list>);
-        ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")} out=new ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}(record);
+        ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")} out=new ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}(record);
         return out;
     }
 

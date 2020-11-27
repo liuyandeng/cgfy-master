@@ -21,6 +21,8 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
+        <!--spring cloud gateway是基于webflux的，如果要web支持的话需要导入spring-boot-starter-webflux而不是spring-boot-start-web。
+            https://www.cnblogs.com/xiaopotian/p/10944832.html-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-gateway-webflux</artifactId>

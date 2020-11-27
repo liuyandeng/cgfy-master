@@ -5,6 +5,8 @@ import com.cgfy.gateway.bean.SysExceptionLogInfoInsertInputBean;
 import com.cgfy.gateway.bean.SysUserInfo;
 import com.cgfy.gateway.config.GatewayIpCheckProperties;
 //import com.cgfy.gateway.feign.UumsRemoteService;
+import com.cgfy.gateway.feign.AuthFeignClient;
+import com.cgfy.gateway.feign.UserFeignClient;
 import com.cgfy.gateway.util.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -40,7 +42,7 @@ import java.util.function.Supplier;
 @Slf4j
 public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
 	
-	public static final String JBDP_GATEWAY_PROXY_CLIENT_IP = "JBDP-GATEWAY-PROXY-CLIENT-IP";
+	public static final String JBDP_GATEWAY_PROXY_CLIENT_IP = "CGFY-GATEWAY-PROXY-CLIENT-IP";
 	
 	private final static String REQUEST_DATA_MAP_KEY = "RequestIpGlobalFilter.request_data_map_key";
 	
@@ -50,11 +52,11 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
 	
 	private Map<String, Map<String, Integer>> allowIpMap = null;
 	
-	//@Autowired
-	//private AuthRemoteService authRemoteService;
+	@Autowired
+	private AuthFeignClient authFeign;
 	
-	//@Autowired
-	//private UumsRemoteService uumsRemoteService;
+	@Autowired
+	private UserFeignClient userFeign;
 	
 	@Autowired
 	private GatewayIpCheckProperties gatewayIpCheckProperties;
@@ -70,15 +72,15 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
     	
     	ServerHttpRequest request = exchange.getRequest();
 		String requestURI = request.getURI().getPath();
-		//HttpHeaders headers = request.getHeaders();
+		HttpHeaders headers = request.getHeaders();
 		String ip = HttpUtil.getIpAddr(request);
-		//String clientType=HttpUtil.getClientType(headers);
-	//	String tokenInfo=HttpUtil.getTokenInfo(headers);
-		//log.info("拦截请求URI:"+requestURI+",IP:"+ip+",客户端类型:"+clientType+",token:"+tokenInfo);
-//		Map<String, String> headerMap = new HashMap<>();
-//		for(String key : headers.keySet()) {
-//			headerMap.put(key, headers.getFirst(key));
-//		}
+		String clientType=HttpUtil.getClientType(headers);
+		String tokenInfo=HttpUtil.getTokenInfo(headers);
+		log.info("拦截请求URI:"+requestURI+",IP:"+ip+",客户端类型:"+clientType+",token:"+tokenInfo);
+		Map<String, String> headerMap = new HashMap<>();
+		for(String key : headers.keySet()) {
+			headerMap.put(key, headers.getFirst(key));
+		}
 		
 		boolean isFilter = gatewayIpCheckProperties.getEnable();
 		
@@ -358,7 +360,7 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
     		/** 24小时内，只记录10次日志 **/
     		if(checkLogCount<10) {
     			try {
-        			//uumsRemoteService.saveExceptionLog(input);
+					//userFeign.saveExceptionLog(input);
         			
         			if(isHasKey) {
         				BoundValueOperations<String, Object> boundValueOps = redisTemplate.boundValueOps(redisKey);
@@ -385,7 +387,7 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
 	private SysUserInfo getCurrentUser(Map<String, String> headerMap) {
 		SysUserInfo user = null;
 		try {
-			//String rvStr = authRemoteService.getCurrentUser(headerMap);
+			//String rvStr = authFeign.getCurrentUser(headerMap);
 			String rvStr = "cgfy";
 			log.debug("principal info:\t" + rvStr);
 			if (rvStr != null && rvStr.length() > 0) {

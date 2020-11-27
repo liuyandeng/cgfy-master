@@ -11,7 +11,7 @@ import java.util.List;
  * 
  */
 @Component
-@ConfigurationProperties(prefix="jbdp.gateway.ip-check")
+@ConfigurationProperties(prefix="cgfy.gateway.ip-check")
 public class GatewayIpCheckProperties{
 
 	// 是否启用登录IP校验

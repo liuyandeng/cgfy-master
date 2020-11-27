@@ -71,79 +71,43 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: boot-admin
-          uri: lb://jbdp-admin
+        - id: 测试
+          uri: lb://test
           predicates:
-            - Path= /boot-admin/**
+            - Path= /test/**
           filters:
             - StripPrefix=1
-        - id: sleuth
-          uri: lb://jbdp-sleuth
-          predicates:
-            - Path= /zipkin/**
-#          filters:
-#            - StripPrefix=1
+        ##########权限系统############
         - id: oauth
-          uri: lb://jbdp-oauth
+          uri: lb://cgfy-oauth
           predicates:
             - Path= /oauth/**
-#            - name: Login
-#              args:
-#                enabled: true
-        - id: uums
-          uri: lb://jbdp-uums
+          filters:
+            - name: RequestRateLimiter
+              args:
+                # 允许用户每秒处理多少个请求
+                redis-rate-limiter.replenishRate: 10
+                # 令牌桶的容量，允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 20
+                # 使用SpEL按名称引用bean
+                key-resolver: "#{@ipAuthorizationKeyResolver}"
+          ###########用户系统###########
+        - id: user
+          uri: lb://cgfy-user
           predicates:
-            - Path= /uums/**
+            - Path= /user/**
           filters:
             - StripPrefix=1
-        - id: file
-          uri: lb://jbdp-file
-          predicates:
-            - Path= /file/**
-          filters:
-            - StripPrefix=1
-        - id: workflow
-          uri: lb://jbdp-workflow
-          predicates:
-            - Path= /workflow/**
-          filters:
-            - StripPrefix=1
-        - id: ldap
-          uri: lb://jbdp-ldap
-          predicates:
-          - Path= /ldap/**
-          filters:
-          - StripPrefix=1
-        - id: news
-          uri: lb://jbdp-news
-          predicates:
-          - Path= /news/**
-          filters:
-          - StripPrefix=1
-        - id: library
-          uri: lb://jbdp-library
-          predicates:
-            - Path= /library/**
-          filters:
-            - StripPrefix=1
-        - id: kettle
-          uri: lb://jbdp-kettle
-          predicates:
-          - Path= /kettle/**
-          filters:
-          - StripPrefix=1
-        - id: bussSys
-          uri: lb://jbdp-system
-          predicates:
-          - Path= /bussSys/**
-          filters:
-          - StripPrefix=1
-        - id: zgcfz
-          uri: lb://jbdp-zgcfz
-          predicates:
-          - Path= /zgcfz/**
-          filters:
-          - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                # 允许用户每秒处理多少个请求
+                redis-rate-limiter.replenishRate: 10
+                # 令牌桶的容量，允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 20
+                # 使用SpEL按名称引用bean
+                key-resolver: "#{@ipAuthorizationKeyResolver}"
+
+
 
 management:
   cloudfoundry:
@@ -191,7 +155,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://cgfy-admin:cgfy-admin-password@localhost:8841/eureka/
-jbdp:
+cgfy:
   gateway:
     ip-check:
       enable: false
@@ -205,10 +169,10 @@ jbdp:
 ---
 spring:
   profiles: win
-#  sleuth:
-#    sampler:
-#      #  采样率
-#      probability: 1.0
+  sleuth:
+    sampler:
+      #  采样率
+      probability: 1.0
   #  zipkin:
   #    # 通过注册中心的服务名称访问，需要从spring-cloud-sleuth-core-1.3.0.RELEASE开始支持这个功能
   #    base-url: http://jbdp-sleuth/
@@ -217,10 +181,10 @@ spring:
 ---
 spring:
   profiles: linux
-#  sleuth:
-#    sampler:
-#      #  采样率
-#      probability: 1.0
+  sleuth:
+    sampler:
+      #  采样率
+      probability: 1.0
   #  zipkin:
   #    # 通过注册中心的服务名称访问，需要从spring-cloud-sleuth-core-1.3.0.RELEASE开始支持这个功能
   #    base-url: http://jbdp-sleuth/

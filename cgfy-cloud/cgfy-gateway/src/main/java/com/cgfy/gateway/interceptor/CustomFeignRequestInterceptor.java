@@ -6,11 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Feign 请求拦截器
- * @CopyRright (c)2018-xxxx: <DHC-未来出行事业部 >
- * @JdkVersion 1.8
- * @version <1.0>
- * @date 2018-05-10
- * @author qiucw
  */
 @Configuration
 public class CustomFeignRequestInterceptor implements RequestInterceptor {

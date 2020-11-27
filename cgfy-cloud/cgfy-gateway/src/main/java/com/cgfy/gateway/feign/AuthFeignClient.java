@@ -8,17 +8,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Map;
 
-//@FeignClient(value = "jbdp-oauth", configuration= FeignCommonConfig.class)
+@FeignClient(value = "cgfy-oauth", configuration= FeignCommonConfig.class)
 public interface AuthFeignClient {
 
     /**
 	 * 取得当前用户
 	 * 
-	 * @param user 用户信息
 	 * @return 用户信息
 	 */
-	//@RequestMapping(method=RequestMethod.POST, value = "/oauth/ext/getCurrentUser")
-	//public String getCurrentUser(@RequestHeader Map<String, String> headers);
+	@RequestMapping(method=RequestMethod.POST, value = "/oauth/ext/getCurrentUser")
+	public String getCurrentUser(@RequestHeader Map<String, String> headers);
 	
 }
 

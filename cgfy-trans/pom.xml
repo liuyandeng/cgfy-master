@@ -11,6 +11,10 @@
 	<packaging>jar</packaging>
 	<description>Demo project for Spring JTA transaction for DB and MQ resources.</description>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<!--ActiveMq-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

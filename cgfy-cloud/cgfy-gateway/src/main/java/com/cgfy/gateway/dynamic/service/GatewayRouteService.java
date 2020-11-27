@@ -1,8 +1,8 @@
 package com.cgfy.gateway.dynamic.service;
 
 import com.cgfy.gateway.dynamic.bean.GatewayRouteBean;
-import com.cgfy.gateway.dynamic.domain.mapper.SysGatewayRouteMapper;
-import com.cgfy.gateway.dynamic.domain.model.SysGatewayRoute;
+import com.cgfy.gateway.dynamic.domain.mapper.GatewayRouteMapper;
+import com.cgfy.gateway.dynamic.domain.model.GatewayRoute;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ import java.util.Date;
 public class GatewayRouteService {
 
 	@Autowired
-	private SysGatewayRouteMapper gatewayRouteMapper;
+	private GatewayRouteMapper gatewayRouteMapper;
 
 	public Integer add(GatewayRouteBean gatewayRouteDto) {
-		SysGatewayRoute gatewayRoute = new SysGatewayRoute();
+		GatewayRoute gatewayRoute = new GatewayRoute();
 		BeanUtils.copyProperties(gatewayRouteDto, gatewayRoute);
 		gatewayRoute.setCreateDate(new Date());
 		gatewayRoute.setCreateId("");
@@ -24,7 +24,7 @@ public class GatewayRouteService {
 	}
 
 	public Integer update(GatewayRouteBean gatewayRouteDto) {
-		SysGatewayRoute gatewayRoute = new SysGatewayRoute();
+		GatewayRoute gatewayRoute = new GatewayRoute();
 		BeanUtils.copyProperties(gatewayRouteDto, gatewayRoute);
 		gatewayRoute.setUpdateDate(new Date());
 		gatewayRoute.setUpdateId("");

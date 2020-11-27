@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-//@FeignClient(value = "jbdp-uums", configuration= FeignCommonConfig.class)
+@FeignClient(value = "cgfy-user", configuration= FeignCommonConfig.class)
 public interface UserFeignClient {
 
 	

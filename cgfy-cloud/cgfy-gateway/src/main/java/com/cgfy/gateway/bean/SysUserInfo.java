@@ -26,9 +26,6 @@ public class SysUserInfo implements Serializable{
      * 用户名称
      */
     private String name;
-    
 
-
-    private static final long serialVersionUID = 1L;
 
 }

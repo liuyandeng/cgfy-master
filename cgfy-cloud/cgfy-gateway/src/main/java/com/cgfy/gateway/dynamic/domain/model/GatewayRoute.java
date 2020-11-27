@@ -10,12 +10,10 @@ import java.util.Date;
 
 /**
  * 网关动态路由表
- *
- * @author suny
  */
-@Table(name = "sys_gateway_route")
+@Table(name = "gateway_route")
 @Data
-public class SysGatewayRoute implements Serializable {
+public class GatewayRoute implements Serializable {
     /**
      * 主键
      */

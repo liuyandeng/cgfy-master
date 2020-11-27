@@ -1,8 +1,8 @@
 package com.cgfy.gateway.dynamic.config;
 
 import com.alibaba.fastjson.JSON;
-import com.cgfy.gateway.dynamic.domain.mapper.SysGatewayRouteMapper;
-import com.cgfy.gateway.dynamic.domain.model.SysGatewayRoute;
+import com.cgfy.gateway.dynamic.domain.mapper.GatewayRouteMapper;
+import com.cgfy.gateway.dynamic.domain.model.GatewayRoute;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -42,7 +42,7 @@ public class GatewayServiceHandler implements ApplicationEventPublisherAware, Co
 
     //自己的获取数据dao
     @Autowired
-    private SysGatewayRouteMapper gatewayRouteMapper;
+    private GatewayRouteMapper gatewayRouteMapper;
 
     @Override
     public void run(String... args) {
@@ -51,7 +51,7 @@ public class GatewayServiceHandler implements ApplicationEventPublisherAware, Co
 
     public String loadRouteConfig() {
         //从数据库拿到路由配置
-        List<SysGatewayRoute> gatewayRouteList = gatewayRouteMapper.selectAll();
+        List<GatewayRoute> gatewayRouteList = gatewayRouteMapper.selectAll();
 
         log.info("网关配置信息：=====>" + JSON.toJSONString(gatewayRouteList));
         gatewayRouteList.forEach(gatewayRoute -> {

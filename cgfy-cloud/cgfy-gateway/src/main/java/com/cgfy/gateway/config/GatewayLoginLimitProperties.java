@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * 
  */
 @Component
-@ConfigurationProperties(prefix="jbdp.gateway.login-limit")
+@ConfigurationProperties(prefix="cgfy.gateway.login-limit")
 public class GatewayLoginLimitProperties{
 	
 	public static String LOGIN_FAIL_COUNT_REDIS_KEY_NAMESPACE = "lonin_fail_count";

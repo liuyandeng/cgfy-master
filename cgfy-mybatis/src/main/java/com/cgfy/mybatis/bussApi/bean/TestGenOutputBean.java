@@ -1,18 +1,16 @@
 package com.cgfy.mybatis.bussApi.bean;
 
 import com.cgfy.mybatis.base.bean.BaseSelectField;
-import com.cgfy.mybatis.bussApi.domain.model.TestGen;
 import io.swagger.annotations.ApiModelProperty;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * cgfy输出用Bean
  *
- * @author generator
+ * @author cgfy_web
  */
-public class TestGenInternalOutputBean extends BaseSelectField {
+public class TestGenOutputBean extends BaseSelectField {
     /**
      * 主键
      */
@@ -58,14 +56,14 @@ public class TestGenInternalOutputBean extends BaseSelectField {
     /**
      * 默认构造函数
      */
-    public TestGenInternalOutputBean() {
+    public TestGenOutputBean() {
         
     }
 
     /**
      * 默认构造函数
      */
-    public TestGenInternalOutputBean(TestGen input) {
+    public TestGenOutputBean(com.cgfy.mybatis.bussApi.domain.model.TestGen input) {
         
         // 主键
         this.id = input.getId();

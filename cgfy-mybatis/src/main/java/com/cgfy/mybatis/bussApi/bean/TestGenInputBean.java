@@ -1,14 +1,13 @@
 package com.cgfy.mybatis.bussApi.bean;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * cgfy新增更新输入用Bean
  *
- * @author generator
+ * @author cgfy_web
  */
 public class TestGenInputBean {
     /**

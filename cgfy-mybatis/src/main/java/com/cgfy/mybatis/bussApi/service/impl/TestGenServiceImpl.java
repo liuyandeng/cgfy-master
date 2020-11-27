@@ -1,53 +1,54 @@
 package com.cgfy.mybatis.bussApi.service.impl;
 
-import com.cgfy.mybatis.base.bean.BeanTrans;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Resource;
+import org.springframework.transaction.annotation.Transactional;
+import com.cgfy.mybatis.base.exception.BusinessException;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.entity.Example.Criteria;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
+import com.cgfy.mybatis.base.service.impl.BaseServiceImpl;
+import com.cgfy.mybatis.base.bean.SelectInputBean;
 import com.cgfy.mybatis.base.bean.CgfyListResponse;
 import com.cgfy.mybatis.base.bean.CgfySelectInputBean;
-import com.cgfy.mybatis.base.bean.SelectInputBean;
+import com.cgfy.mybatis.base.bean.BeanTrans;
 import com.cgfy.mybatis.base.bean.select.Condition;
 import com.cgfy.mybatis.base.bean.select.Direction;
 import com.cgfy.mybatis.base.bean.select.Order;
+import com.cgfy.mybatis.base.bean.BaseSelectField;
 import com.cgfy.mybatis.base.domain.mapper.BaseMapper;
-import com.cgfy.mybatis.base.exception.BusinessException;
-import com.cgfy.mybatis.base.service.impl.BaseServiceImpl;
-import com.cgfy.mybatis.bussApi.bean.TestGenInputBean;
-import com.cgfy.mybatis.bussApi.bean.TestGenInternalOutputBean;
-import com.cgfy.mybatis.bussApi.domain.mapper.TestGenMapper;
-import com.cgfy.mybatis.bussApi.domain.model.TestGen;
+import com.cgfy.mybatis.base.domain.model.BaseModel;
+import com.cgfy.mybatis.bussApi.bean.TestGenOutputBean;
 import com.cgfy.mybatis.bussApi.service.TestGenService;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
-import tk.mybatis.mapper.entity.Example.Criteria;
-
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
+import com.cgfy.mybatis.bussApi.bean.TestGenInputBean;
+import com.cgfy.mybatis.bussApi.domain.model.TestGen;
 
 /**
  * 「cgfy」基础Service
  *
- * @author generator
+ * @author cgfy_web
  */
 @Service("TestGenService")
-public class TestGenServiceImpl extends BaseServiceImpl<TestGen, TestGenInternalOutputBean> implements TestGenService {
+public class TestGenServiceImpl extends BaseServiceImpl<TestGen,TestGenOutputBean> implements TestGenService{
 
     /**
      * Mapper
      */
     @Resource
-    private TestGenMapper mapper;
+    private com.cgfy.mybatis.bussApi.domain.mapper.TestGenMapper mapper;
+
 
 
     /**
     * 检索
-    * @param scgkInput 输入参数
+    * @param cgfyInput 输入参数
     * @return 输出对象
     */
-    public CgfyListResponse<TestGenInternalOutputBean> select(CgfySelectInputBean scgkInput) {
-         SelectInputBean input = BeanTrans.zgcfzBeanToNormal(scgkInput);
+    public CgfyListResponse<TestGenOutputBean> select(CgfySelectInputBean cgfyInput) {
+         SelectInputBean input = BeanTrans.zgcfzBeanToNormal(cgfyInput);
          Example example = new Example(TestGen.class);
         // 检索项目设定
         if (input.getFields() != null && input.getFields().size() != 0) {
@@ -75,7 +76,7 @@ public class TestGenServiceImpl extends BaseServiceImpl<TestGen, TestGenInternal
             }
         }
 
-        CgfyListResponse<TestGenInternalOutputBean> result = new CgfyListResponse<TestGenInternalOutputBean>();
+        CgfyListResponse<TestGenOutputBean> result = new CgfyListResponse<TestGenOutputBean>();
         result.setTotalCount(mapper.selectCountByExample(example));
         List<TestGen> resultData = null;
         if(input.getRowBounds() == null) {
@@ -86,9 +87,9 @@ public class TestGenServiceImpl extends BaseServiceImpl<TestGen, TestGenInternal
             result.setPageSize(input.getRowBounds().getLimit());
             result.setPageCount((int) Math.ceil(result.getTotalCount()/result.getPageSize()));
         }
-        List<TestGenInternalOutputBean> resultRecords = new ArrayList<TestGenInternalOutputBean>();
+        List<TestGenOutputBean> resultRecords = new ArrayList<TestGenOutputBean>();
         for(TestGen item : resultData){
-            TestGenInternalOutputBean out = new TestGenInternalOutputBean();
+            TestGenOutputBean out = new TestGenOutputBean();
             BeanUtils.copyProperties(item,out);
             resultRecords.add(out);
         }
@@ -103,7 +104,7 @@ public class TestGenServiceImpl extends BaseServiceImpl<TestGen, TestGenInternal
     * @return 输出对象
     */
     @Transactional(rollbackFor = Exception.class)
-    public TestGenInternalOutputBean save(TestGenInputBean input, String id) {
+    public TestGenOutputBean save(TestGenInputBean input,String id) {
         if (StringUtils.isBlank(id)) {
             throw new BusinessException("主键不能为空");
         }
@@ -134,12 +135,12 @@ public class TestGenServiceImpl extends BaseServiceImpl<TestGen, TestGenInternal
     * @param id 主键id
     * @return 输出对象
     */
-    public TestGenInternalOutputBean getDetail(String id) {
+    public TestGenOutputBean getDetail(String id) {
         if (StringUtils.isBlank(id)) {
             throw new BusinessException("主键不能为空");
         }
         TestGen record =mapper.selectByPrimaryKey(id);
-        TestGenInternalOutputBean out=new TestGenInternalOutputBean(record);
+        TestGenOutputBean out=new TestGenOutputBean(record);
         return out;
     }
 

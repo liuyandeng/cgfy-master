@@ -1,7 +1,7 @@
 package com.cgfy.mybatis.bussApi.service.impl;
 
 import com.cgfy.mybatis.bussApi.bean.TestGenInputBean;
-import com.cgfy.mybatis.bussApi.bean.TestGenInternalOutputBean;
+import com.cgfy.mybatis.bussApi.bean.TestGenOutputBean;
 import com.cgfy.mybatis.bussApi.domain.mapper.TestGenMapper;
 import com.cgfy.mybatis.bussApi.domain.model.TestGen;
 import com.github.pagehelper.Page;
@@ -131,21 +131,21 @@ public class CacheTestServiceImpl {
     }
 
 
-    public List<TestGenInternalOutputBean> selectPageBySql(TestGenInputBean input, int page, int rows) {
+    public List<TestGenOutputBean> selectPageBySql(TestGenInputBean input, int page, int rows) {
         PageHelper.startPage(page, rows);
         Page<TestGen> page1 = (Page<TestGen>) mapper.selectAll();
         Page<TestGen> pages = PageHelper.startPage(page, rows);
-        List<TestGenInternalOutputBean> result = null;
+        List<TestGenOutputBean> result = null;
         //result=mapper.selectPageBySql(input);
         return result;
     }
 
 
-    public Page<TestGenInternalOutputBean> selectPage(int pageNum, int pageSize) {
+    public Page<TestGenOutputBean> selectPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         Page<TestGen> page = (Page<TestGen>) mapper.selectAll();
         return transformVO(page, page.getResult().stream().map(e -> {
-            TestGenInternalOutputBean vo = new TestGenInternalOutputBean();
+            TestGenOutputBean vo = new TestGenOutputBean();
             vo.setId(e.getId());
             vo.setName(e.getName());
             vo.setSex(e.getSex());

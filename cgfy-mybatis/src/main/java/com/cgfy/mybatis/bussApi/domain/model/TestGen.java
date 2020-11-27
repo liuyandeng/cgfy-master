@@ -1,15 +1,13 @@
 package com.cgfy.mybatis.bussApi.domain.model;
 
-
 import com.cgfy.mybatis.base.domain.model.BaseModel;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * cgfy
  *
- * @author generator
+ * @author cgfy_web
  */
 @Table(name = "test_gen")
 public class TestGen implements BaseModel, Serializable {

@@ -13,7 +13,7 @@ import ${props.fwPackage}.base.controller.BaseController;
 import ${props.fwPackage}.base.bean.AjaxResponse;
 import ${props.fwPackage}.base.bean.CgfyListResponse;
 import ${props.fwPackage}.base.bean.CgfySelectInputBean;
-import ${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN")};
+import ${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN")};
 import ${tableClass.getIntrospectedTable().getAttribute("SERVICE_INTERFACE")};
 import ${tableClass.getIntrospectedTable().getAttribute("INPUT_BEAN")};
 /**
@@ -37,13 +37,13 @@ public class ${tableClass.getIntrospectedTable().getAttribute("CONTROLLEREX_INTE
 
     /**
     * 检索
-    * @param scgkInput 查询参数
+    * @param cgfyInput 查询参数
     * @return 输入对象
     */
     @ApiOperation(value = "检索", hidden=true)
     @RequestMapping(value = "/select", method = RequestMethod.POST)
-    public AjaxResponse<CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}>> select(@RequestBody  @ApiParam(required=true) CgfySelectInputBean scgkInput) {
-        return AjaxResponse.success(service.select(scgkInput));
+    public AjaxResponse<CgfyListResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}>> select(@RequestBody  @ApiParam(required=true) CgfySelectInputBean cgfyInput) {
+        return AjaxResponse.success(service.select(cgfyInput));
     }
 
     /**
@@ -54,7 +54,7 @@ public class ${tableClass.getIntrospectedTable().getAttribute("CONTROLLEREX_INTE
     */
     @ApiOperation(value = "保存", hidden=true)
     @RequestMapping(value = "<#list tableClass.pkFields as field>/save/{${field.fieldName}}</#list>", method = RequestMethod.POST)
-    public AjaxResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}> save(@RequestBody  @ApiParam(required=true) ${tableClass.getIntrospectedTable().getAttribute("INPUT_BEAN_SHORT")} input<#list tableClass.pkFields as field>,@PathVariable ${field.shortTypeName} ${field.fieldName}</#list>) {
+    public AjaxResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}> save(@RequestBody  @ApiParam(required=true) ${tableClass.getIntrospectedTable().getAttribute("INPUT_BEAN_SHORT")} input<#list tableClass.pkFields as field>,@PathVariable ${field.shortTypeName} ${field.fieldName}</#list>) {
         return AjaxResponse.success(service.save(input,<#list tableClass.pkFields as field>${field.fieldName}</#list>));
     }
 
@@ -65,7 +65,7 @@ public class ${tableClass.getIntrospectedTable().getAttribute("CONTROLLEREX_INTE
     */
     @ApiOperation(value = "获取详情", hidden=true)
     @RequestMapping(value = "<#list tableClass.pkFields as field>/{${field.fieldName}}</#list>", method = RequestMethod.GET)
-    public AjaxResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_INTERNAL_OUTPUT_BEAN_SHORT")}> getDetail(<#list tableClass.pkFields as field>@PathVariable ${field.shortTypeName} ${field.fieldName}</#list>) {
+    public AjaxResponse<${tableClass.getIntrospectedTable().getAttribute("RECORD_OUTPUT_BEAN_SHORT")}> getDetail(<#list tableClass.pkFields as field>@PathVariable ${field.shortTypeName} ${field.fieldName}</#list>) {
         return AjaxResponse.success(service.getDetail(<#list tableClass.pkFields as field>${field.fieldName}</#list>));
     }
 

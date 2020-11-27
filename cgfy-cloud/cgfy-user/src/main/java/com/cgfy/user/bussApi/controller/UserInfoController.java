@@ -37,7 +37,7 @@ public class UserInfoController extends  BaseController {
 
     /**
     * 检索
-    * @param CgfyInput 查询参数
+    * @param cgfyInput 查询参数
     * @return 输入对象
     */
     @ApiOperation(value = "检索", hidden=true)

@@ -8,6 +8,8 @@ import javax.validation.constraints.Size;
 
 /**
  * 系统码表信息输出用Bean
+ *
+ * @author qiucw
  */
 public class CodeInfoBean extends BaseSelectField {
     /**

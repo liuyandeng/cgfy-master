@@ -10,9 +10,9 @@ import org.mybatis.generator.internal.util.JavaBeansUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecordInternalOutputBeanPlugin extends AbstractBeanCreatePlugin {
-	private static final String BEAN_KEY = "RECORD_INTERNAL_OUTPUT_BEAN";
-	private static final String CLASS_NAME = "#TYPE#InternalOutputBean";
+public class RecordOutputBeanPlugin extends AbstractBeanCreatePlugin {
+	private static final String BEAN_KEY = "RECORD_OUTPUT_BEAN";
+	private static final String CLASS_NAME = "#TYPE#OutputBean";
 
 	protected void createBefore(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
 			List<IntrospectedColumn> columnList) {
@@ -77,13 +77,13 @@ public class RecordInternalOutputBeanPlugin extends AbstractBeanCreatePlugin {
 		String basePackage = this.properties.getProperty("basePackage");
 		String inputClassName = this.properties.getProperty("fileName");
 		if (StringUtils.isEmpty(inputClassName)) {
-			inputClassName = "#TYPE#InternalOutputBean";
+			inputClassName = CLASS_NAME;
 		}
 		String className = inputClassName.replaceAll("#TYPE#", baseRecordType.getShortName());
 		return StringUtils.join(new String[] { basePackage, className }, ".");
 	}
 
 	protected String getBeanKey() {
-		return "RECORD_INTERNAL_OUTPUT_BEAN";
+		return BEAN_KEY;
 	}
 }

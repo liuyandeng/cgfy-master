@@ -4,21 +4,10 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-	<!--#######################################################拓展详情################################-->
-	<!--1.删除ControllerEx.ftl,CrudServiceImplEx.ftl等所有拓展生成模板
-	    2.mapper类和实体类生成到拓展包里,不再生成到generator包下,增加可操作性;
-	    3.删除实用性不高的方法和相关类,比如复合查询等
-	    4.增加VoBean等生成插件,用来自定义前端传输字段,增加灵活性,根据需要生成dto,合并插入更新bean,删除删除bean
-	    5.引入JBaseDao
-	    -->
-
-
-
-
 	<!--外部配置文件-->
-	<properties resource="generator/ext/generator.properties" />
+	<properties resource="generator/generator.properties" />
 	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat"
-		introspectedColumnImpl="com.cgfy.generator.ext.IntrospectedColumnEx">
+		introspectedColumnImpl="com.cgfy.mybatis.generator.ext.IntrospectedColumnEx">
 		<!--生成器属性配置-->
 		<property name="driverClass" value="${datasource.driverClassName}" />
 		<property name="connectionURL" value="${datasource.url}" />
@@ -37,7 +26,7 @@
 
 		<!--#######################################################model,顺序需要在mapper之上################################-->
 		<!-- Model生成 -->
-		<plugin type="com.cgfy.generator.plugins.ModelPlugin">
+		<plugin type="com.cgfy.mybatis.generator.plugins.ModelPlugin">
 			<property name="supertInterface" value="${project.modelSuperInterface}" />
 		</plugin>
 
@@ -50,27 +39,27 @@
 		</plugin>
 		<!--给mapper接口增加@Mapper注解-->
 		<plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
-		<plugin type="com.cgfy.generator.plugins.MapperCommentPlugin" />
+		<plugin type="com.cgfy.mybatis.generator.plugins.MapperCommentPlugin" />
 
 
 
 		<!--#######################################################输入输出bean################################-->
 		<!-- 生成Vo -->
-<!--		<plugin type="com.jbdp.generator.ext.VoPlugin">-->
+<!--		<plugin type="com.cgfy.mybatis.generator.ext.VoPlugin">-->
 <!--			<property name="basePackage" value="${project.basePackage}.bean" />-->
 <!--		</plugin>-->
 		<!-- 生成Dto -->
-<!--		<plugin type="com.jbdp.generator.ext.DtoPlugin">-->
+<!--		<plugin type="com.cgfy.mybatis.generator.ext.DtoPlugin">-->
 <!--			<property name="basePackage" value="${project.basePackage}.bean" />-->
 <!--		</plugin>-->
 
 		<!-- 生成新增更新记录Bean -->
-		<plugin type="com.cgfy.generator.ext.InputBeanPlugin">
+		<plugin type="com.cgfy.mybatis.generator.ext.InputBeanPlugin">
 			<property name="basePackage" value="${project.basePackage}.bean" />
 		</plugin>
 
 		<!-- 生成内部输出记录Bean -->
-		<plugin type="com.cgfy.generator.plugins.RecordInternalOutputBeanPlugin">
+		<plugin type="com.cgfy.mybatis.generator.plugins.RecordOutputBeanPlugin">
 			<property name="superClass" value="${project.modelSuperClass}" />
 			<property name="basePackage" value="${project.basePackage}.bean" />
 		</plugin>
@@ -78,11 +67,11 @@
 
 		<!--#######################################################Service################################-->
 		<!-- Service接口 -->
-		<plugin type="com.cgfy.generator.ext.TemplateFilePluginEx">
+		<plugin type="com.cgfy.mybatis.generator.ext.TemplateFilePluginEx">
 			<property name="targetProject" value="${project.baseJavaPath}" />
 			<property name="targetPackage" value="${project.basePackage}.service" />
 
-			<property name="templatePath" value="generator/ext/template/Service.ftl" />
+			<property name="templatePath" value="generator/template/Service.ftl" />
 
 			<property name="beanKey" value="SERVICE_INTERFACE" />
 
@@ -94,10 +83,10 @@
 
 
 		<!-- Service实现类 -->
-		<plugin type="com.cgfy.generator.ext.TemplateFilePluginEx">
+		<plugin type="com.cgfy.mybatis.generator.ext.TemplateFilePluginEx">
 			<property name="targetProject" value="${project.baseJavaPath}" />
 			<property name="targetPackage" value="${project.basePackage}.service.impl" />
-			<property name="templatePath" value="generator/ext/template/ServiceImpl.ftl" />
+			<property name="templatePath" value="generator/template/ServiceImpl.ftl" />
 			<property name="beanKey" value="SERVICE_INTERFACE_IMPL" />
 			<property name="fileName" value="${tableClass.shortClassName}ServiceImpl.java" />
 			<property name="author" value="${project.author}" />
@@ -109,10 +98,10 @@
 		<!--#######################################################Controller################################-->
 
 		<!-- Controller实现类 -->
-		<plugin type="com.cgfy.generator.ext.TemplateFilePluginEx">
+		<plugin type="com.cgfy.mybatis.generator.ext.TemplateFilePluginEx">
 			<property name="targetProject" value="${project.baseJavaPath}" />
 			<property name="targetPackage" value="${project.basePackage}.controller" />
-			<property name="templatePath" value="generator/ext/template/Controller.ftl" />
+			<property name="templatePath" value="generator/template/Controller.ftl" />
 			<property name="beanKey" value="CONTROLLEREX_INTERFACE" />
 			<property name="fileName" value="${tableClass.shortClassName}Controller.java" />
 			<property name="author" value="${project.author}" />
@@ -122,7 +111,7 @@
 
 
 		<!-- 注释工具 -->
-		<commentGenerator type="com.cgfy.generator.ext.MapperCommentGeneratorEx" />
+		<commentGenerator type="com.cgfy.mybatis.generator.ext.MapperCommentGeneratorEx" />
 
 		<jdbcConnection 
 			driverClass="${datasource.driverClassName}"
@@ -144,20 +133,7 @@
 		<javaClientGenerator targetPackage="${project.basePackage}.domain.mapper" targetProject="${project.baseJavaPath}" type="XMLMAPPER" />
 
 		    <table tableName="test_gen"></table>
-<!--			<table tableName="test"></table>-->
-<!--		<table tableName="rule_user"></table>-->
-<!--		<table tableName="staff_info"></table>-->
-<!--		<table tableName="staff_info_h"></table>-->
-<!--		<table tableName="staff_work"></table>-->
-<!--		<table tableName="staff_train"></table>-->
-<!--		<table tableName="staff_skill"></table>-->
-<!--		<table tableName="staff_reward"></table>-->
-<!--		<table tableName="staff_profession"></table>-->
-<!--		<table tableName="staff_family"></table>-->
-<!--		<table tableName="staff_education"></table>-->
-<!--		<table tableName="staff_duty"></table>-->
-<!--		<table tableName="staff_contract"></table>-->
-<!--		<table tableName="staff_history"></table>-->
+
 
 
 

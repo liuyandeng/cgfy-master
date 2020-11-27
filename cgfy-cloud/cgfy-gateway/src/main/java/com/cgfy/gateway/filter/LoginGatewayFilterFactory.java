@@ -1,7 +1,7 @@
 package com.cgfy.gateway.filter;
 
 import com.cgfy.gateway.bean.SysLogonLogInfoInsertInputBean;
-import com.cgfy.gateway.service.UumsRemoteService;
+//import com.cgfy.gateway.feign.UumsRemoteService;
 import com.cgfy.gateway.util.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -36,8 +36,8 @@ public class LoginGatewayFilterFactory extends AbstractGatewayFilterFactory<Logi
 
 	private final static String REQUEST_DATA_MAP_KEY = "LoginGatewayFilterFactory.request_data_map_key";
 	
-	@Autowired
-	private UumsRemoteService uumsRemoteService;
+//	@Autowired
+//	private UumsRemoteService uumsRemoteService;
 
 	public LoginGatewayFilterFactory() {
 		super(Config.class);
@@ -213,7 +213,7 @@ public class LoginGatewayFilterFactory extends AbstractGatewayFilterFactory<Logi
 				input.setLogonMsg(logonMsg);
 				
 				try {
-					uumsRemoteService.saveLoginLog(input);
+					//uumsRemoteService.saveLoginLog(input);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

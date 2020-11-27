@@ -5,8 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 网关动态路由表 Mapper
- *
- * @author suny
  */
 @Mapper
 public interface SysGatewayRouteMapper extends BaseMapper<SysGatewayRoute> {

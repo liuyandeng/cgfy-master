@@ -1,4 +1,4 @@
-package com.cgfy.gateway.service;
+package com.cgfy.gateway.feign;
 
 import com.cgfy.gateway.bean.SysExceptionLogInfoInsertInputBean;
 import com.cgfy.gateway.bean.SysLogonLogInfoInsertInputBean;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "jbdp-uums", configuration= FeignCommonConfig.class)
-public interface UumsRemoteService {
+//@FeignClient(value = "jbdp-uums", configuration= FeignCommonConfig.class)
+public interface UserFeignClient {
 
 	
 	@RequestMapping(value = "/FreeCertification/SysPriCommon/getSysPriApiUrlNoEmpty", method = RequestMethod.POST)

@@ -4,8 +4,7 @@ package com.cgfy.gateway.filter;
 import com.cgfy.gateway.bean.SysExceptionLogInfoInsertInputBean;
 import com.cgfy.gateway.bean.SysUserInfo;
 import com.cgfy.gateway.config.GatewayIpCheckProperties;
-import com.cgfy.gateway.service.AuthRemoteService;
-import com.cgfy.gateway.service.UumsRemoteService;
+//import com.cgfy.gateway.feign.UumsRemoteService;
 import com.cgfy.gateway.util.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -51,11 +50,11 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
 	
 	private Map<String, Map<String, Integer>> allowIpMap = null;
 	
-	@Autowired
-	private AuthRemoteService authRemoteService;
+	//@Autowired
+	//private AuthRemoteService authRemoteService;
 	
-	@Autowired
-	private UumsRemoteService uumsRemoteService;
+	//@Autowired
+	//private UumsRemoteService uumsRemoteService;
 	
 	@Autowired
 	private GatewayIpCheckProperties gatewayIpCheckProperties;
@@ -359,7 +358,7 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
     		/** 24小时内，只记录10次日志 **/
     		if(checkLogCount<10) {
     			try {
-        			uumsRemoteService.saveExceptionLog(input);
+        			//uumsRemoteService.saveExceptionLog(input);
         			
         			if(isHasKey) {
         				BoundValueOperations<String, Object> boundValueOps = redisTemplate.boundValueOps(redisKey);
@@ -386,7 +385,8 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
 	private SysUserInfo getCurrentUser(Map<String, String> headerMap) {
 		SysUserInfo user = null;
 		try {
-			String rvStr = authRemoteService.getCurrentUser(headerMap);
+			//String rvStr = authRemoteService.getCurrentUser(headerMap);
+			String rvStr = "cgfy";
 			log.debug("principal info:\t" + rvStr);
 			if (rvStr != null && rvStr.length() > 0) {
 				JSONObject rvObj = new JSONObject(rvStr);

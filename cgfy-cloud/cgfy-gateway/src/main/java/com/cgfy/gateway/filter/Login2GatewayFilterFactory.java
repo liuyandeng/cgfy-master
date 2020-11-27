@@ -1,6 +1,5 @@
 package com.cgfy.gateway.filter;
 
-import com.cgfy.gateway.service.UumsRemoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -32,9 +31,7 @@ public class Login2GatewayFilterFactory extends AbstractGatewayFilterFactory<Log
 
 
 	private final static String REQUEST_RECORDER_LOG_BUFFER = "RequestRecorderGatewayFilter.request_recorder_log_buffer";
-	
-	@Autowired
-	private UumsRemoteService uumsRemoteService;
+
 
 
 	@SuppressWarnings("rawtypes")

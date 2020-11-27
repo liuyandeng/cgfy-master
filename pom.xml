@@ -139,6 +139,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
             <!-- *********************apache.commons组********************* -->
             <dependency><!--设置了redis连接池的相关参数,需要引入此包-->
                 <groupId>org.apache.commons</groupId>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!--外部配置文件-->
+	<properties resource="generator/ext/generator.properties" />
+	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat"
+		introspectedColumnImpl="com.jbdp.generator.ext.IntrospectedColumnEx">
+		<!--生成器属性配置-->
+		<property name="driverClass" value="${datasource.driverClassName}" />
+		<property name="connectionURL" value="${datasource.url}" />
+		<property name="userId" value="${datasource.username}" />
+		<property name="password" value="${datasource.password}" />
+		<property name="schema" value="${datasource.schema}" />
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+		<property name="javaFileEncoding" value="UTF-8" />
+		<property name="useMapperCommentGenerator" value="FALSE" />
+		<property name="commentClassAuthor" value="${project.author}" />
+		<property name="uuidField" value="${project.uuidField}" />
+		<property name="ignoreColumn" value="${project.ignoreColumn}" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+
+		<!--#######################################################model,顺序需要在mapper之上################################-->
+		<!-- Model生成 -->
+		<plugin type="com.jbdp.generator.plugins.ModelPlugin">
+			<property name="supertInterface" value="${project.modelSuperInterface}" />
+		</plugin>
+
+
+
+		<!--#######################################################mapper################################-->
+		<!-- Mapper生成 -->
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="${project.mapperSuperInterface}" />
+		</plugin>
+		<!--给mapper接口增加@Mapper注解-->
+		<plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+		<plugin type="com.jbdp.generator.plugins.MapperCommentPlugin" />
+
+
+
+		<!--#######################################################输入输出bean################################-->
+		<!-- 生成Vo -->
+<!--		<plugin type="com.jbdp.generator.ext.VoPlugin">-->
+<!--			<property name="basePackage" value="${project.basePackage}.bean" />-->
+<!--		</plugin>-->
+		<!-- 生成Dto -->
+<!--		<plugin type="com.jbdp.generator.ext.DtoPlugin">-->
+<!--			<property name="basePackage" value="${project.basePackage}.bean" />-->
+<!--		</plugin>-->
+
+		<!-- 生成新增更新记录Bean -->
+		<plugin type="com.jbdp.generator.ext.InputBeanPlugin">
+			<property name="basePackage" value="${project.basePackage}.bean" />
+		</plugin>
+
+		<!-- 生成内部输出记录Bean -->
+		<plugin type="com.jbdp.generator.plugins.RecordInternalOutputBeanPlugin">
+			<property name="superClass" value="${project.modelSuperClass}" />
+			<property name="basePackage" value="${project.basePackage}.bean" />
+		</plugin>
+
+
+		<!--#######################################################Service################################-->
+		<!-- Service接口 -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseJavaPath}" />
+			<property name="targetPackage" value="${project.basePackage}.service" />
+
+			<property name="templatePath" value="generator/ext/template/Service.ftl" />
+
+			<property name="beanKey" value="SERVICE_INTERFACE" />
+
+			<property name="fileName" value="${tableClass.shortClassName}Service.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+
+
+		<!-- Service实现类 -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseJavaPath}" />
+			<property name="targetPackage" value="${project.basePackage}.service.impl" />
+			<property name="templatePath" value="generator/ext/template/ServiceImpl.ftl" />
+			<property name="beanKey" value="SERVICE_INTERFACE_IMPL" />
+			<property name="fileName" value="${tableClass.shortClassName}ServiceImpl.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+
+
+		<!--#######################################################Controller################################-->
+
+		<!-- Controller实现类 -->
+		<plugin type="com.jbdp.generator.ext.TemplateFilePluginEx">
+			<property name="targetProject" value="${project.baseJavaPath}" />
+			<property name="targetPackage" value="${project.basePackage}.controller" />
+			<property name="templatePath" value="generator/ext/template/Controller.ftl" />
+			<property name="beanKey" value="CONTROLLEREX_INTERFACE" />
+			<property name="fileName" value="${tableClass.shortClassName}Controller.java" />
+			<property name="author" value="${project.author}" />
+			<property name="fwPackage" value="${project.fwPackage}" />
+		</plugin>
+
+
+
+		<!-- 注释工具 -->
+		<commentGenerator type="com.jbdp.generator.ext.MapperCommentGeneratorEx" />
+
+		<jdbcConnection 
+			driverClass="${datasource.driverClassName}"
+			connectionURL="${datasource.url}" 
+			userId="${datasource.username}" 
+			password="${datasource.password}">
+			
+			<property name="useInformationSchema" value="true"></property>
+			<property name="characterEncoding" value="UTF-8"></property>
+		</jdbcConnection>
+
+
+
+		<!--配置model生成路径及所在包-->
+		<javaModelGenerator targetPackage="${project.basePackage}.domain.model" targetProject="${project.baseJavaPath}" />
+		<!--配置mapper.xml生成路径及所在包-->
+		<sqlMapGenerator targetPackage="mapper" targetProject="${project.baseXmlPath}" />
+		<!--配置mapper接口生成路径及所在包-->
+		<javaClientGenerator targetPackage="${project.basePackage}.domain.mapper" targetProject="${project.baseJavaPath}" type="XMLMAPPER" />
+
+		    <table tableName="test_gen"></table>
+<!--			<table tableName="test"></table>-->
+<!--		<table tableName="rule_user"></table>-->
+<!--		<table tableName="staff_info"></table>-->
+<!--		<table tableName="staff_info_h"></table>-->
+<!--		<table tableName="staff_work"></table>-->
+<!--		<table tableName="staff_train"></table>-->
+<!--		<table tableName="staff_skill"></table>-->
+<!--		<table tableName="staff_reward"></table>-->
+<!--		<table tableName="staff_profession"></table>-->
+<!--		<table tableName="staff_family"></table>-->
+<!--		<table tableName="staff_education"></table>-->
+<!--		<table tableName="staff_duty"></table>-->
+<!--		<table tableName="staff_contract"></table>-->
+<!--		<table tableName="staff_history"></table>-->
+
+
+
+
+
+		
+		
+	</context>
+</generatorConfiguration>

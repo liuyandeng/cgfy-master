@@ -1,0 +1,163 @@
+server:
+  port: 8874
+
+spring:
+  application:
+    name: cgfy-user-lgl
+  profiles:
+    active: dev
+  jackson:
+    dateFormat: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  ## 静态文件过滤
+  mvc:
+    static-path-pattern: /**
+  ##　项目静态文件地址
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${files.root}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cgfy_web?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    jpa:
+      show-sql: true
+    redis:
+      # Redis服务器地址
+      host: localhost
+      # Redis服务器连接端口
+      port: 6379
+      # Redis服务器连接密码（默认为空）
+      password:
+      # Redis数据库索引（默认为0）
+      database: 5
+      # 连接超时时间（毫秒）
+      timeout: 5000m
+      lettuce:
+        pool:
+          # 连接池最大连接数（使用负值表示没有限制）
+          max-active: -1
+          # 连接池最大阻塞等待时间（使用负值表示没有限制）
+          max-wait: -1
+          # 连接池中的最大空闲连接（使用负值表示没有限制）
+          max-idle: 10
+          # 连接池中的最小空闲连接,值为正时才有效
+          min-idle: 0
+
+management:
+  security:
+    enabled: false
+logging:
+  config: classpath:config/logback-spring.xml
+  level:
+    com.cgfy.user: debug
+
+mapper:
+  mappers: com.cgfy.user.base.domain.mapper.BaseMapper
+  not-empty: false
+  identity: SELECT REPLACE(UUID(),''-'','''')
+  before: true
+
+mybatis:
+  configLocation: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/*/*.xml
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+ribbon:
+  eureka:
+    enabled: true
+  ConnectTimeout: 60000
+  ReadTimeout: 60000
+
+
+########################### feign及其日志配置################################
+## feign的相关配置
+## feign httpclient的配置参见：org.springframework.cloud.netflix.feign.support.FeignHttpClientProperties
+## feign client的配置参见：org.springframework.cloud.netflix.feign.FeignClientProperties
+feign:
+  client:
+    config:
+        default:
+          loggerLevel: FULL
+          connectTimeout: 60000
+          readTimeout: 60000
+  httpclient:
+    connection-timeout: 60000
+#  hystrix:
+#    enabled: true
+
+###########################hystrix熔断配置################################
+## hystrix相关配置
+## hystrix熔断器，请求超时时间
+## hystrix参数配置，参见以下配置：
+## com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager
+## com.netflix.hystrix.HystrixCommandProperties
+## com.netflix.hystrix.HystrixCollapserProperties
+## org.springframework.cloud.netflix.hystrix.HystrixMetricsProperties
+#hystrix:
+#  # 如果是thread，则需要设置线程池
+#  # 如果SEMAPHORE，则需要设置hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests:10  10为默认值，需要调整
+#  # 非常重要！！！因为feign在使用hystrix时，hystrix如果采用THREAD模式，则会在新的线程中执行请求，此时需要共享主线程的SecurityContext
+#  shareSecurityContext: true
+#  threadpool:
+#    default:
+#      #并发执行的最大线程数，默认10
+#      coreSize: 500
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          #隔离模式为：THREAD 或者 SEMAPHORE
+#          strategy: THREAD
+#          semaphore:
+#            #默认：10
+#            maxConcurrentRequests: 200
+#          thread:
+#            #单位：毫秒
+#            timeoutInMilliseconds: 60000
+
+# 自定义属性
+# 平台使用 JbaseDao 进行数据库查询时，最大查询记录数，为0时，不限制
+jbdp:
+  jdbc:
+    maxRowsQuery: 10000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://cgfy-admin:cgfy-admin-password@192.168.0.16:8841/eureka/
+    #register-with-eureka: false
+#    instance:
+#      preferIpAddress: true
+#      ip-address: 192.168.0.29
+#      instance-id: ${eureka.instance.ip-address}:${server.port}
+
+security:
+  oauth2:
+    resource:
+      id: http://100001
+      prefer-token-info: false
+      user-info-uri: http://localhost:8840/oauth/ext/getCurrentUser
+
+---
+spring:
+  profiles: win
+files:
+  root: F:\upload
+  url: http://localhost:8874
+  thumb: F:\upload\thumb
+
+---
+spring:
+  profiles: linux
+files:
+  #root: /home/files/ntko
+  root: /uploadfile/officeFile
+  url: http://192.168.0.16:8840/user
+  thumb: /uploadfile/thumb
+

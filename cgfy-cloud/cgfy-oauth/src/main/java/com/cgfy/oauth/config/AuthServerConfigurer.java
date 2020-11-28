@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Configuration
@@ -39,7 +40,7 @@ public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
 	/**
 	 * 自定义UserDetailsService对象
 	 */
-	@Autowired
+	@Resource
 	private UserDetailsService userDetailsService;
 	
 	

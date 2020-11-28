@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Configuration
-public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
+public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 	
 	/**
 	 * DB数据源

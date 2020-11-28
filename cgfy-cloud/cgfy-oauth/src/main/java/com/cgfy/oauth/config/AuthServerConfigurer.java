@@ -40,7 +40,7 @@ public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
 	/**
 	 * 自定义UserDetailsService对象
 	 */
-	@Resource
+	@Autowired
 	private UserDetailsService userDetailsService;
 
 	/**

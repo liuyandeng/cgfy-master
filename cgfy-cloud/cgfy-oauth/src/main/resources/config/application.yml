@@ -87,6 +87,8 @@ management:
 
 logging:
   config: classpath:config/logback-spring.xml
+  level:
+    com.cgfy: debug
 
 mapper:
   mappers: com.cgfy.oauth.base.domain.mapper.BaseMapper

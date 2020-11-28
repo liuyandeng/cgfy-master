@@ -44,7 +44,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 
 	/**
-	 *
+	 *TokenStore接口的实现类
 	 * InMemoryTokenStore
 	 * JdbcTokenStore
 	 * JwkTokenStore
@@ -54,7 +54,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 	 */
 	@Bean
     public TokenStore tokenStore() {
-        return new RedisTokenStore(redisConnection);
+        return new RedisTokenStore(redisConnection);//改造RedisTokenStore
     }
 	
 	@Bean

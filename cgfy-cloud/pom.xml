@@ -17,5 +17,6 @@
         <module>cgfy-eureka</module>
         <module>cgfy-gateway</module>
         <module>cgfy-user</module>
+        <module>cgfy-oauth</module>
     </modules>
 </project>

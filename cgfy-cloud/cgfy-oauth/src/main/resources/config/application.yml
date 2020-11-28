@@ -1,0 +1,164 @@
+server:
+  port: 8842
+  servlet:
+    session:
+      cookie:
+        name: SESSIONID
+  # 请求连接超时时间, 单位毫秒
+  connection-timeout: 300000
+  tomcat:
+    accept-count: 10000
+    min-spare-threads: 200
+
+
+spring:
+  application:
+    name: cgfy-oauth
+  profiles:
+    active: win
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  jackson:
+    dateFormat: yyyyMMddHHmmss
+    time-zone: GMT+8
+  sleuth:
+    sampler:
+      #  采样率
+      probability: 1
+  zipkin:
+    # 通过注册中心的服务名称访问，需要从spring-cloud-sleuth-core-1.3.0.RELEASE开始支持这个功能
+    base-url: http://cgfy-sleuth/
+  datasource:
+    name: test-xia
+    # 数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      ## driver-class-name: com.mysql.jdbc.Driver
+      ## mysql-connector-java-8+ 之后使用
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/cgfy_web?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 123456
+      # 初始化连接池大小
+      initial-size: 0
+      # 最大链接数
+      max-active: 20
+      # 最小链接间隔
+      min-idle: 1
+      # 最大等待时间，单位是毫秒
+      max-wait: 60000
+  redis:
+    # Redis服务器地址
+    host: localhost
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # Redis数据库索引（默认为0）
+    database: 5
+    # 连接超时时间（毫秒）
+    timeout: 5000m
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: -1
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1
+        # 连接池中的最大空闲连接（使用负值表示没有限制）
+        max-idle: 10
+        # 连接池中的最小空闲连接,值为正时才有效
+        min-idle: 0
+
+
+
+management:
+  cloudfoundry:
+    enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    beans:
+      enabled: true
+
+logging:
+  config: classpath:config/logback-spring.xml
+
+mapper:
+  mappers: com.cgfy.oauth.base.domain.mapper.BaseMapper
+  not-empty: false
+  identity: SELECT REPLACE(UUID(),''-'','''')
+  before: true
+
+mybatis:
+  configLocation: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/*/*.xml
+
+feign:
+  client:
+    config:
+        default:
+          loggerLevel: FULL
+          connectTimeout: 60000
+          readTimeout: 60000
+  httpclient:
+    enabled: false
+    connection-timeout: 60000
+  okhttp:
+    enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 110000
+
+cgfy:
+  auth:
+    login-limit:
+      # 是否启用登录限定
+      enable: false
+      # 单位时间内允许失败次数
+      number-of-allowable-fail: 5
+      # 单位时间，单位分钟
+      #refresh-interval: 30
+      refresh-interval: 10
+    login:
+      qr-login-url: http://localhost:8840/oauth/login/qr/doLogin
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://cgfy-admin:cgfy-admin-password@localhost:8841/eureka/
+
+
+
+---
+spring:
+  profiles: win
+
+---
+spring:
+  profiles: linux

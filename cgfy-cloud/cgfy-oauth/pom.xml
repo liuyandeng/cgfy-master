@@ -49,11 +49,6 @@
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
         </dependency>
         <!--******************************springboot组*******************************-->
-        <!-- 数据库JDBC -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

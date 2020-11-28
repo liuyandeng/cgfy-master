@@ -2,6 +2,9 @@
 
 ##介绍
 鉴权与授权
+请求:
+http://localhost:8840/oauth/token?grant_type=password&client_id=WEB&client_secret=37906086F9EB4B58B315D97B65C3DBFC&username=admin&password=123456
+
 
 
 ## [oauth_client_detail表说明](https://www.jianshu.com/p/c1c6c966c3a7)

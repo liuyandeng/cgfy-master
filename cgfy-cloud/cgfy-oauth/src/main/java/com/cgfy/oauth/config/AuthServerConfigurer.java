@@ -42,8 +42,16 @@ public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
 	 */
 	@Resource
 	private UserDetailsService userDetailsService;
-	
-	
+
+	/**
+	 *
+	 * InMemoryTokenStore
+	 * JdbcTokenStore
+	 * JwkTokenStore
+	 * JwtTokenStore
+	 * RedisTokenStore
+	 * @return
+	 */
 	@Bean
     public TokenStore tokenStore() {
         return new RedisTokenStore(redisConnection);

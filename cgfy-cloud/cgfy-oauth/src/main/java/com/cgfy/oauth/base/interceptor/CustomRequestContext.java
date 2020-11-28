@@ -9,9 +9,6 @@ import java.util.Map;
 /**
  * 
  * 该类是controller的执行上下文对象
- * 
- * @version 2013-6-6
- * @author leibf
  */
 public class CustomRequestContext implements Serializable {
 

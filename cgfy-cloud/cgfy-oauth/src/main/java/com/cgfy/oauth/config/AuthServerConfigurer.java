@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 import javax.sql.DataSource;
 
 @Configuration
-public class AuthServerConfigurerAdapter extends AuthorizationServerConfigurerAdapter {
+public class AuthServerConfigurer extends AuthorizationServerConfigurerAdapter {
 	
 	/**
 	 * DB数据源

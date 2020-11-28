@@ -9,8 +9,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class OAuth2ResourceConfig  extends ResourceServerConfigurerAdapter {
-//public class OAuth2ResourceConfig {
-
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         super.configure(resources);

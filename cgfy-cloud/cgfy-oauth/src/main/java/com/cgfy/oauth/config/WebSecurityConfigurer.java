@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Configuration
-public class WebSecurityConfigurerAdapterExt extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -26,28 +26,21 @@ public class WebSecurityConfigurerAdapterExt extends WebSecurityConfigurerAdapte
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
         return new BCryptPasswordEncoder(12);
     }
-
-
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new MD5PasswordEncoder();
-//    }
-
-
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().csrf().disable();
     }
+
+    /**
+     * 自定义登录验证
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(new LoginAuthenticationProvider(userDetailsService));
-        //这东西千万不能忘
-/*        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder(12));*/
     }
 }

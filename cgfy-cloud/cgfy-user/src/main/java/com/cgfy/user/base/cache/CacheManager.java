@@ -27,7 +27,7 @@ public class CacheManager {
 			return singleton;
 		}
 	}
-	
+	//获取Redis缓存操作类
 	private CacheManager (ApplicationContext applicationContext){
 		cacheOperator = applicationContext.getBean("redisCacheOperator", CacheOperator.class);
 	}

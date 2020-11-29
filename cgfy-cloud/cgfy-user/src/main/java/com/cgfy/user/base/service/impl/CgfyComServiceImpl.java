@@ -1,7 +1,7 @@
-package com.cgfy.user.common.service.impl;
+package com.cgfy.user.base.service.impl;
 
 import com.cgfy.user.base.util.BaseCommonUtil;
-import com.cgfy.user.common.service.CgfyComService;
+import com.cgfy.user.base.service.CgfyComService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

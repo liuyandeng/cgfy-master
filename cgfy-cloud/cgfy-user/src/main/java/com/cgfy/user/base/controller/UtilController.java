@@ -1,4 +1,4 @@
-package com.cgfy.user.common.controller;
+package com.cgfy.user.base.controller;
 
 import com.cgfy.user.base.bean.AjaxResponse;
 import com.cgfy.user.base.util.BaseCommonUtil;

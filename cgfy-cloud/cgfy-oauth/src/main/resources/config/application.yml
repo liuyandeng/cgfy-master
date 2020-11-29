@@ -100,6 +100,19 @@ mybatis:
   configLocation: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/*/*.xml
 
+
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+
+
 feign:
   client:
     config:
@@ -113,14 +126,7 @@ feign:
   okhttp:
     enabled: true
 
-ribbon:
-  eureka:
-    enabled: true
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
-  MaxAutoRetries: 0
-  MaxAutoRetriesNextServer: 1
-  OkToRetryOnAllOperations: false
+
 
 hystrix:
   threadpool:
@@ -136,6 +142,10 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 110000
+
+
+
+
 
 cgfy:
   auth:

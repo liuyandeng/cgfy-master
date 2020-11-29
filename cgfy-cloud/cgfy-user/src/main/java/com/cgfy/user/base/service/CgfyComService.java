@@ -1,4 +1,4 @@
-package com.cgfy.user.common.service;
+package com.cgfy.user.base.service;
 
 import java.util.Date;
 

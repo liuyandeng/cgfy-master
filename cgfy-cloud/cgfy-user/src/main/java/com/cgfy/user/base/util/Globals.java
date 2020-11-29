@@ -1,4 +1,4 @@
-package com.cgfy.user.common.utils;
+package com.cgfy.user.base.util;
 
 import javax.servlet.ServletContext;
 

@@ -1,5 +1,6 @@
 package com.cgfy.user.bussApi.feign;
 import com.cgfy.user.base.bean.AjaxResponse;
+import com.cgfy.user.base.config.CustomFeignRequestInterceptor;
 import com.cgfy.user.base.config.FeignCommonConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "cgfy-oauth", configuration= FeignCommonConfig.class)
+@FeignClient(value = "cgfy-oauth", configuration= CustomFeignRequestInterceptor.class)
 public interface AuthFeignClient {
 
 	/**

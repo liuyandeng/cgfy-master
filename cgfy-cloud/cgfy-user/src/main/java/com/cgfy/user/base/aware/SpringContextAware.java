@@ -1,9 +1,8 @@
-package com.cgfy.user.common.aware;
+package com.cgfy.user.base.aware;
 
 
 import com.cgfy.user.base.cache.CacheManager;
-import com.cgfy.user.common.service.ResourceService;
-import com.cgfy.user.common.utils.Globals;
+import com.cgfy.user.base.util.Globals;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

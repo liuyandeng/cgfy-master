@@ -50,7 +50,7 @@ management:
 logging:
   config: classpath:config/logback-spring.xml
   level:
-    com.cgfy.user: debug
+    com.cgfy: debug
 
 mapper:
   mappers: com.cgfy.user.base.domain.mapper.BaseMapper

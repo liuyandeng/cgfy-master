@@ -4,7 +4,7 @@ import com.cgfy.user.base.bean.BaseSelectField;
 import com.cgfy.user.base.domain.mapper.BaseMapper;
 import com.cgfy.user.base.domain.model.BaseModel;
 import com.cgfy.user.base.service.BaseService;
-import com.cgfy.user.common.service.CgfyComService;
+import com.cgfy.user.base.service.CgfyComService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

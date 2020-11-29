@@ -1,4 +1,4 @@
-package com.cgfy.user.common.utils;
+package com.cgfy.user.base.util;
 
 import com.cgfy.user.base.cache.CacheManager;
 import org.apache.commons.lang3.StringUtils;

@@ -1,9 +1,9 @@
-package com.cgfy.user.common.service.impl;
+package com.cgfy.user.base.service.impl;
 
 import com.cgfy.user.base.bean.AjaxResponse;
 import com.cgfy.user.base.bean.SelectOutputBean;
 import com.cgfy.user.bussApi.feign.bean.CodeOutputBean;
-import com.cgfy.user.common.service.ResourceService;
+import com.cgfy.user.base.service.ResourceService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

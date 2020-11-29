@@ -1,4 +1,4 @@
-package com.cgfy.user.common.dto;
+package com.cgfy.user.base.bean;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Slf4j
 @Data
-public class messageDTO {
+public class MessageBean {
     //手机号
     private String phoneNumbers;
     //短信签名

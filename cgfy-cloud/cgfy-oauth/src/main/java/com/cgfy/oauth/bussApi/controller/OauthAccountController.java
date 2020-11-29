@@ -3,7 +3,7 @@ package com.cgfy.oauth.bussApi.controller;
 import com.cgfy.oauth.base.bean.AjaxResponse;
 import com.cgfy.oauth.bussApi.feign.UserFeignClient;
 import com.cgfy.oauth.bussApi.feign.bean.UserInfoOutputBean;
-import com.cgfy.oauth.config.AuthLoginLimitProperties;
+import com.cgfy.oauth.base.config.AuthLoginLimitProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

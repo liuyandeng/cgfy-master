@@ -1,4 +1,4 @@
-package com.cgfy.oauth.config;
+package com.cgfy.oauth.base.config;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

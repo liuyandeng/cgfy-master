@@ -21,6 +21,7 @@ public class OAuth2ResourceConfig  extends ResourceServerConfigurerAdapter {
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/v2/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
+                //.antMatchers("/UserInfo/**").permitAll()
                 .antMatchers("/**").authenticated();
     }
 

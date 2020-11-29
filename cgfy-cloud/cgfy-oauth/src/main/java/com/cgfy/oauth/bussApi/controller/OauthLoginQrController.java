@@ -1,6 +1,6 @@
 package com.cgfy.oauth.bussApi.controller;
 
-import com.cgfy.oauth.config.AuthLoginProperties;
+import com.cgfy.oauth.base.config.AuthLoginProperties;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;

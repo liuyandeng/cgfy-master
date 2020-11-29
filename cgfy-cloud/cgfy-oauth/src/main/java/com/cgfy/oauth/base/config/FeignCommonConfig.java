@@ -1,4 +1,4 @@
-package com.cgfy.oauth.config;
+package com.cgfy.oauth.base.config;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

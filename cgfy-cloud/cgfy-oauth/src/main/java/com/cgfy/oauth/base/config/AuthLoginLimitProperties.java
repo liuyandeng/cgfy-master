@@ -1,4 +1,4 @@
-package com.cgfy.oauth.config;
+package com.cgfy.oauth.base.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.cgfy.oauth.config;
+package com.cgfy.oauth.base.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

@@ -3,7 +3,7 @@ package com.cgfy.oauth.base.interceptor;
 import com.cgfy.oauth.base.util.HttpUtil;
 import com.cgfy.oauth.bussApi.bean.ExceptionLogInfoInputBean;
 import com.cgfy.oauth.bussApi.bean.LogonLogInfoInputBean;
-import com.cgfy.oauth.config.AuthLoginLimitProperties;
+import com.cgfy.oauth.base.config.AuthLoginLimitProperties;
 import com.cgfy.oauth.bussApi.feign.UserFeignClient;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

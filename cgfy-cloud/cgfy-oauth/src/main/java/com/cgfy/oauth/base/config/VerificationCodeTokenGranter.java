@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cgfy.oauth.config;
+package com.cgfy.oauth.base.config;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;

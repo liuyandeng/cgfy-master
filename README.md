@@ -17,7 +17,7 @@ redisson的基本操作,分布式锁等相关概念
 
 RabbitMQ的基本操作及概念
 
-### 4.scgfy-trans
+### 4.cgfy-trans
 
 
 事务的相关概念,DB+MQ

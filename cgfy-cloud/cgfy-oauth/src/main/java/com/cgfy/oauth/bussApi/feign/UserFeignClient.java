@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "cgfy-user")
 public interface UserFeignClient {
   @ApiOperation(value = "获取用户详情")
-  @RequestMapping(value = "/UserInfo/{id}", method = RequestMethod.POST)
+  @RequestMapping(value = "/UserInfo/{id}", method = RequestMethod.GET)
   public AjaxResponse<UserInfoOutputBean> getDetail(@PathVariable String id);
 
 }

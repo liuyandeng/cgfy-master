@@ -1,6 +1,8 @@
 package com.cgfy.oauth.bussApi.controller;
 
 import com.cgfy.oauth.base.bean.AjaxResponse;
+import com.cgfy.oauth.bussApi.feign.UserFeignClient;
+import com.cgfy.oauth.bussApi.feign.bean.UserInfoOutputBean;
 import com.cgfy.oauth.config.AuthLoginLimitProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +30,8 @@ public class OauthAccountController {
 	
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
-	
+	@Autowired
+	private UserFeignClient userFeignClient;
 	/**
 	 * 账户登录锁定解除
 	 */
@@ -40,5 +43,9 @@ public class OauthAccountController {
 		redisTemplate.delete(redisKey);
 		return AjaxResponse.success();
 	}
-	
+	@ApiOperation(value = "通过主键id获取用户详情")
+	@RequestMapping(value = "/selectUserById/{id}", method=RequestMethod.GET)
+	public AjaxResponse<UserInfoOutputBean> selectUserById(@PathVariable String id) {
+		return userFeignClient.getDetail(id);
+	}
 }

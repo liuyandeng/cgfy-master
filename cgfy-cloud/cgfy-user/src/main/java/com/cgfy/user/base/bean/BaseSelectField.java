@@ -14,7 +14,7 @@ public class BaseSelectField {
 	@JsonIgnore
 	private List<String> selectFieldList;
 	//业务附件,没有时为空
-	private List<Map<String, Object>> attachments;
+	//private List<Map<String, Object>> attachments;
 
 
 	

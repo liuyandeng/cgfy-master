@@ -4,8 +4,6 @@ import com.cgfy.user.base.bean.AjaxResponse;
 import com.cgfy.user.base.bean.SelectOutputBean;
 import com.cgfy.user.bussApi.feign.bean.CodeOutputBean;
 import com.cgfy.user.common.service.ResourceService;
-import com.cgfy.user.bussApi.feign.UserFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,8 +21,7 @@ public class ResourceServiceImpl implements ResourceService {
     private static Map<String, Map<String, Object>> invalidCodeMap = new HashMap<String, Map<String, Object>>();
     int codeNum = 0;
     int typeNum = 0;
-    @Autowired
-    private UserFeignClient userFeignClient;
+
     /**
      * 加载码表到缓存中
      */
@@ -83,7 +80,7 @@ public class ResourceServiceImpl implements ResourceService {
 
     private void fetchCode() {
         AjaxResponse<SelectOutputBean<CodeOutputBean>> feignResult = null;
-       /// feignResult = userFeignClient.selectEx();
+       /// feignResult = userFeignClient.selectEx();//从其他服务中feign调用数据,也可以从本服务获取用户相关数据
         if (feignResult == null || !feignResult.isSuccess())
             return;
         SelectOutputBean<CodeOutputBean> sob = feignResult.getData();

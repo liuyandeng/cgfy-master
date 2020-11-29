@@ -36,7 +36,7 @@ public class OauthLoginServiceImpl implements OauthLoginService {
     private UserInfoMapper mapper;
 	
 	@Autowired
-	private UserFeignClient uumsRemoteService;
+	private UserFeignClient userFeignClient;
 	
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
@@ -105,7 +105,9 @@ public class OauthLoginServiceImpl implements OauthLoginService {
 			SendSmsOutputBean out = null;
 			
 			try {
-				AjaxResponse<List<SendSmsOutputBean>> sendSms = uumsRemoteService.sendSms(input);
+				//调用发送短信服务
+				//AjaxResponse<List<SendSmsOutputBean>> sendSms = userFeignClient.sendSms(input);
+				AjaxResponse<List<SendSmsOutputBean>> sendSms =null;
 				if(sendSms!=null) {
 					List<SendSmsOutputBean> data = sendSms.getData();
 					if(data!=null && !data.isEmpty()) {

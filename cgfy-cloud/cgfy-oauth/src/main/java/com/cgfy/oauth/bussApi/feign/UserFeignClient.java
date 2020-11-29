@@ -1,46 +1,16 @@
 package com.cgfy.oauth.bussApi.feign;
-
 import com.cgfy.oauth.base.bean.AjaxResponse;
-import com.cgfy.oauth.config.FeignCommonConfig;
-import com.cgfy.oauth.bussApi.bean.ExceptionLogInfoInputBean;
-import com.cgfy.oauth.bussApi.bean.LogonLogInfoInputBean;
-import com.cgfy.oauth.bussApi.bean.SendSmsInputBean;
-import com.cgfy.oauth.bussApi.bean.SendSmsOutputBean;
+import com.cgfy.oauth.bussApi.feign.bean.UserInfoOutputBean;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.List;
-
-@FeignClient(value = "cgfy-user", configuration= FeignCommonConfig.class)
+import org.springframework.web.bind.annotation.*;
+/**
+ * feign连接用户管理服务，获取登录用户的用户详细信息
+ */
+@FeignClient(name = "cgfy-user")
 public interface UserFeignClient {
+  @ApiOperation(value = "获取用户详情")
+  @RequestMapping(value = "/UserInfo/{id}", method = RequestMethod.POST)
+  public AjaxResponse<UserInfoOutputBean> getDetail(@PathVariable String id);
 
-    /**
-	 *发送短信息
-	 * 
-	 * @param input 日志信息
-	 */
-	@RequestMapping(method=RequestMethod.POST, value = "/common/SysMsgSend/sendSms")
-	public AjaxResponse<List<SendSmsOutputBean>> sendSms(SendSmsInputBean input);
-	
-	
-    /**
-	 *保存登录日志
-	 * 
-	 * @param input 日志信息
-	 */
-	@RequestMapping(method=RequestMethod.POST, value = "/log/SysLogonLogInfo/saveLoginLog")
-	public void saveLoginLog(LogonLogInfoInputBean input);
-	
-	
-    /**
-	 *保存异常日志
-	 * 
-	 * @param input 日志信息
-	 */
-	@RequestMapping(method=RequestMethod.POST, value = "/log/SysExceptionLogInfo/saveExceptionLog")
-	public void saveExceptionLog(ExceptionLogInfoInputBean input);
-	
-	
 }
-

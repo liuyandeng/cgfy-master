@@ -3,6 +3,9 @@ package com.cgfy.user.bussApi.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
+
+import com.cgfy.user.bussApi.feign.AuthFeignClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import com.cgfy.user.base.exception.BusinessException;
 import tk.mybatis.mapper.entity.Example;
@@ -33,7 +36,8 @@ import com.cgfy.user.bussApi.domain.model.UserInfo;
  */
 @Service("UserInfoService")
 public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo,UserInfoOutputBean> implements UserInfoService{
-
+    @Autowired
+    private AuthFeignClient authFeignClient;
     /**
      * Mapper
      */
@@ -113,6 +117,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo,UserInfoOutput
             UserInfo entity = new UserInfo();
             BeanUtils.copyProperties(input,entity);
             entity.setId(id);// 主键
+            record.setPassword(authFeignClient.encodedPassword(record.getPassword()));
             int count = mapper.insert(entity);
             if (count != 1) {
                 throw new BusinessException("UserInfo插入失败");
@@ -120,6 +125,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo,UserInfoOutput
         } else {//更新
             BeanUtils.copyProperties(input,record);
             record.setId(id);// 主键
+            record.setPassword(authFeignClient.encodedPassword(record.getPassword()));
             int count = mapper.updateByPrimaryKeySelective(record);
             if (count != 1) {
                 throw new BusinessException("UserInfo更新失败");

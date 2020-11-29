@@ -1,4 +1,4 @@
-package com.cgfy.mybatis.common.service;
+package com.cgfy.mybatis.base.service;
 
 import java.util.Date;
 

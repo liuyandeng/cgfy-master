@@ -1,6 +1,6 @@
-package com.cgfy.mybatis.common.service.impl;
+package com.cgfy.mybatis.base.service.impl;
 
-import com.cgfy.mybatis.common.service.CgfyComService;
+import com.cgfy.mybatis.base.service.CgfyComService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.cgfy.mybatis.common.utils;
+package com.cgfy.mybatis.base.util;
 
 import com.cgfy.mybatis.base.cache.CacheManager;
 import org.apache.commons.lang3.StringUtils;

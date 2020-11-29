@@ -1,9 +1,9 @@
-package com.cgfy.mybatis.common.aware;
+package com.cgfy.mybatis.base.aware;
 
 
 import com.cgfy.mybatis.base.cache.CacheManager;
-import com.cgfy.mybatis.common.utils.Globals;
-import com.cgfy.mybatis.common.utils.RedisUtil;
+import com.cgfy.mybatis.base.util.Globals;
+import com.cgfy.mybatis.base.util.RedisUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

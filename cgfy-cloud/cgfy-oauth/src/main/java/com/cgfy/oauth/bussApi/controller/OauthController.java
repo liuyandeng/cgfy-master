@@ -92,7 +92,7 @@ public class OauthController {
     
     /**
 	 * 取得当前用户
-	 * 
+	 * /oauth/ext/getCurrentUser?access_token=token
 	 * @param user 用户信息
 	 * @return 用户信息
 	 */

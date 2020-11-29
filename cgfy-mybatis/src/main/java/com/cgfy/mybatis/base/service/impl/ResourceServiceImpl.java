@@ -1,9 +1,9 @@
-package com.cgfy.mybatis.common.service.impl;
+package com.cgfy.mybatis.base.service.impl;
 
 
 import com.cgfy.mybatis.base.bean.AjaxResponse;
 import com.cgfy.mybatis.base.bean.SelectOutputBean;
-import com.cgfy.mybatis.common.service.ResourceService;
+import com.cgfy.mybatis.base.service.ResourceService;
 import com.cgfy.mybatis.generator.bean.CodeInfoBean;
 import org.springframework.stereotype.Service;
 

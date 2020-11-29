@@ -4,7 +4,7 @@ import com.cgfy.mybatis.base.bean.AjaxResponse;
 import com.cgfy.mybatis.base.controller.BaseController;
 import com.cgfy.mybatis.bussApi.domain.model.TestGen;
 import com.cgfy.mybatis.bussApi.service.impl.CacheTestServiceImpl;
-import com.cgfy.mybatis.common.utils.RedisUtil;
+import com.cgfy.mybatis.base.util.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;

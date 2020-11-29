@@ -1,4 +1,4 @@
-package com.cgfy.mybatis.common.utils;
+package com.cgfy.mybatis.base.util;
 
 import javax.servlet.ServletContext;
 

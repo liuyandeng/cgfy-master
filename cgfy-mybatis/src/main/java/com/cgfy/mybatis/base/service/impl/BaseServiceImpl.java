@@ -4,7 +4,7 @@ import com.cgfy.mybatis.base.bean.BaseSelectField;
 import com.cgfy.mybatis.base.domain.mapper.BaseMapper;
 import com.cgfy.mybatis.base.domain.model.BaseModel;
 import com.cgfy.mybatis.base.service.BaseService;
-import com.cgfy.mybatis.common.service.CgfyComService;
+import com.cgfy.mybatis.base.service.CgfyComService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

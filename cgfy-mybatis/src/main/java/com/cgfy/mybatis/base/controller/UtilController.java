@@ -1,9 +1,9 @@
-package com.cgfy.mybatis.common.controller;
+package com.cgfy.mybatis.base.controller;
 
 import com.cgfy.mybatis.base.bean.AjaxResponse;
 import com.cgfy.mybatis.base.util.BaseCommonUtil;
 import com.cgfy.mybatis.base.util.BaseConstant;
-import com.cgfy.mybatis.common.utils.CodeListUtil;
+import com.cgfy.mybatis.base.util.CodeListUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

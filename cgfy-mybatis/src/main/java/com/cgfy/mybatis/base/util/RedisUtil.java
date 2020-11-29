@@ -1,4 +1,4 @@
-package com.cgfy.mybatis.common.utils;
+package com.cgfy.mybatis.base.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -3,7 +3,7 @@ package com.cgfy.mybatis.base.exception;
 /**
  * 业务异常类
  * 
- * @author qiucw 2018.08.17
+ * @author liuyandeng 2018.08.17
  */
 public class BusinessException extends RuntimeException {
     

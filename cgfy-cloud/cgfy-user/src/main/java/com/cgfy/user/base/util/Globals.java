@@ -7,7 +7,7 @@ import javax.servlet.ServletContext;
  * 该类是全局静态变量类
  *
  * @version 2017-10-24
- * @author qiucw
+ * @author liuyandeng
  */
 public class Globals {
 

@@ -52,7 +52,7 @@ public class CustomFeignRequestInterceptor implements RequestInterceptor {
 	 * 
 	 * @param requestTemplate
 	 *            请求模板
-	 * @author qiucw
+	 * @author liuyandeng
 	 */
 	private void addJwtAuthHeader(final RequestTemplate requestTemplate) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

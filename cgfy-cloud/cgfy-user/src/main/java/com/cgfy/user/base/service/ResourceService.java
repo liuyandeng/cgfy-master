@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 系统资源service
  *
- * @author qiucw 2018.05.21
+ * @author liuyandeng 2018.05.21
  */
 public interface ResourceService {
 

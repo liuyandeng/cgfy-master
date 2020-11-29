@@ -9,9 +9,9 @@ import java.util.Date;
 /**
  * 「登录用户」Service
  *
- * @author qiucw
+ * @author liuyandeng
  */
-@Service("JbdpComService")
+@Service("CgfyComService")
 public class CgfyComServiceImpl implements CgfyComService {
 
 	/**

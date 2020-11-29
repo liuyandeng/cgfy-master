@@ -17,8 +17,8 @@ import java.lang.reflect.ParameterizedType;
 public abstract class BaseServiceImpl<T extends BaseModel, M extends BaseSelectField> implements BaseService {
 
     @Autowired
-    @Qualifier("JbdpComService")
-    private CgfyComService JbdpComService;
+    @Qualifier("CgfyComService")
+    private CgfyComService CgfyComService;
 
     private BaseMapper businessMapper = getBusinessMapper();
 

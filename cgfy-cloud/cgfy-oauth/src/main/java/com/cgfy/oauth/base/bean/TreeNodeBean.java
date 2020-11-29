@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 树形结构输出Bean
  *
- * @author qiucw
+ * @author liuyandeng
  */
 public class TreeNodeBean{
 	

@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * 该类是基类dao实现类(for JdbcTemplate)
  *
- * @author qiucw
+ * @author liuyandeng
  * @version 2018-01-30
  */
 @Repository("jBaseDao")

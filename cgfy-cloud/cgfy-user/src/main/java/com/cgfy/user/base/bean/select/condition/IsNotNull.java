@@ -9,7 +9,7 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 /**
  * 不为空
  * 
- * @author qiucw 2018.07.06
+ * @author liuyandeng 2018.07.06
  */
 public class IsNotNull extends Condition{
     

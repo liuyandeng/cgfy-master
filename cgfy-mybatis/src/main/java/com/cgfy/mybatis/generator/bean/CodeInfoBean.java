@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 /**
  * 系统码表信息输出用Bean
  *
- * @author qiucw
+ * @author liuyandeng
  */
 public class CodeInfoBean extends BaseSelectField {
     /**

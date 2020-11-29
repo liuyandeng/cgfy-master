@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 /**
  * 平台用户信息输出用Bean
  *
- * @author qiucw
+ * @author liuyandeng
  */
 public class UserInfoOutputBean extends BaseSelectField {
     /**

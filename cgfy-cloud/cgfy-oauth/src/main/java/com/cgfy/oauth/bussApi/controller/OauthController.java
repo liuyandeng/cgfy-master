@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
-@Api(value = "身份认证扩展", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags = "身份认证扩展", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
 @RequestMapping("/oauth/ext")
 public class OauthController {

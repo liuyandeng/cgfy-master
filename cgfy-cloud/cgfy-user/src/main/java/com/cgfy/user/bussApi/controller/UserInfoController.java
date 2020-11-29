@@ -21,7 +21,7 @@ import com.cgfy.user.bussApi.bean.UserInfoInputBean;
  *
  * @author cgfy_web
  */
-@Api(value = "平台用户信息", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags = "平台用户信息", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController("UserInfoController")
 @RequestMapping("/UserInfo")
 public class UserInfoController extends  BaseController {
@@ -40,7 +40,7 @@ public class UserInfoController extends  BaseController {
     * @param cgfyInput 查询参数
     * @return 输入对象
     */
-    @ApiOperation(value = "检索", hidden=true)
+    @ApiOperation(value = "检索", hidden=false)
     @RequestMapping(value = "/select", method = RequestMethod.POST)
     public AjaxResponse<CgfyListResponse<UserInfoOutputBean>> select(@RequestBody  @ApiParam(required=true) CgfySelectInputBean cgfyInput) {
         return AjaxResponse.success(service.select(cgfyInput));
@@ -52,7 +52,7 @@ public class UserInfoController extends  BaseController {
     * @param id 主键id
     * @return 输出对象
     */
-    @ApiOperation(value = "保存", hidden=true)
+    @ApiOperation(value = "保存", hidden=false)
     @RequestMapping(value = "/save/{id}", method = RequestMethod.POST)
     public AjaxResponse<UserInfoOutputBean> save(@RequestBody  @ApiParam(required=true) UserInfoInputBean input,@PathVariable String id) {
         return AjaxResponse.success(service.save(input,id));
@@ -63,7 +63,7 @@ public class UserInfoController extends  BaseController {
     * @param id 主键id
     * @return 输出对象
     */
-    @ApiOperation(value = "获取详情", hidden=true)
+    @ApiOperation(value = "获取详情", hidden=false)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AjaxResponse<UserInfoOutputBean> getDetail(@PathVariable String id) {
         return AjaxResponse.success(service.getDetail(id));
@@ -74,7 +74,7 @@ public class UserInfoController extends  BaseController {
     * @param id 主键id
     * @return 输出对象
     */
-    @ApiOperation(value = "物理删除", hidden=true)
+    @ApiOperation(value = "物理删除", hidden=false)
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public AjaxResponse<Object> deleteForce(@PathVariable String id) {
         service.deleteForce(id);

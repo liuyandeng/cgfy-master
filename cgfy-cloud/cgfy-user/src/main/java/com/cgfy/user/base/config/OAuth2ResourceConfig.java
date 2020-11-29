@@ -17,11 +17,10 @@ public class OAuth2ResourceConfig  extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-//                .antMatchers("/login/**").permitAll()
-//                .antMatchers("/common/SysQuartzJob/**").permitAll()
-               .antMatchers("/swagger/**").permitAll()
-                .antMatchers("/out/**").permitAll()
-                .antMatchers("/tempfile/**").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/v2/**").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/**").authenticated();
     }
 

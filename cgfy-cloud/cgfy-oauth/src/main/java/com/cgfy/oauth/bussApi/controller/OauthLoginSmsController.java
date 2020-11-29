@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 短信验证码登录
  */
-@Api(value = "短信验证码登录", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags = "短信验证码登录", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController("OauthLoginSmsController")
 @RequestMapping("/oauth/login/sms")
 public class OauthLoginSmsController {

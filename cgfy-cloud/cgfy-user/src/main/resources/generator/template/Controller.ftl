@@ -21,7 +21,7 @@ import ${tableClass.getIntrospectedTable().getAttribute("INPUT_BEAN")};
  *
  * @author ${props.author}
  */
-@Api(value = "${tableClass.introspectedTable.remarks}", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags ="${tableClass.introspectedTable.remarks}", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController("${tableClass.getIntrospectedTable().getAttribute("CONTROLLEREX_INTERFACE_SHORT")}")
 @RequestMapping("/${tableClass.shortClassName}")
 public class ${tableClass.getIntrospectedTable().getAttribute("CONTROLLEREX_INTERFACE_SHORT")} extends  BaseController {

@@ -18,7 +18,7 @@ import java.security.Principal;
 /**
  * 验证账户
  */
-@Api(value = "验证账户", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags = "验证账户", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController("OauthAccountController")
 @RequestMapping("/oauth/account")
 public class OauthAccountController {

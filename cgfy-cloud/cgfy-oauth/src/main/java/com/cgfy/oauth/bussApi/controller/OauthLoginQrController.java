@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
  * 二维码扫描登录
  */
 @SuppressWarnings({"unchecked","rawtypes"})
-@Api(value = "二维码扫描登录", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(tags = "二维码扫描登录", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController("OauthLoginQrController")
 @RequestMapping("/oauth/login/qr")
 public class OauthLoginQrController {

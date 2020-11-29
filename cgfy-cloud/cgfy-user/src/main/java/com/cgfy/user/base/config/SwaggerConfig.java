@@ -23,6 +23,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))//错误路径不监控
+                .paths(Predicates.not(PathSelectors.regex("/actuator.*")))//健康信息
                 .build();
     }
     //构建 api文档的详细信息函数

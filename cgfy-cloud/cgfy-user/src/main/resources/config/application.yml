@@ -1,11 +1,11 @@
 server:
-  port: 8874
+  port: 8843
 
 spring:
   application:
-    name: cgfy-user-lgl
+    name: cgfy-user
   profiles:
-    active: dev
+    active: win
   jackson:
     dateFormat: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -130,7 +130,7 @@ jbdp:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://cgfy-admin:cgfy-admin-password@192.168.0.16:8841/eureka/
+      defaultZone: http://cgfy-admin:cgfy-admin-password@localhost:8841/eureka/
     #register-with-eureka: false
 #    instance:
 #      preferIpAddress: true

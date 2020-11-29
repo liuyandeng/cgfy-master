@@ -87,6 +87,7 @@ feign:
           readTimeout: 60000
   httpclient:
     connection-timeout: 60000
+    #feign的hystrix 功能
 #  hystrix:
 #    enabled: true
 
@@ -111,6 +112,7 @@ feign:
 #    default:
 #      execution:
 #        timeout:
+#          # Hystrix的超时时间
 #          enabled: true
 #        isolation:
 #          #隔离模式为：THREAD 或者 SEMAPHORE
@@ -119,7 +121,7 @@ feign:
 #            #默认：10
 #            maxConcurrentRequests: 200
 #          thread:
-#            #单位：毫秒
+#            #配置Hystrix的超时时间,单位：毫秒
 #            timeoutInMilliseconds: 60000
 
 # 自定义属性

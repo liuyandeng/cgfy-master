@@ -57,7 +57,7 @@ public interface AuthFeignClient {
 	@RequestMapping(method=RequestMethod.POST, value="/oauth/account/accountLockoutRelease/{username}", consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public AjaxResponse<Object> accountLockoutRelease(@PathVariable("username") String username);
 
-
+	//consumes = MediaType.APPLICATION_JSON_VALUE
 	@RequestMapping(value = "/userSync/update", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public AjaxResponse<Object> update(@RequestParam(name = "cn") String cn,
 									   @RequestParam(name = "sn") String sn,

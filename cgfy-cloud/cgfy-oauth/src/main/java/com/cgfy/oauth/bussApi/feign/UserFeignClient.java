@@ -2,7 +2,6 @@ package com.cgfy.oauth.bussApi.feign;
 import com.cgfy.oauth.base.bean.AjaxResponse;
 import com.cgfy.oauth.base.interceptor.CustomFeignRequestInterceptor;
 import com.cgfy.oauth.bussApi.feign.bean.UserInfoOutputBean;
-import com.cgfy.oauth.base.config.FeignCommonConfig;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.security.Principal;
 
 @Api(tags = "身份认证扩展", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,7 +28,7 @@ public class OauthController {
 	/**
 	 * 密码生成器
 	 */
-	@Autowired
+	@Resource
 	private PasswordEncoder passwordEncoder;
 	
     @Autowired
@@ -62,7 +63,9 @@ public class OauthController {
 	@RequestMapping(value = "/encodedPassword", method=RequestMethod.POST)
 	public String encodedPassword(
 			@ApiParam(name = "password", value = "原始密码") @RequestParam("password") String password) {
-        return passwordEncoder.encode(password);
+    	String encodedPassword=passwordEncoder.encode(password);
+		System.out.println("加密密码:"+encodedPassword);
+        return encodedPassword;
     }
 	
 	/**

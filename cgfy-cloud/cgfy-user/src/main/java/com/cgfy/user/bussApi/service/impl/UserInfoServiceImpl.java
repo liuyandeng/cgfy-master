@@ -117,7 +117,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfo,UserInfoOutput
             UserInfo entity = new UserInfo();
             BeanUtils.copyProperties(input,entity);
             entity.setId(id);// 主键
-            record.setPassword(authFeignClient.encodedPassword(record.getPassword()));
+            record.setPassword(authFeignClient.encodedPassword(entity.getPassword()));
             int count = mapper.insert(entity);
             if (count != 1) {
                 throw new BusinessException("UserInfo插入失败");

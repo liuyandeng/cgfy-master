@@ -21,6 +21,8 @@ RabbitMQ的基本操作及概念
 socket的基本操作,io,nio区别
 
 ###7.springboot+springcloud
+SpringCloud的集成
+
     - cgfy-eureka:注册中心
     - cgfy-gateway:网关
     - cgfy-oauth:权限

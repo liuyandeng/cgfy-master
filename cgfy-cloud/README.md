@@ -1,6 +1,6 @@
 # SpringCloud微服务架构
 
-##介绍
+## 介绍
 SpringCloud微服务架构
 
 ## 限流
@@ -16,7 +16,7 @@ SpringCloud微服务架构
 #### Token Bucket 令牌桶
 规定固定容量的桶, token 以固定速度往桶内填充, 当桶满时 token 不会被继续放入, 每过来一个请求把 token 从桶中移除, 如果桶中没有 token 不能请求
 
-####工作中的使用
+#### 工作中的使用
 spring cloud gateway, 默认使用redis进行限流, 笔者一般只是修改修改参数属于拿来即用. 并没有去从头实现上述那些算法
 
 sentinel,通过配置来控制每个url的流量

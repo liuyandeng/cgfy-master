@@ -41,9 +41,14 @@ Sentinel 项目地址：https://github.com/alibaba/Sentinel
 而 Sentinel 的侧重点在于：
 
 多样化的流量控制熔断降级
+
 系统负载保护
+
 实时监控和控制台
 
+**总结:**
+
+![avatar](https://liuyandeng.github.io/website/img/sentinel_hystrix.png)
 
 
 

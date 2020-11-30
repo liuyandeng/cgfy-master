@@ -100,8 +100,8 @@ feign:
 ## com.netflix.hystrix.HystrixCollapserProperties
 ## org.springframework.cloud.netflix.hystrix.HystrixMetricsProperties
 #hystrix:
-#  # 如果是thread，则需要设置线程池
-#  # 如果SEMAPHORE，则需要设置hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests:10  10为默认值，需要调整
+#  # 如果是thread(线程池)，则需要设置线程池
+#  # 如果SEMAPHORE(信号量)，则需要设置hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests:10  10为默认值，需要调整
 #  # 非常重要！！！因为feign在使用hystrix时，hystrix如果采用THREAD模式，则会在新的线程中执行请求，此时需要共享主线程的SecurityContext
 #  shareSecurityContext: true
 #  threadpool:

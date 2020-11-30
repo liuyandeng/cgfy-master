@@ -1,6 +1,8 @@
 # 介绍
 不定时集成一些实用的技术.
 
+静态文件地址:https://gitee.com/liuyandeng/GiteePages
+
 ## 目录
 ### 1.[cgfy-mybatis](https://gitee.com/free/Mapper/wikis/Home )
 

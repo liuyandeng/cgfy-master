@@ -1,14 +1,16 @@
-package com.cgfy.socket.bio2;
+package com.cgfy.socket.socketio.bio;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ServerHandler implements Runnable {
+public class ServerHandler implements Runnable{
 
-	private Socket socket;
-	public ServerHandler (Socket socket){
+	private Socket socket ;
+	
+	public ServerHandler(Socket socket){
 		this.socket = socket;
 	}
 	
@@ -23,34 +25,35 @@ public class ServerHandler implements Runnable {
 			while(true){
 				body = in.readLine();
 				if(body == null) break;
-				System.out.println("Server:" + body);
-				out.println("Server response");
+				System.out.println("Server :" + body);
+				out.println("服务器端回送响的应数据.");
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if(in != null){
 				try {
 					in.close();
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
 			if(out != null){
 				try {
 					out.close();
-				} catch (Exception e2) {
-					e2.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 			if(socket != null){
 				try {
 					socket.close();
-				} catch (Exception e3) {
-					e3.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
-			socket = null;			
+			socket = null;
 		}
 		
 		

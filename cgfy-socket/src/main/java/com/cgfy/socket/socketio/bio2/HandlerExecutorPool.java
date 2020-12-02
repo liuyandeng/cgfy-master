@@ -1,4 +1,4 @@
-package com.cgfy.socket.bio2;
+package com.cgfy.socket.socketio.bio2;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;

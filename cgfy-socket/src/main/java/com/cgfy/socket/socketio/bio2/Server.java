@@ -1,4 +1,4 @@
-package com.cgfy.socket.bio2;
+package com.cgfy.socket.socketio.bio2;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

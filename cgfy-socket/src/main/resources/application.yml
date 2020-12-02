@@ -1,2 +1,14 @@
 server:
-  port: 8081
+  port: 8080
+spring:
+  profiles:
+    active: win
+  jackson:
+    dateFormat: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+  freemarker:
+    suffix: .html

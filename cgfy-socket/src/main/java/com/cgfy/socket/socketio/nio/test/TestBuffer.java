@@ -1,6 +1,4 @@
-package com.cgfy.socket.nio.test;
-
-import java.nio.IntBuffer;
+package com.cgfy.socket.socketio.nio.test;
 
 public class TestBuffer {
 	

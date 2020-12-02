@@ -1,4 +1,4 @@
-package com.cgfy.office.common.util;
+package com.cgfy.office.baseApi.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;

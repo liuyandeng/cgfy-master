@@ -1,21 +1,21 @@
+server:
+  port: 8088
 spring:
   profiles:
     active: win
   jackson:
     dateFormat: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-server:
-  port: 8088
-
----
-spring:
-  profiles: win
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 100MB
   freemarker:
     suffix: .html
+
+---
+spring:
+  profiles: win
 jodconverter:
   local:
     enabled: true
@@ -27,12 +27,7 @@ jodconverter:
 ---
 spring:
   profiles: linux
-  servlet:
-    multipart:
-      max-file-size: 50MB
-      max-request-size: 100MB
-  freemarker:
-    suffix: .html
+
 jodconverter:
   local:
     enabled: true

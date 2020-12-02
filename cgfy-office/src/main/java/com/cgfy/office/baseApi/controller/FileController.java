@@ -1,12 +1,12 @@
-package com.cgfy.office.controller;
+package com.cgfy.office.baseApi.controller;
 
 import com.alibaba.fastjson.JSON;
 
-import com.cgfy.office.common.exception.BizException;
-import com.cgfy.office.common.model.Result;
-import com.cgfy.office.common.util.HttpClientUtil;
-import com.cgfy.office.constants.FileConstant;
-import com.cgfy.office.dto.FileConvertResultDTO;
+import com.cgfy.office.base.exception.BizException;
+import com.cgfy.office.baseApi.model.Result;
+import com.cgfy.office.baseApi.util.HttpClientUtil;
+import com.cgfy.office.baseApi.constants.FileConstant;
+import com.cgfy.office.baseApi.bean.FileConvertResultBean;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +33,7 @@ public class FileController {
     Map<String,Object> params = new HashMap<>();
     params.put(FileConstant.FILE_PARAM_KEY,file.getBytes());
     String response = HttpClientUtil.INSTANCE.post(FileConstant.PREVIEW_REMOTE_URL,params,file.getOriginalFilename());
-    FileConvertResultDTO fileConvertResultDTO = JSON.parseObject(response, FileConvertResultDTO.class);
+    FileConvertResultBean fileConvertResultDTO = JSON.parseObject(response, FileConvertResultBean.class);
     if(ObjectUtils.isNotEmpty(fileConvertResultDTO) && FileConstant.SUCCESS.equals(fileConvertResultDTO.getStatus())){
       return new Result<String>().setData(fileConvertResultDTO.getTargetFileName());
     }

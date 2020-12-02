@@ -1,4 +1,4 @@
-package com.cgfy.office.constants;
+package com.cgfy.office.baseApi.constants;
 
 public class FileConstant {
 

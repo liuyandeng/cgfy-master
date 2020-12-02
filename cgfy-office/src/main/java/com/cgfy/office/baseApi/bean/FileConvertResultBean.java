@@ -1,4 +1,4 @@
-package com.cgfy.office.dto;
+package com.cgfy.office.baseApi.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FileConvertResultDTO {
+public class FileConvertResultBean {
 
   private String status;
 

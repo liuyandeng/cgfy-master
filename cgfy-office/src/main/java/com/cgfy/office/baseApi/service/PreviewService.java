@@ -1,7 +1,7 @@
-package com.cgfy.office.service;
+package com.cgfy.office.baseApi.service;
 
 
-import com.cgfy.office.dto.FileConvertResultDTO;
+import com.cgfy.office.baseApi.bean.FileConvertResultBean;
 
 import java.io.File;
 import java.io.InputStream;
@@ -13,7 +13,7 @@ public interface PreviewService {
    * @param sourceFile 需要预览为文件
    * @param fileExt 文件扩展名
    */
-  FileConvertResultDTO convertFile2pdf(File sourceFile, String fileExt);
+  FileConvertResultBean convertFile2pdf(File sourceFile, String fileExt);
 
 
   /**
@@ -22,6 +22,6 @@ public interface PreviewService {
    * @param fileExt 文件扩展名
    * @param fileName 文件名
    */
-  FileConvertResultDTO convertInputStream2pdf(InputStream in, String fileName, String fileExt);
+  FileConvertResultBean convertInputStream2pdf(InputStream in, String fileName, String fileExt);
 
 }

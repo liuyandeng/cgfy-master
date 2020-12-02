@@ -1,10 +1,10 @@
-package com.cgfy.office.service.impl;
+package com.cgfy.office.baseApi.service.impl;
 
 
-import com.cgfy.office.constants.Constants;
-import com.cgfy.office.dto.FileConvertResultDTO;
-import com.cgfy.office.service.PreviewService;
-import com.cgfy.office.util.FileUtil;
+import com.cgfy.office.baseApi.constants.Constants;
+import com.cgfy.office.baseApi.bean.FileConvertResultBean;
+import com.cgfy.office.baseApi.service.PreviewService;
+import com.cgfy.office.baseApi.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jodconverter.DocumentConverter;
 import org.jodconverter.document.DefaultDocumentFormatRegistry;
@@ -28,8 +28,8 @@ public class PreviewServiceImpl implements PreviewService {
   private DocumentConverter documentConverter;
 
   @Override
-  public FileConvertResultDTO convertFile2pdf(File sourceFile, String fileExt) {
-    FileConvertResultDTO fileConvertResultDTO = new FileConvertResultDTO();
+  public FileConvertResultBean convertFile2pdf(File sourceFile, String fileExt) {
+    FileConvertResultBean fileConvertResultDTO = new FileConvertResultBean();
     try {
       fileExt = fileExt.toLowerCase();
       String fileName = FileUtil.getWithoutExtension(sourceFile.getName());
@@ -48,8 +48,8 @@ public class PreviewServiceImpl implements PreviewService {
   }
 
   @Override
-  public FileConvertResultDTO convertInputStream2pdf(InputStream in, String fileName, String fileExt) {
-    FileConvertResultDTO fileConvertResultDTO = new FileConvertResultDTO();
+  public FileConvertResultBean convertInputStream2pdf(InputStream in, String fileName, String fileExt) {
+    FileConvertResultBean fileConvertResultDTO = new FileConvertResultBean();
     try {
       fileExt = fileExt.toLowerCase();
       fileName = FileUtil.getWithoutExtension(fileName);

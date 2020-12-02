@@ -1,4 +1,4 @@
-package com.cgfy.office.common.model;
+package com.cgfy.office.baseApi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

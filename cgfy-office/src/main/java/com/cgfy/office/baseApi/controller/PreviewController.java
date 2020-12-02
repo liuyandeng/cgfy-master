@@ -1,8 +1,8 @@
-package com.cgfy.office.controller;
+package com.cgfy.office.baseApi.controller;
 
-import com.cgfy.office.dto.FileConvertResultDTO;
-import com.cgfy.office.service.PreviewService;
-import com.cgfy.office.util.FileUtil;
+import com.cgfy.office.baseApi.bean.FileConvertResultBean;
+import com.cgfy.office.baseApi.service.PreviewService;
+import com.cgfy.office.baseApi.util.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
@@ -89,7 +89,7 @@ public class PreviewController {
    * @return
    */
   @PostMapping(value="/convertFile")
-  public ResponseEntity<FileConvertResultDTO> convertFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "fileExt",required = false) String fileExt){
+  public ResponseEntity<FileConvertResultBean> convertFile(@RequestParam("file") MultipartFile file, @RequestParam(value = "fileExt",required = false) String fileExt){
       boolean isMultipart = ServletFileUpload.isMultipartContent(request);
       if(!isMultipart){
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -113,7 +113,7 @@ public class PreviewController {
           ext =  FileUtil.getExtension(file.getInputStream());
         }
       }
-      FileConvertResultDTO fileConvertResultDTO = previewService.convertInputStream2pdf(file.getInputStream(),fileName,ext);
+      FileConvertResultBean fileConvertResultDTO = previewService.convertInputStream2pdf(file.getInputStream(),fileName,ext);
       return new ResponseEntity<>(fileConvertResultDTO,HttpStatus.OK);
     } catch (IOException e) {
       log.error("convertFile error:"+e.getMessage(),e);

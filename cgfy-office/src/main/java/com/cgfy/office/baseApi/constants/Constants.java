@@ -1,4 +1,4 @@
-package com.cgfy.office.constants;
+package com.cgfy.office.baseApi.constants;
 
 import java.util.Arrays;
 import java.util.List;

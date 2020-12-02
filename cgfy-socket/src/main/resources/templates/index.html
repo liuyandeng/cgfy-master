@@ -10,14 +10,17 @@
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
-${msg}
-<img src="img/1.png"></img>
+<div>
+    <p>您好,${msg}</p>
+    <img class="jiucai" src="img/jiucai.jpg"></img>
+</div>
+
 </body>
 
 <script type="text/javascript">
-  $(function(){
-      var msg='${msg}'
-    alert(msg)
-  });
+    $(function () {
+        var msg = '${msg}'
+        alert(msg)
+    });
 </script>
 </html>

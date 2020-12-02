@@ -12,3 +12,4 @@ spring:
       max-request-size: 100MB
   freemarker:
     suffix: .html
+    cache: false #禁止页面缓存

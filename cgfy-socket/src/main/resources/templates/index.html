@@ -8,16 +8,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/index.css"></link>
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.form.js"></script>
 </head>
 <body>
 <div>
     <p>您好,${msg}</p>
+    <#if flag==true>
+    当前时间:${date?string("yyyyMM/dd HH:mm:ss")}<br>
+    <#else>
     <img class="jiucai" src="img/jiucai.jpg"></img>
+    </#if>
+<div id="usertable">
+    <table border="1">
+    <tr>
+        <th>序号</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>家庭住址</th>
+    </tr>
+    <#list userList as user>
+    <#if user_index % 2 == 0>
+    <tr bgcolor="red">
+        <#else>
+    <tr bgcolor="green">
+    </#if>
+    <td>${user_index}</td> <!-- 取循环下标  -->
+    <td>${user.id}</td>
+    <td>${user.name}</td>
+    <td>${user.age}</td>
+    <td>${user.address}</td>
+    </tr>
+    </#list>
+    </table>
 </div>
 
+</div>
+    <div>
+        <form id="fm">
+            <input type="hidden" name="id" id="id"  value="测试id">
+            <input type="hidden" name="name" id="name"  value="测试name">
+            <input type="hidden" name="age" id="age"  value="测试age">
+            <input type="hidden" name="sex" id="sex"  value="测试sex">
+        </form>
+        <label  style="cursor:pointer;" onclick="submit()">点我</label>
+    </div>
 </body>
 
 <script type="text/javascript">
+    function submit(){
+        debugger
+        var testinput = $("#testinput").val();
+        $("#fm").ajaxSubmit({
+            async: false,
+            type : "POST",
+            data:$('#fm').serialize(),// 序列化表单值
+            url : "/testSubmit",
+            success : function(data) {
+                alert(data.msg)
+            }
+        });
+    }
     $(function () {
         var msg = '${msg}'
         alert(msg)

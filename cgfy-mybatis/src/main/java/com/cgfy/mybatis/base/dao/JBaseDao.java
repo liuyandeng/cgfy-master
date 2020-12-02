@@ -1,11 +1,9 @@
 package com.cgfy.mybatis.base.dao;
 
-
 import com.cgfy.mybatis.base.dao.jdbc.CustomColumnMapRowMapper;
 import com.cgfy.mybatis.base.dao.jdbc.CustomRowMapperResultSetExtractor;
 import com.cgfy.mybatis.base.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,19 +21,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 该类是基类dao实现类(for JdbcTemplate)
  *
- * @author liuyandeng
- * @version 2018-01-30
+ * 该类是基类dao实现类(for JdbcTemplate)
+ * Repository注解将数据访问层 (DAO 层 ) 的类标识为 Spring Bean
+ * Scope注解是springIoc容器中的一个作用域，在 Spring IoC 容器中具有以下几种作用域：基本作用域singleton（单例）、prototype(多例)，Web 作用域（reqeust、session、globalsession），自定义作用域
+ * a.singleton单例模式 -- 全局有且仅有一个实例
+ * b.prototype原型模式 -- 每次获取Bean的时候会有一个新的实例
+ * c.request -- request表示该针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效
+ * d.session -- session作用域表示该针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP session内有效
+ * e.globalsession -- global session作用域类似于标准的HTTP Session作用域，不过它仅仅在基于portlet的web应用中才有意义
+ * Scope注解默认的singleton实例，singleton实例的意思不管你使用多少次在springIOC容器中只会存在一个实例,
+ * 几乎90%以上的业务使用singleton单实例就可以，所以spring默认的类型也是singleton，singleton虽然保证了全局是一个实例，对性能有所提高，但是如果实例中有非静态变量时，会导致线程安全问题，共享资源的竞争
+ * 当设置为prototype时：每次连接请求，都会生成一个bean实例，也会导致一个问题，当请求数越多，性能会降低，因为创建的实例，导致GC频繁，gc时长增加
  */
 @Repository("jBaseDao")
 @Scope("prototype")
 @Slf4j
 public class JBaseDao {
 
-
-    @Value("${custom.maxRowsQuery:0}")
-    private int maxRowsQuery;
+    //进行数据库查询时，最大查询记录数，为0时，不限制
+    private int maxRowsQuery=0;
 
     private JdbcTemplate jdbcTemplate;
 

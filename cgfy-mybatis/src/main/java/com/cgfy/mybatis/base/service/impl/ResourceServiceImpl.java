@@ -136,13 +136,13 @@ public class ResourceServiceImpl implements ResourceService {
      * @Autowired
      * private JBaseDao jBaseDao;
      * @Autowired
-     * private UumsProperties uumsProperties;   //（@Component @ConfigurationProperties(prefix="jbdp.uums") public class UumsProperties）
+     * private UumsProperties uumsProperties;   //（@Component @ConfigurationProperties(prefix="cgfy.uums") public class UumsProperties）
      * private List<String> codeSqls;//码表加载sql list
 
      * yml文件
      * # 自定义属性
      * # 平台使用 JbaseDao 进行数据库查询时，最大查询记录数，为0时，不限制
-     * jbdp:
+     * cgfy:
      *   jdbc:
      *     maxRowsQuery: 10000
      *   # 系统管理员ID，多个“,”分割

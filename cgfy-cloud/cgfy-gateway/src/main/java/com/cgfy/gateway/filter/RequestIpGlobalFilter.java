@@ -42,7 +42,7 @@ import java.util.function.Supplier;
 @Slf4j
 public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
 	
-	public static final String JBDP_GATEWAY_PROXY_CLIENT_IP = "CGFY-GATEWAY-PROXY-CLIENT-IP";
+	public static final String GATEWAY_PROXY_CLIENT_IP = "CGFY-GATEWAY-PROXY-CLIENT-IP";
 	
 	private final static String REQUEST_DATA_MAP_KEY = "RequestIpGlobalFilter.request_data_map_key";
 	
@@ -142,7 +142,7 @@ public class RequestIpGlobalFilter implements GlobalFilter, Ordered {
 		}
 		
 		ServerHttpRequest newRequest = exchange.getRequest().mutate()
-				.header(JBDP_GATEWAY_PROXY_CLIENT_IP, ip)
+				.header(GATEWAY_PROXY_CLIENT_IP, ip)
 				.build();
 		
     	return chain.filter(exchange.mutate().request(newRequest).build());

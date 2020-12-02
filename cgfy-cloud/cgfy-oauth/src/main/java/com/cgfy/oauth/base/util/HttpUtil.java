@@ -72,7 +72,7 @@ public class HttpUtil {
 		}
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
 		{
-			ip = request.getHeader("JBDP-GATEWAY-PROXY-CLIENT-IP");;
+			ip = request.getHeader("GATEWAY-PROXY-CLIENT-IP");;
 		}
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
 		{

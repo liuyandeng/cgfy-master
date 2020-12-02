@@ -100,35 +100,25 @@ feign:
 ## com.netflix.hystrix.HystrixCollapserProperties
 ## org.springframework.cloud.netflix.hystrix.HystrixMetricsProperties
 #hystrix:
-#  # 如果是thread(线程池)，则需要设置线程池
-#  # 如果SEMAPHORE(信号量)，则需要设置hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests:10  10为默认值，需要调整
-#  # 非常重要！！！因为feign在使用hystrix时，hystrix如果采用THREAD模式，则会在新的线程中执行请求，此时需要共享主线程的SecurityContext
-#  shareSecurityContext: true
+##  # 如果是thread(线程池)，则需要设置线程池
+##  # 如果SEMAPHORE(信号量)，则需要设置hystrix.command.default.execution.isolation.semaphore.maxConcurrentRequests:10  10为默认值，需要调整
+#  shareSecurityContext: true # 非常重要！！！因为feign在使用hystrix时，hystrix如果采用THREAD模式，则会在新的线程中执行请求，此时需要共享主线程的SecurityContext
 #  threadpool:
 #    default:
-#      #并发执行的最大线程数，默认10
-#      coreSize: 500
+#      coreSize: 500   #核心线程数,并发执行的最大线程数，默认10
 #  command:
 #    default:
 #      execution:
 #        timeout:
-#          # Hystrix的超时时间
-#          enabled: true
-#        isolation:
-#          #隔离模式为：THREAD 或者 SEMAPHORE
-#          strategy: THREAD
+#          enabled: true # 启用超时设置
+#        isolation: #隔离
+#          strategy: THREAD  #隔离策略为：THREAD(默认)或者 SEMAPHORE
 #          semaphore:
-#            #默认：10
-#            maxConcurrentRequests: 200
+#            maxConcurrentRequests: 200  #最大并发信号量,默认：10
 #          thread:
-#            #配置Hystrix的超时时间,单位：毫秒
-#            timeoutInMilliseconds: 60000
+#            timeoutInMilliseconds: 60000 #配置Hystrix的超时时间,单位：毫秒
 
-# 自定义属性
-# 平台使用 JbaseDao 进行数据库查询时，最大查询记录数，为0时，不限制
-jbdp:
-  jdbc:
-    maxRowsQuery: 10000
+
 eureka:
   client:
     serviceUrl:

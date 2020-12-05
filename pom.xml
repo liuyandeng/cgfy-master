@@ -6,7 +6,7 @@
     <modules>
         <module>cgfy-mybatis</module>
         <module>cgfy-mq</module>
-        <module>cgfy-trans</module>
+        <module>cgfy-transaction</module>
         <module>cgfy-lock</module>
         <module>cgfy-office</module>
         <module>cgfy-socket</module>

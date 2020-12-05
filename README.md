@@ -1,7 +1,7 @@
 # 介绍
 不定时集成一些实用的技术.
 
-静态文件地址:https://gitee.com/liuyandeng/GiteePages
+图片地址:https://gitee.com/liuyandeng/GitPages
 
 ## 目录
 ### 1.[cgfy-mybatis](https://gitee.com/free/Mapper/wikis/Home )
@@ -19,7 +19,7 @@ redisson分布式锁等相关概念,java,sql相关锁概念
 
 RabbitMQ的基本操作及概念
 
-### 4.cgfy-trans
+### 4.cgfy-transaction
 
 
 事务的相关概念,DB+MQ

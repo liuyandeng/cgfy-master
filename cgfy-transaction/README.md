@@ -47,7 +47,7 @@ PlatformTransactionManager常见实现
 ### 非spring的JTA(Java Transaction Api)
 通过spring事务接口,调用外部管理器,
 在spring容器里创建一个JTA管理器,比如atomikos的jta实现,atomikos是java的库.通过这个库可以在spring容器里启动一个atomikos的jta事务管理器的一个线程,这个线程会在线程下面进行独立的事务管理
-![avatar](https://liuyandeng.gitee.io/gitpages/img/JTA.png)
+![avatar](https://liuyandeng.gitee.io/gitpages/img/transaction/JTA.png)
 
 
 ### XA规范

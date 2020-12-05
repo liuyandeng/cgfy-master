@@ -7,7 +7,7 @@
 		<artifactId>cgfy-master</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>cgfy-trans</artifactId>
+	<artifactId>cgfy-transaction</artifactId>
 	<packaging>jar</packaging>
 	<description>Demo project for Spring JTA transaction for DB and MQ resources.</description>
 	<dependencies>

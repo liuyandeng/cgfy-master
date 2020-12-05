@@ -183,3 +183,6 @@ TCC模式(Try-Confirm-Cancel)
 接口的幂等性:接口被重复调用,结果一致,
 
 微服务接口的幂等性:经常需要重试实现分布式事务的最终一致性,GET方法不会对系统产生副作用(不会更改数据,只是读数据),具有幂等性,POST,PUT,DELETE方法的实现需要满足幂等性
+
+
+参考:https://blog.csdn.net/u010391342/article/details/100404588

@@ -264,4 +264,41 @@ https://blog.csdn.net/lipinganq/article/details/81029499
 
 https://blog.csdn.net/u010391342/article/details/81671239
 
-https://blog.csdn.net/u010391342/article/details/100404588
+## Java操作Zookeeper实现分布式锁和队列
+
+### ZooKeeper常用客户端
+
+zookeeper自带的客户端是官方提供的，比较底层、使用起来写代码麻烦、不够直接。
+Apache Curator是Apache的开源项目，封装了zookeeper自带的客户端，使用相对简便，易于使用。
+zkclient是另一个开源的ZooKeeper客户端，其地址：https://github.com/adyliu/zkclient生产环境不推荐使用。
+### Curator主要解决了三类问题
+
+封装ZooKeeper client与ZooKeeper server之间的连接处理
+提供了一套Fluent风格的操作API
+提供ZooKeeper各种应用场景(recipe, 比如共享锁服务, 集群领导选举机制)的抽象封装
+分布式锁主要用于在分布式环境中保护跨进程、跨主机、跨网络的共享资源实现互斥访问，以达到保证数据的一致性。
+
+### zookeeper分布式锁原理
+![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zookeeper-lock.png)
+
+左边的整个区域表示一个Zookeeper集群，locker是Zookeeper的一个持久节点，node_1、node_2、node_3是locker这个持久节点下面的临时顺序节点。client_1、client_2、client_n表示多个客户端，Service表示需要互斥访问的共享资源。
+
+#### 分布式锁获取思路
+
+- 在获取分布式锁的时候在locker节点下创建临时顺序节点，释放锁的时候删除该临时节点。
+- 客户端调用createNode方法在locker下创建临时顺序节点，然后调用getChildren(“locker”)来获取locker下面的所有子节点，注意此时不用设置任何Watcher。
+- 客户端获取到所有的子节点path之后，如果发现自己创建的子节点序号最小，那么就认为该客户端获取到了锁。
+- 如果发现自己创建的节点并非locker所有子节点中最小的，说明自己还没有获取到锁，此时客户端需要找到比自己小的那个节点，然后对其调用exist()方法，同时对其注册事件监听器。
+- 之后，等待它释放锁，也就是等待获取到锁的那个客户端B把自己创建的那个节点删除。，则客户端A的Watcher会收到相应通知，此时再次判断自己创建的节点是否是locker子节点中序号最小的，如果是则获取到了锁，如果不是则重复以上步骤继续获取到比自己小的一个节点并注册监听。
+
+
+
+
+
+
+
+参考:
+- [Java操作Zookeeper实现分布式锁和队列](https://blog.csdn.net/u010391342/article/details/82192933)
+- [Curator入门](https://www.jianshu.com/p/db65b64f38aa)
+- [基于Apache Curator框架的ZooKeeper使用详解](https://www.cnblogs.com/erbing/p/9799098.html)
+- [zookeeper开源客户端Curator介绍(六)](https://blog.csdn.net/qq_34021712/article/details/82872311)

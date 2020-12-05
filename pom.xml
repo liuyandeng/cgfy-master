@@ -11,6 +11,7 @@
         <module>cgfy-office</module>
         <module>cgfy-socket</module>
         <module>cgfy-cloud</module>
+        <module>cgfy-zookeeper</module>
     </modules>
 
     <parent>
@@ -39,6 +40,7 @@
         <commons-io.version>2.6</commons-io.version>
         <commons-codec.version>1.11</commons-codec.version>
         <commons-pool2.version>2.6.2</commons-pool2.version>
+        <zookeeper.version>3.5.5</zookeeper.version>
         <httpclient.version>4.3.6</httpclient.version>
         <poi.version>3.16</poi.version>
         <alibaba.easyexcel.version>2.2.6</alibaba.easyexcel.version>
@@ -179,6 +181,12 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${httpclient.version}</version>
+            </dependency>
+            <!-- *********************apache组********************* -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
             </dependency>
             <!-- *********************poi组********************* -->
             <!--解析WORD文档-->

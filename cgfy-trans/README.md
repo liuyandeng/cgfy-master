@@ -47,7 +47,7 @@ PlatformTransactionManager常见实现
 ### 非spring的JTA(Java Transaction Api)
 通过spring事务接口,调用外部管理器,
 在spring容器里创建一个JTA管理器,比如atomikos的jta实现,atomikos是java的库.通过这个库可以在spring容器里启动一个atomikos的jta事务管理器的一个线程,这个线程会在线程下面进行独立的事务管理
-
+![avatar](https://liuyandeng.gitee.io/gitpages/img/JTA.png)
 
 
 ### XA规范
@@ -108,6 +108,18 @@ JTA的三个接口:TransactionManager,XAResource,XID
 与两阶段提交不同的是，三阶段提交有两个改动点。引入超时机制。同时在协调者和参与者中都引入超时机制。在第一阶段和第二阶段中插入一个准备阶段。保证了在最后提交阶段之前各参与节点的状态是一致的。
 
 阶段提交就有CanCommit、PreCommit、DoCommit三个阶段。
+
+JTA事务管理的弊端
+
+两阶段提交,
+事务时间太长,锁数据的时间太长,
+低性能,低吞吐量,
+
+不使用JTA实现多数据源的事务管理
+
+Spring事务同步机制
+多个数据源上实现近似事务一致性
+高性能高吞吐量
 
 
 ## 微服务的最大挑战

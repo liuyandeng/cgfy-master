@@ -257,12 +257,13 @@ zookeeper-3.4.10/conf新建立zoo.cfg，zoo2.cfg，zoo3.cfg三个文件，配置
     
     #要创建临时节点
     create -e /SecondZnode “Ephemeral-data"
+Windows环境下安装:[windows环境下安装zookeeper教程详解（单机版）](https://blog.csdn.net/qq_33316784/article/details/88563482)
 
 参考
+- [ZooKeeper是什么](https://blog.csdn.net/lipinganq/article/details/81029499)
+- [Zookeeper快速入门](https://blog.csdn.net/u010391342/article/details/81671239)
 
-https://blog.csdn.net/lipinganq/article/details/81029499
 
-https://blog.csdn.net/u010391342/article/details/81671239
 
 ## Java操作Zookeeper实现分布式锁和队列
 

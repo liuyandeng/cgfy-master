@@ -30,35 +30,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value="/curator")
 public class CuratorController {
-    /**
-     * Curator客户端
-     */
+    //Curator客户端
     public static CuratorFramework client = null;
     /**
      * 集群模式则是多个ip
+     * private static final String zkServerIps = "192.168.10.124:2182,192.168.10.124:2183,192.168.10.124:2184";
      */
-//    private static final String zkServerIps = "192.168.10.124:2182,192.168.10.124:2183,192.168.10.124:2184";
     @Value("${zookeeper.address}")
     private static String zkServerIps;
 
-
+    /**
+     * 创建会话
+     * 1.使用静态工程方法创建
+     * CuratorFramework client1 = CuratorFrameworkFactory.newClient(zkServerIps, 5000, 5000,  new ExponentialBackoffRetry(1000, 3));
+     * 2.以下是使用Fluent风格api创建
+     */
     public static CuratorFramework getConnection() {
         if (client == null) {
+            //synchronized修饰类,给这个类加把锁,类的所有对象用的是同一把锁。
             synchronized (CuratorController.class) {
                 if (client == null) {
                     //通过工程创建连接
                     client = CuratorFrameworkFactory.builder()
                             .connectString(zkServerIps)
                             .connectionTimeoutMs(5000) ///连接超时时间
-                            .sessionTimeoutMs(5000)  // 设定会话时间
+                            .sessionTimeoutMs(5000)  // 会话超时时间
                             .retryPolicy(new ExponentialBackoffRetry(1000, 10))   // 重试策略：初试时间为1s 重试10次
-//	           				.namespace("super")  // 设置命名空间以及开始建立连接
-                            .build();
+//	           				.namespace("super")  // 设置命名空间进行隔离
+                            .build();//开始建立连接
 
                     //开启连接
                     client.start();
                     //分布锁
-                    System.out.println(client.getState());
+                   // System.out.println(client.getState());
                 }
             }
         }
@@ -71,11 +75,14 @@ public class CuratorController {
      * @param value 值
      */
     @ApiOperation(value = "创建节点,不加withMode默认为持久类型节点", hidden=false)
-    @RequestMapping(value = "/createNode", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public static String create(String path, String value) {
         try {
             //若创建节点的父节点不存在会先创建父节点再创建子节点
-            return getConnection().create().creatingParentsIfNeeded().forPath("/super" + path, value.getBytes());
+            return getConnection().create()
+                    .creatingParentsIfNeeded()//递归创建所需父节点
+                    //.withMode(CreateMode.PERSISTENT) // 创建类型为持久节点
+                    .forPath("/super" + path, value.getBytes());//目录及内容
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,14 +91,13 @@ public class CuratorController {
 
     /**
      * 创建节点
-     *
      * @param path     节点路径
      * @param value    值
      * @param modeType 节点类型
      */
     @ApiOperation(value = "创建节点", hidden=false)
-    @RequestMapping(value = "/createNode2", method = RequestMethod.POST)
-    public static String create(String path, String value, String modeType) {
+    @RequestMapping(value = "/createNode", method = RequestMethod.POST)
+    public static String createNode(String path, String value, String modeType) {
         try {
             if (StringUtils.isEmpty(modeType)) {
                 return null;
@@ -99,7 +105,10 @@ public class CuratorController {
             //持久型节点
             if (CreateMode.PERSISTENT.equals(modeType)) {
                 //若创建节点的父节点不存在会先创建父节点再创建子节点
-                return getConnection().create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath("/super" + path, value.getBytes());
+                return getConnection().create()
+                        .creatingParentsIfNeeded()//递归创建所需父节点
+                        .withMode(CreateMode.PERSISTENT)//创建类型为持久节点
+                        .forPath("/super" + path, value.getBytes());//目录及内容
             }
             //临时节点
             if (CreateMode.EPHEMERAL.equals(modeType)) {
@@ -153,7 +162,7 @@ public class CuratorController {
     @RequestMapping(value = "/getChildren", method = RequestMethod.GET)
     public static List<String> getChildren(String path) {
         try {
-            List<String> list = getConnection().getChildren().forPath("/super" + path);
+            List<String> list = getConnection().getChildren().forPath("/super" + path);// 获取子节点的路径
             return list;
         } catch (Exception e) {
             e.printStackTrace();
@@ -191,7 +200,10 @@ public class CuratorController {
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public static void delete(String path) {
         try {
-            getConnection().delete().guaranteed().deletingChildrenIfNeeded().forPath("/super" + path);
+            getConnection().delete()
+                    .guaranteed()// 强制保证删除
+                    .deletingChildrenIfNeeded()// 递归删除子节点
+                    .forPath("/super" + path);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -208,7 +220,8 @@ public class CuratorController {
     @RequestMapping(value = "/checkExists", method = RequestMethod.POST)
     public static boolean checkExists(String path) {
         try {
-            Stat s = getConnection().checkExists().forPath("/super" + path);
+            Stat s = getConnection().checkExists()// 检查是否存在
+                    .forPath("/super" + path);
             return s == null ? false : true;
         } catch (Exception e) {
             e.printStackTrace();

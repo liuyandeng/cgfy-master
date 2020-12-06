@@ -30,7 +30,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
                 // 页面标题
-                .title("user RESTful API")
+                .title("Zookeeper RESTful API")
                 // 创建人信息
                 .contact(new Contact("admin",  "http://www.cgfytop.cn",  "877507054@qq.com"))
                 //Terms of service

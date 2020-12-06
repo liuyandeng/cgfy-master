@@ -42,7 +42,7 @@ SpringCloud的集成
     - cgfy-oauth:权限
     - cgfy-user:用户
     
-### 8.[cgfy-zookeeper](.\cgfy-zookeeper\README.md)
+### 8.cgfy-zookeeper
 zookeeper相关概念
 
 

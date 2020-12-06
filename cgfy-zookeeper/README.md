@@ -3,13 +3,18 @@
 ## 介绍
 Zookeeper相关学习
 
-[下载zookeeper](https://zookeeper.apache.org/releases.html#download)
+Windows环境下安装:https://blog.csdn.net/qq877507054/article/details/110739854
+
+启动后访问:http://localhost:8060/swagger-ui.html
+
+
+
+
+
+
 
 
 # ZooKeeper是什么
-
-
-
 ## 一.ZooKeeper是什么
 ZooKeeper由雅虎研究院开发，是Google Chubby的开源实现，后来托管到Apache，于2010年11月正式成为Apache的顶级项目。
 ZooKeeper是一个经典的分布式数据一致性解决方案，致力于为分布式应用提供一个高性能、高可用，且具有严格顺序访问控制能力的分布式协调服务。

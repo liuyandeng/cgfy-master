@@ -19,6 +19,7 @@ import java.util.List;
 
 @Api(tags = "zk客户端", produces = MediaType.APPLICATION_JSON_VALUE)
 @Controller
+@RequestMapping(value="/zk")
 public class ZkController {
 
     private static final Logger logger = LoggerFactory.getLogger(ZkController.class);
@@ -34,7 +35,7 @@ public class ZkController {
      * @return
      */
     @ApiOperation(value = "判断指定节点是否存在", hidden=false)
-    @RequestMapping(value = "/isexists", method = RequestMethod.POST)
+    @RequestMapping(value = "/exists", method = RequestMethod.POST)
     public Stat exists(String path, boolean needWatch){
         try {
             return zkClient.exists(path,needWatch);
@@ -53,7 +54,7 @@ public class ZkController {
      * @return
      */
     @ApiOperation(value = "检测结点是否存在 并设置监听事件", hidden=false)
-    @RequestMapping(value = "/exists", method = RequestMethod.POST)
+    @RequestMapping(value = "/exists2", method = RequestMethod.POST)
     public Stat exists(String path, Watcher watcher ){
         try {
             return zkClient.exists(path,watcher);

@@ -1,5 +1,6 @@
 package com.cgfy.mybatis.bussApi.utils;
 
+import org.apache.commons.beanutils.BeanUtils;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class FileUtil {
         }
 
         T obj = beanClass.newInstance();
-        org.apache.commons.beanutils.BeanUtils.populate(obj, map);
+        BeanUtils.populate(obj, map);
 
         return obj;
     }

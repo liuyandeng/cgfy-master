@@ -24,6 +24,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
@@ -37,19 +41,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-        <!-- *********************数据库连接********************* -->
+        <!-- *********************数据库********************* -->
         <!--驱动-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!-- *********************com.alibaba组********************* -->
+        <!-- *********************alibaba组********************* -->
         <!-- 连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
-        <!--Excel工具:https://www.yuque.com/easyexcel/doc/easyexcel-->
+        <!--阿里巴巴easyexcel-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
@@ -70,14 +74,17 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+        </dependency>
         <!-- *********************mybatis组********************* -->
         <!-- 代码生成器 -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
         </dependency>
-        <!-- *********************tk.mybatis组********************* -->
+        <!-- tk.mybatis -->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
@@ -126,17 +133,7 @@
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
 
-        <!-- *********************json相关包********************* -->
-        <dependency><!--JsonUtil-->
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <classifier>jdk15</classifier>
-        </dependency>
-        <!--freemarker模板引擎-->
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>

@@ -12,9 +12,6 @@ import java.util.Map;
 /**
  *
  * 该类是为码表缓存提供的工具类，
- *
- * @version 2013-7-1
- * @author leibf
  */
 public class CodeListUtil {
 

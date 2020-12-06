@@ -1,6 +1,8 @@
+server:
+  port: 8080
 spring:
   profiles:
-    active: dev
+    active: win
   jackson:
     dateFormat: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -28,9 +30,9 @@ jbdp:
 
 ---
 spring:
-  profiles: dev
+  profiles: win
   application:
-    name: cgfy-lgl
+    name: cgfy-mybatis
   datasource:
     name: test
     # 数据源类型
@@ -69,17 +71,13 @@ spring:
         max-idle: 10
         # 连接池中的最小空闲连接,值为正时才有效
         min-idle: 0
-
-
-
   ## 静态文件过滤
   mvc:
     static-path-pattern: /**
 ##　项目静态文件地址
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${files.root}
-server:
-  port: 8080
+
 
 logging:
   level:

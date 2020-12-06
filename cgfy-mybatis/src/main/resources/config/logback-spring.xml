@@ -80,18 +80,13 @@
     </appender>
 
 
-    <springProfile name="dev">
+    <springProfile name="win">
         <root level="DEBUG">
             <appender-ref ref="STDOUT" />
-            <appender-ref ref="ERROR_LOG_FILE" />
-            <appender-ref ref="APPLICATION_LOG_FILE" />
-            <appender-ref ref="DAYS_LOG_FILE" />
         </root>
     </springProfile>
 
-
-
-    <springProfile name="regular">
+    <springProfile name="linux">
         <root level="INFO">
             <appender-ref ref="STDOUT" />
             <appender-ref ref="ERROR_LOG_FILE" />

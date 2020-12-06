@@ -1,4 +1,4 @@
-package com.cgfy.socket.api.bean;
+package com.cgfy.socket.bean;
 
 import lombok.Data;
 

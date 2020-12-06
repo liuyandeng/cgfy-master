@@ -1,16 +1,15 @@
-package com.cgfy.zookeeper.client;
+package com.cgfy.zookeeper.config;
 
 import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * 实现Watcher监听
  */
-public class WatcherApi implements Watcher {
+public class Watcher implements org.apache.zookeeper.Watcher {
 
-    private static final Logger logger = LoggerFactory.getLogger(WatcherApi.class);
+    private static final Logger logger = LoggerFactory.getLogger(Watcher.class);
     @Override
     public void process(WatchedEvent event) {
         logger.info("【Watcher监听事件】={}",event.getState());

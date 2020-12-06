@@ -1,21 +1,27 @@
-package com.cgfy.zookeeper.client;
+package com.cgfy.zookeeper.controller;
 
+import com.cgfy.zookeeper.config.Watcher;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-/**
- * zk客户端zpi封装工具类
- */
-@Component
-public class ZkApi {
+@Api(tags = "zk客户端", produces = MediaType.APPLICATION_JSON_VALUE)
+@Controller
+public class ZkController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ZkApi.class);
+    private static final Logger logger = LoggerFactory.getLogger(ZkController.class);
 
     @Autowired
     private ZooKeeper zkClient;
@@ -27,6 +33,8 @@ public class ZkApi {
      * @param needWatch  指定是否复用zookeeper中默认的Watcher
      * @return
      */
+    @ApiOperation(value = "判断指定节点是否存在", hidden=false)
+    @RequestMapping(value = "/isexists", method = RequestMethod.POST)
     public Stat exists(String path, boolean needWatch){
         try {
             return zkClient.exists(path,needWatch);
@@ -44,6 +52,8 @@ public class ZkApi {
      * @param watcher  传入指定的监听类
      * @return
      */
+    @ApiOperation(value = "检测结点是否存在 并设置监听事件", hidden=false)
+    @RequestMapping(value = "/exists", method = RequestMethod.POST)
     public Stat exists(String path, Watcher watcher ){
         try {
             return zkClient.exists(path,watcher);
@@ -58,6 +68,8 @@ public class ZkApi {
      * @param path
      * @param data
      */
+    @ApiOperation(value = "创建持久化节点", hidden=false)
+    @RequestMapping(value = "/createNode", method = RequestMethod.POST)
     public boolean createNode(String path, String data){
         try {
             zkClient.create(path,data.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
@@ -74,6 +86,8 @@ public class ZkApi {
      * @param path
      * @param data
      */
+    @ApiOperation(value = "修改持久化节点", hidden=false)
+    @RequestMapping(value = "/updateNode", method = RequestMethod.PUT)
     public boolean updateNode(String path, String data){
         try {
             //zk的数据版本是从0开始计数的。如果客户端传入的是-1，则表示zk服务器需要基于最新的数据进行更新。如果对zk的数据节点的更新操作没有原子性要求则可以使用-1.
@@ -90,6 +104,8 @@ public class ZkApi {
      * 删除持久化节点
      * @param path
      */
+    @ApiOperation(value = "删除持久化节点", hidden=false)
+    @RequestMapping(value = "/deleteNode", method = RequestMethod.DELETE)
     public boolean deleteNode(String path){
         try {
             //version参数指定要更新的数据的版本, 如果version和真实的版本不同, 更新操作将失败. 指定version为-1则忽略版本检查
@@ -105,7 +121,9 @@ public class ZkApi {
      * 获取当前节点的子节点(不包含孙子节点)
      * @param path 父节点path
      */
-    public List<String> getChildren(String path) throws KeeperException, InterruptedException{
+    @ApiOperation(value = "获取当前节点的子节点(不包含孙子节点)", hidden=false)
+    @RequestMapping(value = "/getChildren", method = RequestMethod.GET)
+    public List<String> getChildren(@ApiParam(value = "父节点path" , required=true)String path) throws KeeperException, InterruptedException{
         List<String> list = zkClient.getChildren(path, false);
         return list;
     }
@@ -115,7 +133,9 @@ public class ZkApi {
      * @param path
      * @return
      */
-    public  String getData(String path,Watcher watcher){
+    @ApiOperation(value = "获取指定节点的值", hidden=false)
+    @RequestMapping(value = "/getData", method = RequestMethod.GET)
+    public  String getData(String path, org.apache.zookeeper.Watcher watcher){
         try {
             Stat stat=new Stat();
             byte[] bytes=zkClient.getData(path,watcher,stat);
@@ -135,7 +155,7 @@ public class ZkApi {
         String path="/zk-watcher-2";
         logger.info("【执行初始化测试方法。。。。。。。。。。。。】");
         createNode(path,"测试");
-        String value=getData(path,new WatcherApi());
+        String value=getData(path,new Watcher());
         logger.info("【执行初始化测试方法getData返回值。。。。。。。。。。。。】={}",value);
 
         // 删除节点出发 监听事件

@@ -1,5 +1,7 @@
-package com.cgfy.socket.api.bean;
+package com.cgfy.zookeeper.bean;
+
 import org.springframework.http.HttpStatus;
+
 import java.io.Serializable;
 
 /**

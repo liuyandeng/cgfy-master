@@ -56,7 +56,7 @@
         <lombok.version>1.18.8</lombok.version>
         <dom4j.version>2.1.1</dom4j.version>
         <net.sf.json-lib.version>2.4</net.sf.json-lib.version>
-
+        <redisson.version>3.13.2</redisson.version>
 
     </properties>
     <!--https://mvnrepository.com -->
@@ -301,6 +301,12 @@
                 <artifactId>json-lib</artifactId>
                 <version>${net.sf.json-lib.version}</version>
                 <classifier>jdk15</classifier>
+            </dependency>
+            <!-- *********************其他********************* -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

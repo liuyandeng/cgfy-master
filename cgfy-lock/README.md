@@ -8,12 +8,103 @@
 
 ## 线程同步:synchronized
  /ˈsɪŋkrənaɪzd/ 
+ 
+ synchronized是Java中的关键字，是一种同步锁。它修饰的对象有以下几种： 
+ 
+- 修饰一个代码块，被修饰的代码块称为同步语句块，其作用的范围是大括号{}括起来的代码，作用的对象是调用这个代码块的对象； 
+- 修饰一个方法，被修饰的方法称为同步方法，其作用的范围是整个方法，作用的对象是调用这个方法的对象； 
+- 修改一个静态的方法，其作用的范围是整个静态方法，作用的对象是这个类的所有对象； 
+- 修改一个类，其作用的范围是synchronized后面括号括起来的部分，作用主的对象是这个类的所有对象。
 
- https://www.cnblogs.com/weibanggang/p/9470718.html
+[![avatar](http://liuyandeng.gitee.io/gitpages/img/lock/java/synchronized.png)](https://www.jianshu.com/p/d53bf830fa09)
+### 为什么要使用synchronized
+在并发编程中存在线程安全问题，主要原因有：1.存在共享数据 2.多线程共同操作共享数据。
+关键字synchronized可以保证在同一时刻，只有一个线程可以执行某个方法或某个代码块，同时synchronized可以保证一个线程的变化可见（可见性）。
+### 实现原理
+synchronized可以保证方法或者代码块在运行时，同一时刻只有一个方法可以进入到临界区，同时它还可以保证共享变量的内存可见性
+### synchronized的作用
+Synchronized是Java中解决并发问题的一种最常用最简单的方法 ，他可以确保线程互斥的访问同步代码
+### 修饰一个方法
+Synchronized修饰一个方法很简单，就是在方法的前面加synchronized，public synchronized void method(){}; synchronized修饰方法和修饰一个代码块类似，
+只是作用范围不一样，修饰代码块是大括号括起来的范围，而修饰方法范围是整个函数。如将的run方法改成如下的方式，实现的效果一样。
+
+    public synchronized void run() {
+           {
+                for (int i = 0; i < 5; i++) {
+                    try {
+                        System.out.println("线程名:"+Thread.currentThread().getName() + ":" + (count++));
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+Synchronized作用于整个方法的写法。
+
+写法一:
+    
+     public synchronized void method()
+     {
+        // todo
+     }
+
+写法二:
+
+    public void method()
+    {
+       synchronized(this) {
+          
+       }
+    }
+写法一修饰的是一个方法，写法二修饰的是一个代码块，但写法一与写法二是等价的，都是锁定了整个方法时的内容。
+
+在用synchronized修饰方法时要注意以下几点： 
+
+- synchronized关键字不能继承。 
+
+虽然可以使用synchronized来定义方法，但synchronized并不属于方法定义的一部分，因此，synchronized关键字不能被继承。如果在父类中的某个方法使用了synchronized关键字，
+而在子类中覆盖了这个方法，在子类中的这个方法默认情况下并不是同步的，而必须显式地在子类的这个方法中加上synchronized关键字才可以。
+当然，还可以在子类方法中调用父类中相应的方法，这样虽然子类中的方法不是同步的，但子类调用了父类的同步方法，因此，子类的方法也就相当于同步了。这两种方式的例子代码如下： 
+在子类方法中加上synchronized关键字
+
+    class Parent {
+       public synchronized void method() { }
+    }
+    class Child extends Parent {
+       public synchronized void method() { }
+    }
+
+在子类方法中调用父类的同步方法
+
+    class Parent {
+       public synchronized void method() {   }
+    }
+    class Child extends Parent {
+       public void method() { super.method();   }
+    }
+在定义接口方法时不能使用synchronized关键字。构造方法不能使用synchronized关键字，但可以使用synchronized代码块来进行同步。
+
+### 修饰一个静态的方法
+Synchronized也可修饰一个静态方法，用法如下：
+
+    public synchronized static void method() {
+       
+    }
+我们知道静态方法是属于类的而不属于对象的。同样的，synchronized修饰的静态方法锁定的是这个类的所有对象。
+
+### 修饰一个类
+效果和synchronized修饰静态方法是一样的，synchronized作用于一个类T时，是给这个类T加锁，T的所有对象用的是同一把锁。
+
+[总结](https://www.cnblogs.com/weibanggang/p/9470718.html):
+
+- 无论synchronized关键字加在方法上还是对象上，如果它作用的对象是非静态的，则它取得的锁是对象；
+如果synchronized作用的对象是一个静态方法或一个类，则它取得的锁是对类，该类所有的对象同一把锁。 
+- 每个对象只有一个锁（lock）与之相关联，谁拿到这个锁谁就可以运行它所控制的那段代码。 
+- 实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制
+
+
  
- https://blog.csdn.net/zjy15203167987/article/details/82531772
- 
- https://www.jianshu.com/p/d53bf830fa09
  
 1.为什么要使用synchronized
 

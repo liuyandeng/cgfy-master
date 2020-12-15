@@ -45,14 +45,5 @@ public class SyncThread implements Runnable{
         thread2.start();
     }
 
-//         new Thread(test::method2).start();的简洁写法
-//        //替换下面片段
-//        new Thread(new Runnable() {
-//        @Override
-//        public void run() {
-//            test.method2();
-//        }
-//    }).start();
-//https://blog.csdn.net/zjy15203167987/article/details/82531772
 
 }

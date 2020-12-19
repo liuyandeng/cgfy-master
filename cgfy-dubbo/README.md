@@ -91,7 +91,7 @@ dubbo.log4j.level=WARN
 - 4.http://localhost:8080
 ![dubbo-monitor](http://liuyandeng.gitee.io/gitpages/img/dubbo/ops/dubbo-monitor.png)
 
-### 附录：
+## 附录：
 1.各个软件版本对应
 <table width="100%">
 <thead>
@@ -239,7 +239,7 @@ ConsistentHash LoadBalance
 ```
 
 ## 3.整合hystrix，服务熔断与降级处理
-### 1、服务降级
+### 服务降级
 什么是服务降级？
 
 当服务器压力剧增的情况下，根据实际业务情况及流量，对一些服务和页面有策略的不处理或换种简单的方式处理，从而释放服务器资源以保证核心交易正常运作或高效运作。

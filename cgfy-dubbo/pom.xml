@@ -8,8 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>cgfy-dubbo</artifactId>
-    <packaging>jar</packaging>
-    <description>dubbo project for Spring Boot</description>
+    <packaging>pom</packaging>
 
     <dependencies>
         <!--boot组-->

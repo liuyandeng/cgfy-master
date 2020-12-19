@@ -9,7 +9,11 @@
     </parent>
     <artifactId>cgfy-dubbo</artifactId>
     <packaging>pom</packaging>
-
+    <modules>
+        <module>cgfy-api</module>
+        <module>cgfy-consumer</module>
+        <module>cgfy-provider</module>
+    </modules>
     <dependencies>
         <!--boot组-->
         <dependency>

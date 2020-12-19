@@ -24,7 +24,7 @@ Windows环境下安装:https://blog.csdn.net/qq877507054/article/details/1107398
 
 # 监控中心 dubbo-admin
 但是为了让用户更好的管理监控众多的dubbo服务，官方提供了一个可视化的监控程序，不过这个监控即使不装也不影响使用。
-- 1.dubbo运维旧版地址: https://github.com/apache/incubator-dubbo-ops/tree/master
+- 1.dubbo运维master分支地址: https://github.com/apache/incubator-dubbo-ops/tree/master
 - 2.这里需要修改一个配置进入dubbo-admin\src\main\resources\application.properties
 
 ```text

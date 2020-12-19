@@ -48,7 +48,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181
 - 4.然后进入dubbo-admin的target,进入cmd窗口执行java -jar dubbo-admin-0.0.1-SNAPSHOT.jar命令,运行项目
 - 5.启动成功后 浏览器访问http://localhost:7001 输入账号：root /  密码：root 即可。
 
-![dubbo-admin UI](http://liuyandeng.gitee.io/gitpages/img/dubbo/admin)
+![dubbo-admin UI](http://liuyandeng.gitee.io/gitpages/img/dubbo/admin/dubbo-admin.png)
 
 
 

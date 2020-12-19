@@ -22,6 +22,6 @@ public class ProductController {
      */
     @RequestMapping("/add")
     public String getCost(int a){
-        return "该产品总共消费 ："+productService.getCost(a);
+        return "该产品总共消费:"+productService.getCost(a);
     }
 }

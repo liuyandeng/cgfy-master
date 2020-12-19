@@ -10,14 +10,14 @@ import com.cgfy.api.service.CostService;
 public class CostServiceImpl implements CostService {
 
     /**
-     * 假设之前总花费了100
+     * 假设之前总花费了1000
      */
     private final Integer totalCost = 1000;
 
     /**
-     * 之前总和 加上 最近一笔
-     * @param cost
-     * @return
+     * 之前消费的1000+新消费的金额
+     * @param cost 新消费的金额
+     * @return 返回总共消费的金额
      */
     @Override
     public Integer add(int cost) {

@@ -49,6 +49,8 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181
 - 5.启动成功后 浏览器访问http://localhost:7001 输入账号：root /  密码：root 即可。
 
 ![dubbo-admin UI](http://liuyandeng.gitee.io/gitpages/img/dubbo/admin/dubbo-admin.png)
+![service](http://liuyandeng.gitee.io/gitpages/img/dubbo/admin/service.png)
+![app](http://liuyandeng.gitee.io/gitpages/img/dubbo/admin/app.png)
 
 
 

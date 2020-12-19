@@ -6,7 +6,7 @@ import com.cgfy.api.service.CostService;
 /**
  * 花费服务
  */
-@Service
+@Service //使用dubbo提供的service注解，注册暴露服务
 public class CostServiceImpl implements CostService {
 
     /**

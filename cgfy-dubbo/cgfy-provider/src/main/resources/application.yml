@@ -1,19 +1,22 @@
+server:
+  port: 8061
+
 dubbo:
   application:
-    name: dubbo-provider
+    name: dubbo-provider #当前应用的名字
   registry:
-    address: 127.0.0.1:2181
+    address: 127.0.0.1:2181 #指定注册中心的地址
     protocol: zookeeper #也可以是nacos?
     check: false
   protocol:
-    name: dubbo
-    port: 30003
+    name: dubbo #使用dubbo协议
+    port: 30003 #服务暴露在30003端口
   #连接监控中心
   monitor:
-    protocol: register
+    protocol: register #监控中心协议，如果为protocol="registry"，表示从注册中心发现监控中心地址，否则直连监控中心
   consumer:
     check: false
-    timeout: 3000
-
-server:
-  port: 8061
+    timeout: 3000 #全局超时配置
+  provider:
+    timeout: 3000 #全局超时配置
+#    retries: 2 #重试次数配置

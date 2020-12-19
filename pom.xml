@@ -12,6 +12,7 @@
         <module>cgfy-socket</module>
         <module>cgfy-cloud</module>
         <module>cgfy-zookeeper</module>
+        <module>cgfy-dubbo</module>
     </modules>
 
     <parent>

@@ -16,6 +16,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--引入api-->
+        <dependency>
+            <groupId>com.cgfy.web</groupId>
+            <artifactId>cgfy-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--引入dubbo环境-->
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>0.2.0</version>
+        </dependency>
     </dependencies>
 
 </project>

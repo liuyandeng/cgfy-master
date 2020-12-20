@@ -1,4 +1,4 @@
-# dubbo
+# 一.dubbo的简单集成
 dubbo本身并不是一个服务软件。它其实就是一个jar包能够帮你的java程序连接到zookeeper，并利用zookeeper消费、提供服务。所以你不用在Linux上启动什么dubbo服务。
 
 项目案例说明：consumer产品购买,调用provider,传入消费的金额,返回产品总共消费的金额
@@ -12,17 +12,17 @@ dubbo 2.6以前的版本引入zkclient操作zookeeper,dubbo 2.6及以后的版�
 
 
 
-## windows下搭建zookeeper环境
+## 1.1 windows下搭建zookeeper环境
 Windows环境下安装:https://blog.csdn.net/qq877507054/article/details/110739854
 
-## 测试dubbo远程服务调用
+## 1.2 测试dubbo远程服务调用
 启动consumer,provider项目
 
 访问消费者启动consumer的add接口,会调用提供者cgfy-provider的add接口,调用成功,
 
 在浏览器中http://localhost:8062/add?a=100 , 出现"该产品总共消费:1100",即为调用成功
 
-## 安装控制台 dubbo-admin
+## 1.3 安装控制台 dubbo-admin
 但是为了让用户更好的管理监控众多的dubbo服务，官方提供了一个可视化的监控程序，不过这个监控即使不装也不影响使用。
 - 1.dubbo运维master分支地址: https://github.com/apache/incubator-dubbo-ops/tree/master
 
@@ -59,7 +59,7 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181
 ![service](http://liuyandeng.gitee.io/gitpages/img/dubbo/ops/service.png)
 ![app](http://liuyandeng.gitee.io/gitpages/img/dubbo/ops/app.png)
 
-## 安装监控中间 dubbo-monitor
+## 1.4 安装监控中间 dubbo-monitor
 主要用来统计服务的调用次数和调用时间，务消费者和提供者，在内存中累计调用次数和调用时间,
 定时每分钟发送一次统计数据到监控中心，监控中心则使用数据绘制图表来显示。
 Simple Monitor 挂掉不会影响到 Consumer 和 Provider 之间的调用，所以用于生产环境不会有风险。
@@ -118,12 +118,12 @@ dubbo.log4j.level=WARN
 </tbody>
 </table>
 
-# [分布式基础理论](https://blog.csdn.net/qq_39736103/article/details/82796563)
-## 什么是分布式系统？
+# 二.[分布式基础理论](https://blog.csdn.net/qq_39736103/article/details/82796563)
+## 2.1 什么是分布式系统？
 分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统,分布式系统（distributed system）是建立在网络之上的软件系统。
 
 随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。
-## 发展演变
+## 2.2 发展演变
 ### 单一应用架构
 
 当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。
@@ -153,7 +153,7 @@ dubbo.log4j.level=WARN
 当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。
 此时，用于提高机器利用率的资源调度和治理中心(SOA)[ Service Oriented Architecture]是关键。
 
-## RPC
+## 2.3 RPC
 ### 什么叫RPC
 RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通信方式，他是一种技术的思想，而不是规范。
 它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。
@@ -161,13 +161,30 @@ RPC【Remote Procedure Call】是指远程过程调用，是一种进程间通�
 ### RPC基本原理
 RPC两个核心模块：通讯，序列化。
 
-# dubbo核心概念
-## 简介
+
+### RPC TCP协议
+
+RPC(Remote Procedure  Call)远程过程调用，简单的理解是一个节点请求另一个节点提供的服务。它的工作流程是这样的：
+
+- 1. 执行客户端调用语句，传送参数 
+- 2. 调用本地系统发送网络消息 
+- 3. 消息传送到远程主机 
+- 4. 服务器得到消息并取得参数 
+- 5. 根据调用请求以及参数执行远程过程（服务） 
+- 6. 执行过程完毕，将结果返回服务器句柄 
+- 7. 服务器句柄返回结果，调用远程主机的系统网络服务发送结果 
+- 8. 消息传回本地主机 
+- 9. 客户端句柄由本地主机的网络服务接收消息 
+- 10. 客户端接收到调用语句返回的结果数据
+
+
+# 三.dubbo核心概念
+## 3.1 简介
 Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，
 它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。
 官网：http://dubbo.apache.org/
 源码地址:https://github.com/apache/incubator-dubbo
-## 基本概念
+## 3.2 基本概念
 ![base](http://liuyandeng.gitee.io/gitpages/img/dubbo/base.png)
 
 - 服务提供者（Provider）：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。
@@ -186,7 +203,7 @@ Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Ja
 - 6.服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。
 
 
-# 配置原则
+## 3.3 配置原则
 dubbo推荐在Provider上尽量多配置Consumer端属性：
 ```html
 1、作服务的提供者，比服务使用方更清楚服务性能参数，如调用的超时时间，合理的重试次数，等等
@@ -197,8 +214,8 @@ dubbo推荐在Provider上尽量多配置Consumer端属性：
 - Consumer端配置优于Provider配置 优于 全局配置，
 - 最后是Dubbo Hard Code的配置值（见配置文档）
 
-# 高可用
-## 1.zookeeper宕机与dubbo直连
+## 3.4高可用
+### 1.zookeeper宕机与dubbo直连
 现象：zookeeper注册中心宕机，还可以消费dubbo暴露的服务。
 
 原因：
@@ -214,7 +231,7 @@ dubbo推荐在Provider上尽量多配置Consumer端属性：
 
 高可用：通过设计，减少系统不能提供服务的时间；
 
-## 2.集群下dubbo负载均衡配置
+### 2.集群下dubbo负载均衡配置
 在集群负载均衡时，Dubbo 提供了多种均衡策略，缺省为 random 随机调用。
 
 负载均衡策略
@@ -238,8 +255,8 @@ ConsistentHash LoadBalance
 缺省用 160 份虚拟节点，如果要修改，请配置 <dubbo:parameter key="hash.nodes" value="320" />
 ```
 
-## 3.整合hystrix，服务熔断与降级处理
-### 服务降级
+### 3.整合hystrix，服务熔断与降级处理
+#### 服务降级
 什么是服务降级？
 
 当服务器压力剧增的情况下，根据实际业务情况及流量，对一些服务和页面有策略的不处理或换种简单的方式处理，从而释放服务器资源以保证核心交易正常运作或高效运作。
@@ -257,7 +274,7 @@ registry.register(URL.valueOf("override://0.0.0.0/com.foo.BarService?category=co
 
 - mock=force:return+null 表示消费方对该服务的方法调用都直接返回 null 值，不发起远程调用。用来屏蔽不重要服务不可用时对调用方的影响。
 - 还可以改为 mock=fail:return+null 表示消费方对该服务的方法调用在失败后，再返回 null 值，不抛异常。用来容忍不重要服务不稳定时对调用方的影响。
-### 集群容错
+#### 集群容错
 在集群调用失败时，Dubbo 提供了多种容错方案，缺省为 failover 重试。
 集群容错模式
 ```html
@@ -293,7 +310,7 @@ Broadcast Cluster
 或
 <dubbo:reference cluster="failsafe" />
 ```
-### 整合hystrix
+#### 整合hystrix
 Hystrix 旨在通过控制那些访问远程系统、服务和第三方库的节点，从而对延迟和故障提供更强大的容错能力。Hystrix具备拥有回退机制和断路器功能的线程和信号隔离，请求缓存和请求打包，以及监控和配置等功能
 
 **1、配置spring-cloud-starter-netflix-hystrix**
@@ -343,8 +360,8 @@ public String reliable(String name) {
     return "hystrix fallback value";
 }
 ```
-# dubbo原理  
-## 1.RPC原理
+##3.5 dubbo原理  
+### 1.RPC原理
 ```html
 一次完整的RPC调用流程（同步调用，异步另说）如下：
 1）服务消费方（client）调用以本地调用方式调用服务；
@@ -358,7 +375,7 @@ public String reliable(String name) {
 9）服务消费方得到最终结果。
 RPC框架的目标就是要2~8这些步骤都封装起来，这些细节对用户来说是透明的，不可见的。
 ```
-## 2.netty通信原理
+### 2.netty通信原理
 Netty是一个异步事件驱动的网络应用程序框架， 用于快速开发可维护的高性能协议服务器和客户端。它极大地简化并简化了TCP和UDP套接字服务器等网络编程。
 
 BIO：(Blocking IO)
@@ -371,7 +388,7 @@ Connect（连接就绪）、Accept（接受就绪）、Read（读就绪）、Wri
 Netty基本原理：
 ![base](http://liuyandeng.gitee.io/gitpages/img/dubbo/Netty.png)
 
-## 3.dubbo原理
+### 3.dubbo原理
 **dubbo原理 -框架设计**
 - config 配置层：对外配置接口，以 ServiceConfig, ReferenceConfig 为中心，可以直接初始化配置类，也可以通过 spring 解析配置生成配置类
 - proxy 服务代理层：服务接口透明代理，生成服务的客户端 Stub 和服务器端 Skeleton, 以 ServiceProxy 为中心，扩展接口为 ProxyFactory

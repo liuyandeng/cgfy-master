@@ -215,7 +215,7 @@ dubbo推荐在Provider上尽量多配置Consumer端属性：
 - 最后是Dubbo Hard Code的配置值（见配置文档）
 
 ## 3.4高可用
-### 1.zookeeper宕机与dubbo直连
+### zookeeper宕机与dubbo直连
 现象：zookeeper注册中心宕机，还可以消费dubbo暴露的服务。
 
 原因：
@@ -231,7 +231,7 @@ dubbo推荐在Provider上尽量多配置Consumer端属性：
 
 高可用：通过设计，减少系统不能提供服务的时间；
 
-### 2.集群下dubbo负载均衡配置
+### 集群下dubbo负载均衡配置
 在集群负载均衡时，Dubbo 提供了多种均衡策略，缺省为 random 随机调用。
 
 负载均衡策略
@@ -255,8 +255,7 @@ ConsistentHash LoadBalance
 缺省用 160 份虚拟节点，如果要修改，请配置 <dubbo:parameter key="hash.nodes" value="320" />
 ```
 
-### 3.整合hystrix，服务熔断与降级处理
-#### 服务降级
+### 服务降级
 什么是服务降级？
 
 当服务器压力剧增的情况下，根据实际业务情况及流量，对一些服务和页面有策略的不处理或换种简单的方式处理，从而释放服务器资源以保证核心交易正常运作或高效运作。
@@ -274,7 +273,7 @@ registry.register(URL.valueOf("override://0.0.0.0/com.foo.BarService?category=co
 
 - mock=force:return+null 表示消费方对该服务的方法调用都直接返回 null 值，不发起远程调用。用来屏蔽不重要服务不可用时对调用方的影响。
 - 还可以改为 mock=fail:return+null 表示消费方对该服务的方法调用在失败后，再返回 null 值，不抛异常。用来容忍不重要服务不稳定时对调用方的影响。
-#### 集群容错
+### 集群容错
 在集群调用失败时，Dubbo 提供了多种容错方案，缺省为 failover 重试。
 集群容错模式
 ```html
@@ -310,7 +309,7 @@ Broadcast Cluster
 或
 <dubbo:reference cluster="failsafe" />
 ```
-#### 整合hystrix
+### 整合hystrix
 Hystrix 旨在通过控制那些访问远程系统、服务和第三方库的节点，从而对延迟和故障提供更强大的容错能力。Hystrix具备拥有回退机制和断路器功能的线程和信号隔离，请求缓存和请求打包，以及监控和配置等功能
 
 **1、配置spring-cloud-starter-netflix-hystrix**
@@ -360,8 +359,10 @@ public String reliable(String name) {
     return "hystrix fallback value";
 }
 ```
-##3.5 dubbo原理  
-### 1.RPC原理
+
+
+## 3.5 dubbo原理  
+### RPC原理
 ```html
 一次完整的RPC调用流程（同步调用，异步另说）如下：
 1）服务消费方（client）调用以本地调用方式调用服务；
@@ -375,7 +376,7 @@ public String reliable(String name) {
 9）服务消费方得到最终结果。
 RPC框架的目标就是要2~8这些步骤都封装起来，这些细节对用户来说是透明的，不可见的。
 ```
-### 2.netty通信原理
+### netty通信原理
 Netty是一个异步事件驱动的网络应用程序框架， 用于快速开发可维护的高性能协议服务器和客户端。它极大地简化并简化了TCP和UDP套接字服务器等网络编程。
 
 BIO：(Blocking IO)
@@ -388,7 +389,7 @@ Connect（连接就绪）、Accept（接受就绪）、Read（读就绪）、Wri
 Netty基本原理：
 ![base](http://liuyandeng.gitee.io/gitpages/img/dubbo/Netty.png)
 
-### 3.dubbo原理
+### dubbo原理
 **dubbo原理 -框架设计**
 - config 配置层：对外配置接口，以 ServiceConfig, ReferenceConfig 为中心，可以直接初始化配置类，也可以通过 spring 解析配置生成配置类
 - proxy 服务代理层：服务接口透明代理，生成服务的客户端 Stub 和服务器端 Skeleton, 以 ServiceProxy 为中心，扩展接口为 ProxyFactory

@@ -612,7 +612,7 @@ hessian=com.alibaba.dubbo.rpc.protocol.hessian.HessianProtocol
 
 这就是一个最最基本的 rpc 框架的思路，先不说你有多牛逼的技术功底，哪怕这个最简单的思路你先给出来行不行？
 
-## dubbo协议
+## 3.10 dubbo协议
 ### dubbo 支持不同的通信协议
 1.dubbo 协议
 

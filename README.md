@@ -60,17 +60,5 @@ dubbo相关概念
 ## 优秀项目
 - Java 23种设计模式总结:https://lilei644.github.io/2018/06/21/2018-06-21/ ,
     [代码](https://github.com/lilei644/design-pattern-example)
-- 若依Bootstrap多模块版本:https://gitee.com/y_project/RuoYi
-- 若依Bootstrap单应用版本:https://gitee.com/y_project/RuoYi-fast
-- 若依Vue前后端分离版本:https://gitee.com/y_project/RuoYi-Vue
-- 若依Vue单应用后台版本:https://github.com/yangzongzhuan/RuoYi-Vue-fast
-- Bootstrap项目hplus:https://gitee.com/hplus_admin/hplus
-- 后台前端vue框架:https://github.com/PanJiaChen/vue-element-admin
-- 后台前端vue框架使用文档:https://panjiachen.github.io/vue-element-admin-site/zh/
-- 极简的后台前端vue框架:https://github.com/PanJiaChen/vue-admin-template
 
-
-```
-vue项目建议不要直接使用 cnpm 安装依赖，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
-npm install --registry=https://registry.npm.taobao.org
 ```

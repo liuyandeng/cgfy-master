@@ -13,6 +13,7 @@
         <module>cgfy-cloud</module>
         <module>cgfy-zookeeper</module>
         <module>cgfy-dubbo</module>
+        <module>cgfy-pattern</module>
     </modules>
 
     <parent>

@@ -208,7 +208,7 @@ CPU还要花时间去维护，CPU处理各线程的请求时在线程间的切�
  
  #### JAVA 8 '::' 关键字
 |语法种类|示例|
-|----|---|
+|----|----|
 |引用静态方法|ContainingClass::staticMethodName|
 |引用特定对象的实例方法|containingObject::instanceMethodName|
 |引用特定类型的任意对象的实例方法|ContainingType::methodName|

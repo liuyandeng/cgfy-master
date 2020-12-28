@@ -1,8 +1,11 @@
 package com.cgfy.lock.sql;
+import com.alibaba.fastjson.JSONArray;
 import com.cgfy.lock.base.bean.AjaxResponse;
 import com.cgfy.lock.base.dao.JBaseDao;
+import com.cgfy.lock.base.util.SQLHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +18,8 @@ import java.util.List;
 public class SqlController {
     @Resource
     public JBaseDao jBaseDao;
-
+    @Resource
+    private SQLHelper SQLHelper;
     /**
      * 把 for update 放在 Spring 事务中执行
      * 事务不提交，for update 悲观锁不会被释放；
@@ -30,8 +34,9 @@ public class SqlController {
     @Transactional
     public AjaxResponse select() {
         String sql="select * from user_info  where id='666666' for update";
-        List list= jBaseDao.queryForList(sql);
-        return AjaxResponse.success(list);//执行到这里,你不能更改666666这一行数据
+      //  List list= jBaseDao.queryForList(sql);
+        JSONArray json=SQLHelper.query(sql);
+        return AjaxResponse.success(json);//执行到这里,你不能更改666666这一行数据
     }
 
 

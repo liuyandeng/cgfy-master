@@ -192,20 +192,33 @@ CPU还要花时间去维护，CPU处理各线程的请求时在线程间的切�
 
 ### 创建线程
 创建线程,实现Runnable接口,线程要执行的操作代码需要写在run()方法中,并通过start()方法来启动线程.
-
-    1.new Thread(test::method2).start();
-    2. new Thread(new Runnable() {
+    写法1. new Thread(new Runnable() {
              public void run() {
                   test.method2();
               }
           }).start();
-    3.ExecutorService pool = Executors.newCachedThreadPool();
+          
+    写法2.new Thread(test::method2).start();
+
+    写法3.ExecutorService pool = Executors.newCachedThreadPool();
       pool.execute(new Runnable() {
             public void run() {
             }
      );
-     https://blog.csdn.net/zjy15203167987/article/details/8253177
  
+ #### JAVA 8 '::' 关键字
+|语法种类|示例|
+|----|---|
+|引用静态方法|ContainingClass::staticMethodName|
+|引用特定对象的实例方法|containingObject::instanceMethodName|
+|引用特定类型的任意对象的实例方法|ContainingType::methodName|
+|引用构造函数|ClassName::new|
+
+
+
+
+
+
 ### 线程的状态
 一个正在运行的线程因为某种原因不能继续运行时进入阻塞状态,即不可运行的状态,调用thread方法的sleep()方法可使线程进入不可运行的状态.
 

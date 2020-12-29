@@ -58,7 +58,6 @@ public class SQLHelper implements Serializable {
             conn =dataSource.getConnection();
             conn.setAutoCommit(true);
         } catch (Exception e) {
-            close();
             System.out.println("creatConnectionError:"+e.getMessage());
         }
         return conn;

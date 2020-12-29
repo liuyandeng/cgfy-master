@@ -53,6 +53,10 @@ dubbo相关概念
 - 优秀项目-[Java 23种设计模式总结](https://lilei644.github.io/2018/06/21/2018-06-21/)
   https://github.com/lilei644/design-pattern-example 
 
+### spring-cloud-alibaba
+- https://spring.io/projects/spring-cloud-alibaba/
+
+- https://github.com/alibaba/spring-cloud-alibaba/blob/master/README-zh.md
 
 
 

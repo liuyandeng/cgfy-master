@@ -1,4 +1,4 @@
-#前言
+#[前言](https://www.jianshu.com/p/1f19835e05c0)
 在Java中，线程部分是一个重点，本篇文章说的JUC也是关于线程的。JUC就是java.util .concurrent工具包的简称。
 这是一个处理线程的工具包，JDK 1.5开始出现的。下面一起来看看它怎么使用。
 

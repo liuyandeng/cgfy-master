@@ -131,28 +131,28 @@ ZooKeeper内部拥有一个树状的内存模型，类似文件系统，只是�
 ### 7.1 节点路径
 ZooKeeper中使用斜杠（/）分割的路径表示ZNode路径，斜杠（/）表示根节点
 
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk1.png)
+![avatar](src/main/resources/static/img/zookeeper/zk1.png)
 
 
 ### 7.2 节点特性
 在ZooKeeper中，每个数据节点ZNode都是有生命周期的，其生命周期的长短取决于ZNode的节点类型
 
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk2.png)
+![avatar](src/main/resources/static/img/zookeeper/zk2.png)
 
 ### 7.3 权限控制 - ACL
 为了有效保障ZooKeeper中数据的安全，避免因误操作而带来数据随意变更导致分布式系统异常，ZooKeeper提供了一套完善的ACL（Access Contro List）权限控制机制来保障数据的安全。
 可以从三个方面理解ACL机制，分别是：权限模式（Scheme）、授权对象（ID）和权限（Permission），通常使用”scheme:id:permission”来标识一个有效的ACL信息
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk3.png)
+![avatar](src/main/resources/static/img/zookeeper/zk3.png)
 
 ### 7.4 节点状态信息
 每个数据节点ZNode除了存储数据内容外，还存储了数据节点本身的一些状态信息
 
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk4.png)
+![avatar](src/main/resources/static/img/zookeeper/zk4.png)
 
 ### 7.5 节点版本
 ZooKeeper为数据节点引入版本的概念，对个数据节点都具有三种类型的版本信息，对数据节点的任何更新操作都会引起版本号的变化
 
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk5.png)
+![avatar](src/main/resources/static/img/zookeeper/zk5.png)
 
 在分布式系统中，在运行过程中往往需要保证数据访问的排他性。Java并发中是实现了对CAS的指令支持，即对于值V，每次更新前都会比对其值是否是预期值A，只有符合预期，才会将V原子化的更新到新值B
 而ZooKeeper每个节点都有数据版本的概念，在调用更新操作的时候，先从请求中获取当前请求的版本version，同时获取服务器上该数据最新版本currentVersion，如果无法匹配，就无法更新成功，这样可以有效避免一些分布式更新的并发问题
@@ -189,11 +189,11 @@ Session是指客户端连接 - 客户端和服务器之间的一个TCP长连接
 ### 9.1 会话状态
 会话在整个生命周期中，会在不同的会话转态之间进行切换
 
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk6.png)
+![avatar](src/main/resources/static/img/zookeeper/zk6.png)
 ### 9.2 Session属性
 Session是ZooKeeper中的会话实体，代表了一个客户端会话，其包含4个属性：
 
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk7.png)
+![avatar](src/main/resources/static/img/zookeeper/zk7.png)
 
 ### 9.3 心跳检测
 为了保证客户端会话的有效性，客户端会在会话超时时间范围内向服务器发送PING请求来保持会话的有效性，即心跳检测。
@@ -285,7 +285,7 @@ zkclient是另一个开源的ZooKeeper客户端，其地址：https://github.com
 分布式锁主要用于在分布式环境中保护跨进程、跨主机、跨网络的共享资源实现互斥访问，以达到保证数据的一致性。
 
 ## zookeeper分布式锁原理
-![avatar](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zookeeper-lock.png)
+![avatar](src/main/resources/static/img/zookeeper/zookeeper-lock.png)
 
 左边的整个区域表示一个Zookeeper集群，locker是Zookeeper的一个持久节点，node_1、node_2、node_3是locker这个持久节点下面的临时顺序节点。client_1、client_2、client_n表示多个客户端，Service表示需要互斥访问的共享资源。
 
@@ -314,25 +314,25 @@ zkclient是另一个开源的ZooKeeper客户端，其地址：https://github.com
 用 zookeeper 就可以实现分布式系统之间的协调工作。A 系统发送请求之后可以在 zookeeper 上对某个节点的值注册个监听器，
 一旦 B 系统处理完了就修改 zookeeper 那个节点的值，A 系统立马就可以收到通知，完美解决。
 
-![xietiao](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk-xietiao.png)
+![xietiao](src/main/resources/static/img/zookeeper/zk-xietiao.png)
 
 ## 分布式锁
 举个栗子。对某一个数据连续发出两个修改操作，两台机器同时收到了请求，但是只能一台机 器先执行完另外一个机器再执行。
 那么此时就可以使用 zookeeper 分布式锁，一个机器接收到了请求之后先获取 zookeeper 上的一把分布式锁，就是可以去创建一个 znode，接着执行操作；
 然后另外一个机器也尝试去创建那个 znode，结果发现自己创建不了，因为被别人创建了，那只能等着，等第一个机器执行完了自己再执行。
 
-![suo](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk-suo.png)
+![suo](src/main/resources/static/img/zookeeper/zk-suo.png)
 
 ## 元数据/配置信息管理
 zookeeper 可以用作很多系统的配置信息的管理，比如 kafka、storm 等等很多分布式系统都会选用 zookeeper 来做一些元数据、配置信息的管理，
 包括 dubbo 注册中心不也支持 zookeeper 么？
 
-![suo](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk-yuanshuju.png)
+![suo](src/main/resources/static/img/zookeeper/zk-yuanshuju.png)
 
 ## 高可用
 这个应该是很常见的，比如 hadoop、hdfs、yarn 等很多大数据系统，都选择基于 zookeeper 来开发 HA 高可用机制，就是一个重要进程一般会做主备两个，主进程挂了立马通过 zookeeper 感知到切换到备用进程。
 
-![gaokeyong](https://liuyandeng.gitee.io/gitpages/img/zookeeper/zk-gaokeyong.png)
+![gaokeyong](src/main/resources/static/img/zookeeper/zk-gaokeyong.png)
 
 # 分布式锁如何设计
 ## Redis分布式锁
@@ -383,7 +383,7 @@ end
 - 5.要是锁建立失败了，那么就依次之前建立过的锁删除；
 - 6.只要别人建立了一把分布式锁，你就得不断轮询去尝试获取锁。
 
-![gaokeyong](https://liuyandeng.gitee.io/gitpages/img/redis/RedLock.png)
+![gaokeyong](src/main/resources/static/img/redis/RedLock.png)
 
 ## zk分布式锁
 zk  分布式锁，其实可以做的比较简单，就是某个节点尝试创建临时 znode，此时创建成功了就获取了这个锁；

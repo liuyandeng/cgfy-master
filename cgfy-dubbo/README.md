@@ -55,9 +55,9 @@ dubbo.registry.address=zookeeper://127.0.0.1:2181
 - 4.然后进入dubbo-admin的target,进入cmd窗口执行java -jar dubbo-admin-0.0.1-SNAPSHOT.jar命令,运行项目
 - 5.启动成功后 浏览器访问http://localhost:7001 账号/密码:root/root
 
-![dubbo-admin UI](http://liuyandeng.gitee.io/gitpages/img/dubbo/ops/dubbo-admin.png)
-![service](http://liuyandeng.gitee.io/gitpages/img/dubbo/ops/service.png)
-![app](http://liuyandeng.gitee.io/gitpages/img/dubbo/ops/app.png)
+![dubbo-admin UI](static/img/ops/dubbo-admin.png)
+![service](static/img/ops/service.png)
+![app](static/img/ops/app.png)
 
 ## 1.4 安装监控中间 dubbo-monitor
 主要用来统计服务的调用次数和调用时间，务消费者和提供者，在内存中累计调用次数和调用时间,
@@ -89,7 +89,7 @@ dubbo.log4j.level=WARN
 - 2.mvn claen package
 - 3.解压dubbo-monitor-simple-2.0.0-assembly.tar.gz,进入assembly.bin目录中,点击start.bat
 - 4.http://localhost:8080
-![dubbo-monitor](http://liuyandeng.gitee.io/gitpages/img/dubbo/ops/dubbo-monitor.png)
+![dubbo-monitor](static/img/ops/dubbo-monitor.png)
 
 ## 附录：
 1.各个软件版本对应
@@ -185,7 +185,7 @@ Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Ja
 官网：http://dubbo.apache.org/
 源码地址:https://github.com/apache/incubator-dubbo
 ## 3.2 基本概念
-![base](http://liuyandeng.gitee.io/gitpages/img/dubbo/base.png)
+![base](static/img/base.png)
 
 - 服务提供者（Provider）：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。
 - 服务消费者（Consumer）: 调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，
@@ -448,14 +448,14 @@ RPC框架的目标就是要2~8这些步骤都封装起来，这些细节对用�
 Netty是一个异步事件驱动的网络应用程序框架， 用于快速开发可维护的高性能协议服务器和客户端。它极大地简化并简化了TCP和UDP套接字服务器等网络编程。
 
 BIO：(Blocking IO)
-![base](http://liuyandeng.gitee.io/gitpages/img/dubbo/BIO.png)
+![base](static/img/BIO.png)
 
 Selector 一般称 为选择器 ，也可以翻译为 多路复用器，
 
 Connect（连接就绪）、Accept（接受就绪）、Read（读就绪）、Write（写就绪）
 
 Netty基本原理：
-![base](http://liuyandeng.gitee.io/gitpages/img/dubbo/Netty.png)
+![base](static/img/Netty.png)
 
 ### dubbo原理
 **dubbo原理 -框架设计**
@@ -477,7 +477,7 @@ Netty基本原理：
 - 第三步：consumer 调用 provider
 - 第四步：consumer 和 provider 都异步通知监控中心
 
-![howitwork](http://liuyandeng.gitee.io/gitpages/img/dubbo/howitwork.png)
+![howitwork](static/img/howitwork.png)
 
 
 ## 3.7 spi

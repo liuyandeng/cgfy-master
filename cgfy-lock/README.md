@@ -16,7 +16,7 @@
 - 修改一个静态的方法，其作用的范围是整个静态方法，作用的对象是这个类的所有对象； 
 - 修改一个类，其作用的范围是synchronized后面括号括起来的部分，作用主的对象是这个类的所有对象。
 
-[![avatar](http://liuyandeng.gitee.io/gitpages/img/lock/java/synchronized.png)](https://www.jianshu.com/p/d53bf830fa09)
+[![synchronized.png](src/main/resources/static/img/synchronized.png)](https://www.jianshu.com/p/d53bf830fa09)
 ### 为什么要使用synchronized
 在并发编程中存在线程安全问题，主要原因有：
 - 1.存在共享数据 

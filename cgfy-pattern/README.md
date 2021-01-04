@@ -13,7 +13,7 @@
 
 用图表示如下:
 
-![proxy-pattern](https://liuyandeng.gitee.io/gitpages/img/pattern/proxy-pattern.png)
+![proxy-pattern](src/main/resources/static/img/proxy-pattern.png)
 
 代理模式的关键点是:代理对象与目标对象.代理对象是对目标对象的扩展,并会调用目标对象
 

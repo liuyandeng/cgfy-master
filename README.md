@@ -1,7 +1,6 @@
 # 介绍
 不定时集成一些实用的技术.
 
-图片地址:https://gitee.com/liuyandeng/GitPages
 
 ![cgfy](cgfy.jpg)
 

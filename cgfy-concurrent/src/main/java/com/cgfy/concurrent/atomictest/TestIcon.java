@@ -1,5 +1,7 @@
 package com.cgfy.concurrent.atomictest;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class TestIcon {
     public static void main(String[] args){
         AtomicDemo atomicDemo = new AtomicDemo();
@@ -11,10 +13,14 @@ public class TestIcon {
 
 //内部类
 class AtomicDemo implements Runnable{
-    private int i = 0;
+    AtomicInteger i = new AtomicInteger();//线程安全的
     public int getI(){
-        return i++;
+        return i.getAndIncrement();
     }
+   // private int i = 0;//线程不安全的
+//    public int getI(){
+//        return i++;
+//    }
     @Override
     public void run() {
         try {
@@ -22,6 +28,6 @@ class AtomicDemo implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(getI());
+        System.out.println(getI());//计数器+1
     }
 }

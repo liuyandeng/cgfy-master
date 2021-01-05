@@ -3,10 +3,10 @@ package com.cgfy.concurrent.volatiletest;
 import lombok.Data;
 
 public class TestVolatile {
-    public static void main(String[] args){ //这个线程是用来读取flag的值的
+    public static void main(String[] args){
         ThreadDemo threadDemo = new ThreadDemo();
         Thread thread = new Thread(threadDemo);
-        thread.start();//这个线程是用来修改flag的值为true
+        thread.start();//这个线程是用来修改flag的值为true,子线程和主线程内存不可见,修改后不能立刻被主线程读取到更改后的值
         while (true){
             if (threadDemo.isFlag()){//flag为true进入判断逻辑,输出语句
                 System.out.println("主线程读取到的flag = " + threadDemo.isFlag());//flag为true时输出这段话

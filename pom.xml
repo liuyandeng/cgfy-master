@@ -15,6 +15,7 @@
         <module>cgfy-dubbo</module>
         <module>cgfy-pattern</module>
         <module>cgfy-concurrent</module>
+        <module>cgfy-jvm</module>
     </modules>
 
     <parent>

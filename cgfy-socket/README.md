@@ -1,4 +1,4 @@
-# socket网络编程学习
+# 网络编程学习
 
 
 ## 传统的同步阻塞式I/O编程
@@ -38,7 +38,7 @@ Buffer(缓冲区),channel(管道,通道),Selector(选择器,多路复用器)
 
 ![avatar](src/main/resources/static/img/NIO.png)
 
-## Buffer
+### Buffer
 Buffer是一个对象,它包含一些要写入或者要读取的数据,在NIO类库中加入Buffer对象,体现了新库与原IO的一个重要的区别,在面向流的IO中,可以将数据直接写入或者读取到Stream对象中,在NIO库中,所有数据都是用缓冲区处理的(读写),缓冲区实质上是一个数组,通常它是一个字节数组(ByteBuffer),也可以使用其他类型的数组,这个数组为缓冲区提供了数据的访问读写等操作属性,如位置,容量,上限等概念,参考API文档
 Buffer类型:我们最常用的是ByteBuffer,实际上每一种java基本类型都对应了一种缓冲区(除了Boolean类型)
 ByteBuffer
@@ -49,9 +49,9 @@ LongBuffer
 FloatBuffer
 DoubleBuffer
 
-## channel
+### channel
 通道（Channel)，它就像自来水管道一样，网络数据通过Channel读取和写入，通 道与流不同之处在于通道是双向的，而流只是一个方向上移动（一个流必须是 InputStream或者OutputStream的子类），而通道可以用于读、写或者二者同时进行, 最关键的是可以与多路复用器结合起来，有多种的状态位，方便多路复用器去识别。 事实上通道分为两大类，一类是网络读写的（SelectableChannel)，一类是用于文 件操作的（FlleChannel)，我们使用的SocketChannel和ServerSockerChannel都 是 SelectableChannel 的子类。
-## Selector
+### Selector
 多路复用器（Selector)，他是NIO编程的基础，非常重要。多路复用器提供 选择己经就绪的任务的能力。 简单说，就是Selector会不断地轮询注册在其上的通道（Channel），如果 某个通道发生了读写操作，这个通道就处于就绪状态，会被Selector轮询出 来，然后通过SelectionKey可以取得就绪的Channel集合，从而进行后续的 IO操作。 —个多路复用器（Selector)可以负责成千上万Channel通道，没有上限， 这也是JDK使用了 epoll代替了传统的select实现，获得连接句柄没有限制。 这也就意味着我们只要一个线程负责Selector的轮询，就可以接入成千上万 个客户端，这是JDKNIO库的巨大进步。
 Selector线程就类似一个管理者（Master),管理了成千上万个管道，然后 轮询哪个管道的数据己经准备好，通知cpu执行IO的读取或写入操作。 
 Selector模式:当IO事件（管道）注册到选择器以后，selector会分配给每个 管道一个key值，相当于标签。selector选择器是以轮询的方式进行査找注册 的所有IO事件（管道），当我们的IO事件（管道）准备就绪后，select就会 识别，会通过key值来找到相应的管道，进行相关的数据处理操作（从管道里 读或写数据，写到我们的数据缓冲区中）。

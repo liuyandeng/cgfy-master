@@ -145,12 +145,12 @@ public class HttpRequest {
     }
 
     public static void main(String[] args) {
-        com.zving.platform.util.HttpRequest httpRequest = new com.zving.platform.util.HttpRequest();
+        HttpRequest httpRequest = new HttpRequest();
 
 //测试微信项目中通过post请求获取access token
         String url = "https://api.weixin.qq.com/cgi-bin/token";
         String param = "grant_type=client_credential&appid=wxfc27805daac56d9b&secret=12d853529003c68d0d2c9d4f87dd8b57";
-        String sr= com.zving.platform.util.HttpRequest.sendPost(url, param);
+        String sr= HttpRequest.sendPost(url, param);
         System.out.println(sr);
     }
 }

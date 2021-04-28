@@ -1,4 +1,4 @@
-package com.cgfy.concurrent.atomic;
+package com.cgfy.juc.atomic;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

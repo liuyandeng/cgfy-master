@@ -14,9 +14,9 @@
 ### 2.[cgfy-lock](https://blog.csdn.net/qq877507054/article/details/107610780)
 
 
-redisson分布式锁等相关概念,java,sql相关锁概念
+redisson分布式锁等相关概念,sql相关锁概念
 
-### 3.[cgfy-mq](https://blog.csdn.net/qq877507054/article/details/102967445)
+### 3.[cgfy-rabbitmq](https://blog.csdn.net/qq877507054/article/details/102967445)
 
 
 RabbitMQ的基本操作及概念
@@ -26,7 +26,7 @@ RabbitMQ的基本操作及概念
 
 事务的相关概念,DB+MQ
 
-### 5.cgfy-office
+### 5.cgfy-libreoffice
 
 
 集成libreoffice实现office文档转pdf,并在线预览

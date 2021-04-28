@@ -5,10 +5,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>cgfy-mybatis</module>
-        <module>cgfy-mq</module>
+        <module>cgfy-rabbitmq</module>
         <module>cgfy-transaction</module>
         <module>cgfy-lock</module>
-        <module>cgfy-office</module>
+        <module>cgfy-libreoffice</module>
         <module>cgfy-socket</module>
         <module>cgfy-cloud</module>
         <module>cgfy-zookeeper</module>

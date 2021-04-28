@@ -7,7 +7,7 @@
         <artifactId>cgfy-master</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>cgfy-mybatis</artifactId>
+    <artifactId>cgfy-tkmybatis</artifactId>
     <packaging>jar</packaging>
     <description>mybatis的tk插件demo</description>
 
@@ -142,7 +142,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.cgfy.mybatis.MybatisApplication</mainClass>
+                    <mainClass>com.cgfy.tkmybatis.MybatisApplication</mainClass>
                     <executable>true</executable>
                     <includeSystemScope>true</includeSystemScope>
                 </configuration>

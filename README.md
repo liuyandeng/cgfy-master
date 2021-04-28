@@ -6,7 +6,7 @@
 
 
 ## 目录
-### 1.[cgfy-mybatis](https://gitee.com/free/Mapper/wikis/Home )
+### 1.[cgfy-tkmybatis](https://gitee.com/free/Mapper/wikis/Home )
 
 
 通用mapper的集成,模板化一键生成CRUD,单机版redis缓存的的相关概念,(多机了解哨兵,cluster),Excel,Word等相关操作

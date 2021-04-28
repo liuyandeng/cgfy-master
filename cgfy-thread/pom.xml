@@ -7,9 +7,9 @@
         <artifactId>cgfy-master</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>cgfy-juc</artifactId>
+    <artifactId>cgfy-thread</artifactId>
     <packaging>jar</packaging>
-    <description>juc project for Spring Boot</description>
+    <description>thread project for Spring Boot</description>
 
     <dependencies>
         <!--boot组-->

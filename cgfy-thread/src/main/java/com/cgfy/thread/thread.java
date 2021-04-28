@@ -1,11 +1,11 @@
-package com.cgfy.juc;
+package com.cgfy.thread;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class juc {
+public class thread {
     /**
      * @link - https://blog.csdn.net/weixin_41884010/article/details/88844946
      * 启动springboot的启动类，springboot会帮助我们准备所有的环境，包括server，监听器，装配spring的上下文等等
@@ -14,7 +14,7 @@ public class juc {
      * 2.利用创建好的SpringApplication对象调用run方法；准备spring的上下文，完成容器的初始化，创建，加载等。会在不同的时机触发监听器的不同事件。
      */
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(juc.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(thread.class, args);
         //context.getBeanFactory();
     }
 

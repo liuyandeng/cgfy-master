@@ -1,4 +1,4 @@
-package com.cgfy.lock.java;
+package com.cgfy.thread.synchronize;
 
 /**
  * 当一个线程访问对象的一个synchronized(this)同步代码块时，另一个线程仍然可以访问该对象中的非synchronized(this)同步代码块。

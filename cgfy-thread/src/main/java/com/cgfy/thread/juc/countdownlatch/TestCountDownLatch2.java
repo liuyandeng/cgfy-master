@@ -1,4 +1,4 @@
-package com.cgfy.juc.countdownlatch;
+package com.cgfy.thread.juc.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 

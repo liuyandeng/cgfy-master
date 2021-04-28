@@ -1,4 +1,4 @@
-package com.cgfy.juc.volatiletest;
+package com.cgfy.thread.juc.volatiletest;
 
 import lombok.Data;
 

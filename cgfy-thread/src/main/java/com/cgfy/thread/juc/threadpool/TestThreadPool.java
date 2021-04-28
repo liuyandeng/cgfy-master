@@ -1,4 +1,4 @@
-package com.cgfy.juc.threadpool;
+package com.cgfy.thread.juc.threadpool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

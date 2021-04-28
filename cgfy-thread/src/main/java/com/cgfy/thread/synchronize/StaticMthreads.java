@@ -1,4 +1,4 @@
-package com.cgfy.lock.java;
+package com.cgfy.thread.synchronize;
 
 /**
  * 修饰静态方法

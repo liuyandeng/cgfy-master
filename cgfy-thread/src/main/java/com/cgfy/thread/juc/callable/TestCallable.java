@@ -1,4 +1,4 @@
-package com.cgfy.juc.callable;
+package com.cgfy.thread.juc.callable;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;

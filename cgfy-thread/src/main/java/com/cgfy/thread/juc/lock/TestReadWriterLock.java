@@ -1,4 +1,4 @@
-package com.cgfy.juc.lock;
+package com.cgfy.thread.juc.lock;
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

@@ -1,4 +1,4 @@
-package com.cgfy.lock.java;
+package com.cgfy.thread.synchronize;
 
 /**
  * 当两个并发线程(thread1和thread2)访问同一个对象(syncThread)中的synchronized代码块时，在同一时刻只能有一个线程得到执行，

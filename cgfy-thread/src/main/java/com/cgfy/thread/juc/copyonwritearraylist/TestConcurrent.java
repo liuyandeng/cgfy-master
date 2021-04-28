@@ -1,4 +1,4 @@
-package com.cgfy.juc.copyonwritearraylist;
+package com.cgfy.thread.juc.copyonwritearraylist;
 
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;

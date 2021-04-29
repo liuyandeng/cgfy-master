@@ -53,15 +53,37 @@ CPU还要花时间去维护，CPU处理各线程的请求时在线程间的切�
               }
           }).start();
           
-    写法2.new Thread(test::method2).start();
+    或者 new Thread(test::method2).start();
 
-    写法3.ExecutorService pool = Executors.newCachedThreadPool();
-      pool.execute(new Runnable() {
-            public void run() {
-            }
-     );
- 
- ## JAVA 8 '::' 关键字
+    写法2.private static ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+    Runnable task = () -> {
+    	//to do
+    };
+    pool.execute(task);
+    
+    写法3:callable使用
+      Callable callable = new Callable() {
+               @Override
+               public Object call() throws Exception {
+                   return "this is Callable's message";
+               }
+           };
+       //将callable丢进任务里面,用于接收运算结果
+       FutureTask futureTask = new FutureTask(callable);
+       //启动线程, 执行任务
+       new Thread(futureTask).start();
+       try {
+           while (!futureTask.isDone()) {
+               Thread.sleep(100);
+           }
+           System.out.println("执行任务后的结果: " + futureTask.get());
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       } catch (ExecutionException e) {
+           e.printStackTrace();
+       }
+   
+ ### JAVA 8 '::' 关键字
 |语法种类|示例|
 |----|----|
 |引用静态方法|ContainingClass::staticMethodName|
@@ -224,6 +246,8 @@ Synchronized也可修饰一个静态方法，用法如下：
 如果synchronized作用的对象是一个静态方法或一个类，则它取得的锁是对类，该类所有的对象同一把锁。 
 - 每个对象只有一个锁（lock）与之相关联，谁拿到这个锁谁就可以运行它所控制的那段代码。 
 - 实现同步是要很大的系统开销作为代价的，甚至可能造成死锁，所以尽量避免无谓的同步控制
+
+
 
 # [CAS操作](https://www.jianshu.com/p/d53bf830fa09)
 ## 什么是CAS?

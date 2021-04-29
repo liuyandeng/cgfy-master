@@ -7,7 +7,7 @@
         <module>cgfy-tkmybatis</module>
         <module>cgfy-rabbitmq</module>
         <module>cgfy-transaction</module>
-        <module>cgfy-lock</module>
+        <module>cgfy-redisson</module>
         <module>cgfy-libreoffice</module>
         <module>cgfy-socket</module>
         <module>cgfy-cloud</module>

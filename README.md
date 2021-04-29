@@ -11,7 +11,7 @@
 
 通用mapper的集成,模板化一键生成CRUD,单机版redis缓存的的相关概念,(多机了解哨兵,cluster),Excel,Word等相关操作
 
-### 2.[cgfy-lock](https://blog.csdn.net/qq877507054/article/details/107610780)
+### 2.[cgfy-redisson](https://blog.csdn.net/qq877507054/article/details/107610780)
 
 
 redisson分布式锁等相关概念,sql相关锁概念

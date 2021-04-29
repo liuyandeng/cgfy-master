@@ -87,7 +87,24 @@ Cglib子类代理实现方法:
 
 代理模式的思想是为了提供额外的处理或者不同的操作而在实际对象与调用者之间插入一个代理对象。这些额外的操作通常需要与实际对象进行通信。
 
+# 单例模式
+```
+    public static SingleIndexer getInstance() {
+        if (instance == null) {
+            lock.lock();
 
+            try {
+                if (instance == null) {
+                    instance = new SingleIndexer();
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+
+        return instance;
+    }
+```
 
 
 

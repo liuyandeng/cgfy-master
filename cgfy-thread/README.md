@@ -68,10 +68,16 @@ CPU还要花时间去维护，CPU处理各线程的请求时在线程间的切�
     或者 new Thread(test::method2).start();
 
     写法2.private static ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
+       或者: private ThreadPoolExecutor executor = executor = new ThreadPoolExecutor(1, Integer.MAX_VALUE, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(5)){};
+
     Runnable task = () -> {
     	//to do
     };
     pool.execute(task);
+    
+    
+    
+    
     
     写法3:callable使用
       Callable callable = new Callable() {

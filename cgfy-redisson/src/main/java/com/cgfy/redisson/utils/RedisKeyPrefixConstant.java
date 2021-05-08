@@ -1,4 +1,4 @@
-package com.cgfy.redisson.redisson.utils;
+package com.cgfy.redisson.utils;
 
 
 public class RedisKeyPrefixConstant {

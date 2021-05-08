@@ -1,4 +1,4 @@
-package com.cgfy.redisson.redisson.domain.model;
+package com.cgfy.redisson.domain.model;
 
 import lombok.Data;
 

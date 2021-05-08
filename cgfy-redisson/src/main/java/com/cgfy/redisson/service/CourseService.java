@@ -1,6 +1,7 @@
-package com.cgfy.redisson.redisson.service;
+package com.cgfy.redisson.service;
 
-import com.cgfy.redisson.Redisson.domain.model.CourseModel;
+
+import com.cgfy.redisson.domain.model.CourseModel;
 
 public interface CourseService {
 

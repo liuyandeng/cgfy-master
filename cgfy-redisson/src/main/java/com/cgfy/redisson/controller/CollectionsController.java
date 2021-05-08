@@ -1,5 +1,5 @@
-package com.cgfy.redisson.redisson.controller;
-import com.cgfy.redisson.Redisson.service.CollectionsService;
+package com.cgfy.redisson.controller;
+import com.cgfy.redisson.service.CollectionsService;
 import org.redisson.api.RList;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;

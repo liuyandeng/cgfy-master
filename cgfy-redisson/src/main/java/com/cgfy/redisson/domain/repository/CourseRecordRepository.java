@@ -1,6 +1,7 @@
-package com.cgfy.redisson.redisson.domain.repository;
+package com.cgfy.redisson.domain.repository;
 
-import com.cgfy.redisson.Redisson.domain.model.CourseRecordModel;
+
+import com.cgfy.redisson.domain.model.CourseRecordModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

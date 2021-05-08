@@ -1,7 +1,8 @@
-package com.cgfy.redisson.redisson.service.impl;
+package com.cgfy.redisson.service.impl;
 
-import com.cgfy.redisson.Redisson.service.StockService;
-import com.cgfy.redisson.Redisson.utils.RedisKeyPrefixConstant;
+
+import com.cgfy.redisson.service.StockService;
+import com.cgfy.redisson.utils.RedisKeyPrefixConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;

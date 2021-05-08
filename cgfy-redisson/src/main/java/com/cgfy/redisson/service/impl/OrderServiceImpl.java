@@ -1,9 +1,9 @@
-package com.cgfy.redisson.redisson.service.impl;
+package com.cgfy.redisson.service.impl;
 
-import com.cgfy.redisson.Redisson.domain.model.OrderModel;
-import com.cgfy.redisson.Redisson.domain.repository.OrderRepository;
-import com.cgfy.redisson.Redisson.service.OrderService;
-import com.cgfy.redisson.Redisson.service.StockService;
+import com.cgfy.redisson.domain.model.OrderModel;
+import com.cgfy.redisson.domain.repository.OrderRepository;
+import com.cgfy.redisson.service.OrderService;
+import com.cgfy.redisson.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;

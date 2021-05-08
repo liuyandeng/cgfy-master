@@ -1,13 +1,14 @@
-package com.cgfy.redisson.redisson.service.impl;
+package com.cgfy.redisson.service.impl;
 
 import com.alibaba.fastjson.JSON;
 
-import com.cgfy.redisson.Redisson.domain.model.CourseModel;
-import com.cgfy.redisson.Redisson.domain.model.CourseRecordModel;
-import com.cgfy.redisson.Redisson.domain.repository.CourseRecordRepository;
-import com.cgfy.redisson.Redisson.domain.repository.CourseRepository;
-import com.cgfy.redisson.Redisson.service.CourseService;
-import com.cgfy.redisson.Redisson.utils.RedisKeyPrefixConstant;
+
+import com.cgfy.redisson.domain.model.CourseModel;
+import com.cgfy.redisson.domain.model.CourseRecordModel;
+import com.cgfy.redisson.domain.repository.CourseRecordRepository;
+import com.cgfy.redisson.domain.repository.CourseRepository;
+import com.cgfy.redisson.service.CourseService;
+import com.cgfy.redisson.utils.RedisKeyPrefixConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RLock;

@@ -1,4 +1,4 @@
-package com.cgfy.redisson.redisson.config;
+package com.cgfy.redisson.config;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;

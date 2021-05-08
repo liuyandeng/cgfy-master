@@ -1,4 +1,4 @@
-package com.cgfy.redisson.redisson.bean;
+package com.cgfy.redisson.bean;
 
 import lombok.Data;
 

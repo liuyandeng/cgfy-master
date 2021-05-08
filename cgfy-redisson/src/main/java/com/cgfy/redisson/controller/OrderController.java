@@ -1,7 +1,8 @@
-package com.cgfy.redisson.redisson.controller;
+package com.cgfy.redisson.controller;
 
-import com.cgfy.redisson.Redisson.bean.OrderDto;
-import com.cgfy.redisson.Redisson.service.OrderService;
+
+import com.cgfy.redisson.bean.OrderDto;
+import com.cgfy.redisson.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

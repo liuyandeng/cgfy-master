@@ -1,5 +1,5 @@
-package com.cgfy.redisson.redisson.service.impl;
-import com.cgfy.redisson.Redisson.service.CollectionsService;
+package com.cgfy.redisson.service.impl;
+import com.cgfy.redisson.service.CollectionsService;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RList;
 import org.redisson.api.RMap;

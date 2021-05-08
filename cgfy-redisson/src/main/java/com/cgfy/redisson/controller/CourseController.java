@@ -1,9 +1,10 @@
-package com.cgfy.redisson.redisson.controller;
+package com.cgfy.redisson.controller;
 
 import com.alibaba.fastjson.JSON;
 
-import com.cgfy.redisson.Redisson.domain.model.CourseModel;
-import com.cgfy.redisson.Redisson.service.CourseService;
+
+import com.cgfy.redisson.domain.model.CourseModel;
+import com.cgfy.redisson.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

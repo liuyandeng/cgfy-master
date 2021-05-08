@@ -1,4 +1,4 @@
-package com.cgfy.redisson.redisson.service;
+package com.cgfy.redisson.service;
 
 
 import org.redisson.api.RList;

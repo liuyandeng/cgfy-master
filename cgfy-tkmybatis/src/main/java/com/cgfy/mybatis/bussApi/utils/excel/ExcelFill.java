@@ -2,6 +2,7 @@ package com.cgfy.mybatis.bussApi.utils.excel;
 
 import com.alibaba.excel.EasyExcel;;
 import com.cgfy.mybatis.bussApi.utils.DateUtil;
+import com.cgfy.mybatis.bussApi.utils.excel.handler.MyCellWriteHandler;
 import com.cgfy.mybatis.bussApi.utils.word.ExportWordByFtl;
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,8 +57,8 @@ public class ExcelFill  {
         String url = "http://localhost:8080/" + fileName;
         System.out.println(url);
         try {
-            EasyExcel.write("E:/upload/" +fileName).withTemplate(templateFileName).sheet().doFill(list);
-           // EasyExcel.write("E:/upload/" +fileName, FillData.class).registerWriteHandler(new ImageModifyHandler()).withTemplate(templateFileName).sheet().doFill(list);
+            //EasyExcel.write("E:/upload/" +fileName).withTemplate(templateFileName).sheet().doFill(list);
+            EasyExcel.write("E:/upload/" +fileName, FillData.class).registerWriteHandler(new MyCellWriteHandler()).withTemplate(templateFileName).sheet().doFill(list);
         }catch (Exception e){
             File errorFile=new File("E:/upload/" +fileName);
             errorFile.delete();

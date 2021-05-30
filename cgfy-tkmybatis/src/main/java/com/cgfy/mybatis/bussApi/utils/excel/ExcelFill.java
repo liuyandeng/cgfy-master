@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +18,17 @@ import java.util.List;
  */
 @Slf4j
 public class ExcelFill  {
-    private static final String fp = "F:/upload/out/";
-    private static final String fpurl = "http://localhost:8080";
 
     /**
      * 读取excel
      * @param args
      */
     public static void main(String[] args) throws Exception {
-        String templateFileName =  "F:/upload/ExcelFill.xlsx";
+        String templateFileName =  "E:/upload/ExcelFill.xlsx";
         File file = new File(templateFileName);
         if (!file.exists()) {//不存在这个文件
             System.out.println("模板文件不存在");
-            InputStream inputStream = ExportWordByFtl.class.getClassLoader().getResourceAsStream("templates/ExcelFill.xlsx");
+            InputStream inputStream = ExcelFill.class.getClassLoader().getResourceAsStream("templates/ExcelFill.xlsx");
             int index;
             byte[] bytes = new byte[1024];
             FileOutputStream downloadFile = new FileOutputStream(templateFileName);
@@ -49,13 +48,22 @@ public class ExcelFill  {
             fillData.setTest4("手机号"+i);
             fillData.setTest5("学历"+i);
             fillData.setTest6("家庭住址"+i);
+            fillData.setImgUrl( new URL("http://file.fangzuobiao.com:9000/5,04e1833f2957e9.jpg"));
             list.add(fillData);
         }
         String currentDate = DateUtil.getStringDateNum();//当前时间
         String fileName =  "Excel填充案例" +currentDate+".xlsx" ;
-        String url = fpurl + "/" + "out/" + fileName;
+        String url = "http://localhost:8080/" + fileName;
         System.out.println(url);
-        EasyExcel.write(fp +fileName).withTemplate(templateFileName).sheet().doFill(list);
+        try {
+            EasyExcel.write("E:/upload/" +fileName).withTemplate(templateFileName).sheet().doFill(list);
+           // EasyExcel.write("E:/upload/" +fileName, FillData.class).registerWriteHandler(new ImageModifyHandler()).withTemplate(templateFileName).sheet().doFill(list);
+        }catch (Exception e){
+            File errorFile=new File("E:/upload/" +fileName);
+            errorFile.delete();
+            e.printStackTrace();
+        }
+
     }
 
 

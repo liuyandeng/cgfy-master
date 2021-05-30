@@ -84,8 +84,8 @@ logging:
     com.cgfy: debug
 files:
   #root: /home/files/ntko
-  root: F:\upload
+  root: E:\upload
   url: http://localhost:8080
-  thumb: F:\upload\thumb
+  thumb: E:\upload\thumb
 
 

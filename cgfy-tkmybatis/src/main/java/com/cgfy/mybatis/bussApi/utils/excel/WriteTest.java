@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.cgfy.mybatis.bussApi.utils.excel.bean.WriteData;
+import com.cgfy.mybatis.bussApi.utils.excel.handler.MyCellWriteHandler;
 import com.cgfy.mybatis.bussApi.utils.excel.util.TestFileUtil;
 
 import com.alibaba.excel.EasyExcel;
@@ -42,6 +43,8 @@ public class WriteTest {
         // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
         // 如果这里想使用03 则 传入excelType参数即可
         EasyExcel.write(fileName, WriteData.class).sheet("模板").doWrite(list);
+        //EasyExcel.write(fileName, WriteData.class).registerWriteHandler(new MyCellWriteHandler()).sheet().doWrite(list);
+
     }
 
 

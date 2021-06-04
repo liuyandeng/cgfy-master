@@ -61,7 +61,6 @@ public class FillTest {
         System.out.println(url);
         try {
             EasyExcel.write("E:/upload/" +fileName).withTemplate(templateFileName).sheet().doFill(list);
-            //EasyExcel.write("E:/upload/" +fileName, FillData.class).registerWriteHandler(new MyCellWriteHandler()).withTemplate(templateFileName).sheet().doFill(list);
         }catch (Exception e){
             File errorFile=new File("E:/upload/" +fileName);
             errorFile.delete();

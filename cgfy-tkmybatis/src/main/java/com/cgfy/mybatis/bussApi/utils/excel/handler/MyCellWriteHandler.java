@@ -14,6 +14,7 @@ import java.util.List;
 public class MyCellWriteHandler implements CellWriteHandler {
     /**
      * 在创建单元格之前调用
+     *
      * @param writeSheetHolder
      * @param writeTableHolder
      * @param row
@@ -31,6 +32,7 @@ public class MyCellWriteHandler implements CellWriteHandler {
 
     /**
      * 创建单元格后调用
+     *
      * @param writeSheetHolder
      * @param writeTableHolder
      * @param cell
@@ -47,6 +49,7 @@ public class MyCellWriteHandler implements CellWriteHandler {
 
     /**
      * 单元格数据转换后调用
+     *
      * @param writeSheetHolder
      * @param writeTableHolder
      * @param cellData
@@ -61,17 +64,16 @@ public class MyCellWriteHandler implements CellWriteHandler {
                                        Cell cell, Head head, Integer relativeRowIndex, Boolean isHead) {
 
         //  在 数据转换成功后 ，修改第一列 当然这里也可以根据其他判断  然后不是头  就把类型设置成空 这样easyexcel 不会去处理该单元格
-//        if (isHead||head.getColumnIndex() != 1 ) {
-//            return;
-//        }
-        if(relativeRowIndex==3){//第四行设置空
-            cellData.setType(CellDataTypeEnum.EMPTY);
+        if (isHead || head.getColumnIndex() != 1) {
+            return;
         }
+
 
     }
 
     /**
      * 在单元上的所有操作完成后调用
+     *
      * @param writeSheetHolder
      * @param writeTableHolder
      * @param cellDataList
@@ -85,7 +87,7 @@ public class MyCellWriteHandler implements CellWriteHandler {
                                  WriteTableHolder writeTableHolder, List<CellData> cellDataList, Cell cell,
                                  Head head, Integer relativeRowIndex, Boolean isHead) {
         //  在 单元格写入完毕后 ，自己填充图片
-/*        if (head.getColumnIndex() != 1 || isHead || cellDataList.isEmpty()) {
+        if (head.getColumnIndex() != 1 || isHead || cellDataList.isEmpty()) {
             return;
         }
 
@@ -110,6 +112,6 @@ public class MyCellWriteHandler implements CellWriteHandler {
         anchor.setRow2(cell.getRowIndex() + 1);
         // 设置图片可以随着单元格移动
         anchor.setAnchorType(ClientAnchor.AnchorType.MOVE_AND_RESIZE);
-        drawing.createPicture(anchor, index);*/
+        drawing.createPicture(anchor, index);
     }
 }

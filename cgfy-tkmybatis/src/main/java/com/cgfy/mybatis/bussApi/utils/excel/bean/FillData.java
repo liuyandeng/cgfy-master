@@ -1,4 +1,4 @@
-package com.cgfy.mybatis.bussApi.utils.excel;
+package com.cgfy.mybatis.bussApi.utils.excel.bean;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.converters.url.UrlImageConverter;

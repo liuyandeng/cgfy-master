@@ -2,8 +2,8 @@ package com.cgfy.mybatis.bussApi.utils.excel;
 
 import com.alibaba.excel.EasyExcel;;
 import com.cgfy.mybatis.bussApi.utils.DateUtil;
+import com.cgfy.mybatis.bussApi.utils.excel.bean.FillData;
 import com.cgfy.mybatis.bussApi.utils.excel.handler.MyCellWriteHandler;
-import com.cgfy.mybatis.bussApi.utils.word.ExportWordByFtl;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;

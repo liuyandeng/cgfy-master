@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSON;
 import com.cgfy.mybatis.bussApi.utils.excel.bean.ReadData;
 import com.cgfy.mybatis.bussApi.utils.word.ExportWordByFtl;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,7 +21,8 @@ import java.util.List;
  * 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
  */
 @Slf4j
-public class ExcelRead extends AnalysisEventListener<ReadData> {
+public class ReadTest extends AnalysisEventListener<ReadData> {
+    private static final Logger log = LoggerFactory.getLogger(ReadTest.class);
     /**
      * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
      */
@@ -82,7 +85,7 @@ public class ExcelRead extends AnalysisEventListener<ReadData> {
             inputStream.close();
         }
         // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
-        EasyExcel.read(fileName, ReadData.class, new ExcelRead()).sheet().doRead();
+        EasyExcel.read(fileName, ReadData.class, new ReadTest()).sheet().doRead();
     }
 
 

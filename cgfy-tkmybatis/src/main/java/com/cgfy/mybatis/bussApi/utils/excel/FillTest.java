@@ -5,6 +5,8 @@ import com.cgfy.mybatis.bussApi.utils.DateUtil;
 import com.cgfy.mybatis.bussApi.utils.excel.bean.FillData;
 import com.cgfy.mybatis.bussApi.utils.excel.handler.MyCellWriteHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +20,8 @@ import java.util.List;
  * 官网地址: https://www.yuque.com/easyexcel/doc/fill
  */
 @Slf4j
-public class ExcelFill  {
+public class FillTest {
+    private static final Logger log = LoggerFactory.getLogger(FillTest.class);
 
     /**
      * 读取excel
@@ -29,7 +32,7 @@ public class ExcelFill  {
         File file = new File(templateFileName);
         if (!file.exists()) {//不存在这个文件
             System.out.println("模板文件不存在");
-            InputStream inputStream = ExcelFill.class.getClassLoader().getResourceAsStream("templates/ExcelFill.xlsx");
+            InputStream inputStream = FillTest.class.getClassLoader().getResourceAsStream("templates/ExcelFill.xlsx");
             int index;
             byte[] bytes = new byte[1024];
             FileOutputStream downloadFile = new FileOutputStream(templateFileName);
@@ -57,8 +60,8 @@ public class ExcelFill  {
         String url = "http://localhost:8080/" + fileName;
         System.out.println(url);
         try {
-            //EasyExcel.write("E:/upload/" +fileName).withTemplate(templateFileName).sheet().doFill(list);
-            EasyExcel.write("E:/upload/" +fileName, FillData.class).registerWriteHandler(new MyCellWriteHandler()).withTemplate(templateFileName).sheet().doFill(list);
+            EasyExcel.write("E:/upload/" +fileName).withTemplate(templateFileName).sheet().doFill(list);
+            //EasyExcel.write("E:/upload/" +fileName, FillData.class).registerWriteHandler(new MyCellWriteHandler()).withTemplate(templateFileName).sheet().doFill(list);
         }catch (Exception e){
             File errorFile=new File("E:/upload/" +fileName);
             errorFile.delete();

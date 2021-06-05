@@ -75,7 +75,7 @@ public class MyCellWriteHandler implements CellWriteHandler {
         if (isHead || head.getColumnIndex() !=3) {
             return;
         }
-        //cellData.setType(CellDataTypeEnum.EMPTY);
+        cellData.setType(CellDataTypeEnum.EMPTY);
 
     }
 
@@ -102,7 +102,7 @@ public class MyCellWriteHandler implements CellWriteHandler {
         System.out.println("type:"+cellDataList.get(0).getType().name());
         Sheet sheet = cell.getSheet();
         // cellDataList 是list的原因是 填充的情况下 可能会多个写到一个单元格 但是如果普通写入 一定只有一个
-        if("IMAGE".equals(cellDataList.get(0).getType().name())){
+       // if("IMAGE".equals(cellDataList.get(0).getType().name())){
             byte[] imageValue=cellDataList.get(0).getImageValue();
            // imageValue = IOUtils.toByteArray(new FileInputStream("D:\\Documents\\Pictures\\jiucai.jpg"));//本地图片
             int index = sheet.getWorkbook().addPicture(imageValue, HSSFWorkbook.PICTURE_TYPE_JPEG);
@@ -127,5 +127,5 @@ public class MyCellWriteHandler implements CellWriteHandler {
             drawing.createPicture(anchor, index);
         }
 
-    }
+   // }
 }

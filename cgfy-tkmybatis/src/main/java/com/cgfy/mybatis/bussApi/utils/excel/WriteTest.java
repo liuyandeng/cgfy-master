@@ -36,7 +36,6 @@ public class WriteTest {
             data.setStringData("字符串" + i);
             data.setDateData(new Date());
             data.setDoubleData(0.56);
-            //单图导出
             data.setImgUrl(new URL("http://file.fangzuobiao.com:9000/5,04e1833f2957e9.jpg"));
             list.add(data);
         }

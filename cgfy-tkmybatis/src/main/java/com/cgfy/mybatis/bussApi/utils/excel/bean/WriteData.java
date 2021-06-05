@@ -23,12 +23,12 @@ import java.util.List;
 @HeadRowHeight(30)//表头行高
 @ContentRowHeight(20)//数据行行高
 public class WriteData {
-    //index如果不设置,列名的先后顺序将按照字段从上到下排序,index从0开始
+    //index如果不设置,列名的先后顺序将按照字段从上到下排序,index从0开始,如果是数据字段字典,可以指定converter进行转换
     @ExcelProperty(value = "字符串标题")
     private String stringData;//STRING
-    @ExcelProperty(value = "日期标题",index = 2)
+    @ExcelProperty(value = {"多表头","日期标题"})
     private Date dateData;//STRING
-    @ExcelProperty(value = "数字标题")
+    @ExcelProperty(value = {"多表头","数字标题"})
     private Double doubleData;//NUMBER
     @ExcelProperty(value = "图片标题",index = 3)
     private URL imgUrl;//IMAGE

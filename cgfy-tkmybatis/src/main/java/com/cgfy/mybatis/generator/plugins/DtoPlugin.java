@@ -1,4 +1,4 @@
-package com.cgfy.mybatis.generator.ext;
+package com.cgfy.mybatis.generator.plugins;
 
 import com.cgfy.mybatis.generator.plugins.AbstractBeanCreatePlugin;
 import org.apache.commons.lang3.StringUtils;
@@ -10,12 +10,9 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * 插入输入bean和更新输入bean合并成输入bean
- */
-public class InputBeanPlugin extends AbstractBeanCreatePlugin {
-	private static final String BEAN_KEY = "INPUT_BEAN";
-	private static final String CLASS_NAME = "#TYPE#InputBean";
+public class DtoPlugin extends AbstractBeanCreatePlugin {
+	private static final String BEAN_KEY = "DTOBEAN";
+	private static final String CLASS_NAME = "#TYPE#DtoBean";
 
 	protected void addFieldAnnotation(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
 			IntrospectedColumn introspectedColumn, List<String> annotationList) {
@@ -31,25 +28,11 @@ public class InputBeanPlugin extends AbstractBeanCreatePlugin {
 				iterator.remove();
 			}
 		}
-		iterator = columnList.iterator();
-
-		String uuidFieldList = introspectedTable.getContext().getProperty("uuidField");
-		String[] uuidFields = uuidFieldList.split("\\|");
-		while (iterator.hasNext()) {
-			IntrospectedColumnEx column = (IntrospectedColumnEx) IntrospectedColumnEx.class.cast(iterator.next());
-			for (String uuidField : uuidFields) {
-				String[] item = uuidField.split("\\.");
-				if ((item.length == 2)
-						&& (StringUtils.equalsIgnoreCase(item[0],
-								introspectedTable.getFullyQualifiedTableNameAtRuntime()))
-						&& (StringUtils.equalsIgnoreCase(item[1], column.getActualColumnName()))) {
-					iterator.remove();
-					column.setHidden(true);
-				}
-			}
-		}
-		
 		return columnList;
+	}
+
+	protected void addValidationNotNull(TopLevelClass topLevelClass, IntrospectedTable introspectedTable,
+			IntrospectedColumn introspectedColumn, List<String> annotationList) {
 	}
 
 	protected void addClassAnnotation(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -57,7 +40,7 @@ public class InputBeanPlugin extends AbstractBeanCreatePlugin {
 	}
 
 	protected String getClassComment(IntrospectedTable introspectedTable) {
-		return introspectedTable.getRemarks() + "新增更新输入用Bean";
+		return introspectedTable.getRemarks() + "数据传输Dto";
 	}
 
 	protected String createClassName(IntrospectedTable introspectedTable) {

@@ -45,16 +45,16 @@
 
 		<!--#######################################################输入输出bean################################-->
 		<!-- 生成Vo -->
-<!--		<plugin type="com.cgfy.mybatis.generator.ext.VoPlugin">-->
+<!--		<plugin type="com.cgfy.mybatis.generator.plugins.VoPlugin">-->
 <!--			<property name="basePackage" value="${project.basePackage}.bean" />-->
 <!--		</plugin>-->
 		<!-- 生成Dto -->
-<!--		<plugin type="com.cgfy.mybatis.generator.ext.DtoPlugin">-->
+<!--		<plugin type="com.cgfy.mybatis.generator.plugins.DtoPlugin">-->
 <!--			<property name="basePackage" value="${project.basePackage}.bean" />-->
 <!--		</plugin>-->
 
 		<!-- 生成新增更新记录Bean -->
-		<plugin type="com.cgfy.mybatis.generator.ext.InputBeanPlugin">
+		<plugin type="com.cgfy.mybatis.generator.plugins.InputBeanPlugin">
 			<property name="basePackage" value="${project.basePackage}.bean" />
 		</plugin>
 

@@ -1,4 +1,4 @@
-package com.cgfy.mybatis.generator.ext;
+package com.cgfy.mybatis.generator.plugins;
 
 import com.cgfy.mybatis.generator.plugins.AbstractBeanCreatePlugin;
 import org.apache.commons.lang3.StringUtils;
